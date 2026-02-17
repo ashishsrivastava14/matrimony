@@ -1,0 +1,435 @@
+import 'package:flutter/material.dart';
+import '../core/theme.dart';
+
+/// Mediator: Create a profile on behalf of a client
+class CreateProfileScreen extends StatefulWidget {
+  const CreateProfileScreen({super.key});
+
+  @override
+  State<CreateProfileScreen> createState() => _CreateProfileScreenState();
+}
+
+class _CreateProfileScreenState extends State<CreateProfileScreen> {
+  int _currentStep = 0;
+  String _gender = 'Male';
+  String _maritalStatus = 'Never Married';
+  String _religion = 'Hindu';
+  String _familyType = 'Nuclear';
+  String _diet = 'Vegetarian';
+
+  final _steps = [
+    'Basic Info',
+    'Religion & Caste',
+    'Education & Career',
+    'Family',
+    'Horoscope',
+    'Photo & Contact',
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Create Client Profile'),
+        actions: [
+          TextButton(
+            onPressed: () {
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                    content: Text('Draft saved'),
+                    backgroundColor: AppColors.primary),
+              );
+            },
+            child: const Text('Save Draft'),
+          ),
+        ],
+      ),
+      body: Column(
+        children: [
+          // Step indicators
+          Container(
+            padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+            color: Colors.white,
+            child: Row(
+              children: List.generate(_steps.length, (i) {
+                final isActive = i == _currentStep;
+                final isDone = i < _currentStep;
+                return Expanded(
+                  child: Column(
+                    children: [
+                      Row(
+                        children: [
+                          if (i > 0)
+                            Expanded(
+                              child: Divider(
+                                color: isDone
+                                    ? AppColors.primary
+                                    : AppColors.divider,
+                                thickness: 2,
+                              ),
+                            ),
+                          CircleAvatar(
+                            radius: 12,
+                            backgroundColor: isDone
+                                ? AppColors.primary
+                                : isActive
+                                    ? AppColors.accent
+                                    : AppColors.divider,
+                            child: isDone
+                                ? const Icon(Icons.check,
+                                    size: 14, color: Colors.white)
+                                : Text('${i + 1}',
+                                    style: TextStyle(
+                                      fontSize: 11,
+                                      color: isActive
+                                          ? Colors.white
+                                          : AppColors.textSecondary,
+                                    )),
+                          ),
+                          if (i < _steps.length - 1)
+                            Expanded(
+                              child: Divider(
+                                color: isDone
+                                    ? AppColors.primary
+                                    : AppColors.divider,
+                                thickness: 2,
+                              ),
+                            ),
+                        ],
+                      ),
+                      const SizedBox(height: 4),
+                      Text(
+                        _steps[i],
+                        style: TextStyle(
+                          fontSize: 9,
+                          fontWeight:
+                              isActive ? FontWeight.bold : FontWeight.normal,
+                          color: isActive
+                              ? AppColors.primary
+                              : AppColors.textSecondary,
+                        ),
+                        textAlign: TextAlign.center,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ],
+                  ),
+                );
+              }),
+            ),
+          ),
+
+          Expanded(
+            child: SingleChildScrollView(
+              padding: const EdgeInsets.all(16),
+              child: _buildCurrentStep(),
+            ),
+          ),
+
+          // Nav buttons
+          Container(
+            padding: const EdgeInsets.all(16),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              boxShadow: [
+                BoxShadow(
+                    color: Colors.black.withValues(alpha: 0.05),
+                    blurRadius: 4,
+                    offset: const Offset(0, -1)),
+              ],
+            ),
+            child: Row(
+              children: [
+                if (_currentStep > 0)
+                  Expanded(
+                    child: OutlinedButton(
+                      onPressed: () =>
+                          setState(() => _currentStep--),
+                      child: const Text('Previous'),
+                    ),
+                  ),
+                if (_currentStep > 0) const SizedBox(width: 12),
+                Expanded(
+                  child: ElevatedButton(
+                    onPressed: () {
+                      if (_currentStep < _steps.length - 1) {
+                        setState(() => _currentStep++);
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text(
+                                'Client profile created successfully!'),
+                            backgroundColor: AppColors.success,
+                          ),
+                        );
+                        setState(() => _currentStep = 0);
+                      }
+                    },
+                    child: Text(
+                      _currentStep < _steps.length - 1
+                          ? 'Next'
+                          : 'Submit Profile',
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildCurrentStep() {
+    switch (_currentStep) {
+      case 0:
+        return _basicInfo();
+      case 1:
+        return _religionCaste();
+      case 2:
+        return _educationCareer();
+      case 3:
+        return _family();
+      case 4:
+        return _horoscope();
+      case 5:
+        return _photoContact();
+      default:
+        return const SizedBox();
+    }
+  }
+
+  Widget _basicInfo() {
+    return Column(
+      children: [
+        Row(
+          children: [
+            Expanded(
+              child: RadioListTile<String>(
+                title: const Text('Male'),
+                value: 'Male',
+                groupValue: _gender,
+                onChanged: (v) => setState(() => _gender = v!),
+                contentPadding: EdgeInsets.zero,
+              ),
+            ),
+            Expanded(
+              child: RadioListTile<String>(
+                title: const Text('Female'),
+                value: 'Female',
+                groupValue: _gender,
+                onChanged: (v) => setState(() => _gender = v!),
+                contentPadding: EdgeInsets.zero,
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(height: 10),
+        TextFormField(
+            decoration: const InputDecoration(labelText: 'Full Name')),
+        const SizedBox(height: 14),
+        TextFormField(
+            decoration: const InputDecoration(labelText: 'Date of Birth')),
+        const SizedBox(height: 14),
+        TextFormField(
+            decoration: const InputDecoration(labelText: 'Height')),
+        const SizedBox(height: 14),
+        DropdownButtonFormField<String>(
+          value: _maritalStatus,
+          decoration: const InputDecoration(labelText: 'Marital Status'),
+          items: ['Never Married', 'Divorced', 'Widowed', 'Awaiting Divorce']
+              .map((e) => DropdownMenuItem(value: e, child: Text(e)))
+              .toList(),
+          onChanged: (v) => setState(() => _maritalStatus = v!),
+        ),
+        const SizedBox(height: 14),
+        TextFormField(
+            decoration: const InputDecoration(labelText: 'Mother Tongue'),
+            initialValue: 'Tamil'),
+      ],
+    );
+  }
+
+  Widget _religionCaste() {
+    return Column(
+      children: [
+        DropdownButtonFormField<String>(
+          value: _religion,
+          decoration: const InputDecoration(labelText: 'Religion'),
+          items: ['Hindu', 'Muslim', 'Christian', 'Jain', 'Sikh']
+              .map((e) => DropdownMenuItem(value: e, child: Text(e)))
+              .toList(),
+          onChanged: (v) => setState(() => _religion = v!),
+        ),
+        const SizedBox(height: 14),
+        TextFormField(
+            decoration: const InputDecoration(labelText: 'Caste')),
+        const SizedBox(height: 14),
+        TextFormField(
+            decoration: const InputDecoration(labelText: 'Sub Caste')),
+        const SizedBox(height: 14),
+        TextFormField(
+            decoration: const InputDecoration(labelText: 'Gotram')),
+      ],
+    );
+  }
+
+  Widget _educationCareer() {
+    return Column(
+      children: [
+        TextFormField(
+            decoration:
+                const InputDecoration(labelText: 'Highest Education')),
+        const SizedBox(height: 14),
+        TextFormField(
+            decoration: const InputDecoration(labelText: 'Occupation')),
+        const SizedBox(height: 14),
+        DropdownButtonFormField<String>(
+          value: 'Private Sector',
+          decoration: const InputDecoration(labelText: 'Employed In'),
+          items: [
+            'Private Sector',
+            'Government',
+            'Business',
+            'Self Employed',
+            'Not Working'
+          ].map((e) => DropdownMenuItem(value: e, child: Text(e))).toList(),
+          onChanged: (_) {},
+        ),
+        const SizedBox(height: 14),
+        TextFormField(
+            decoration: const InputDecoration(labelText: 'Annual Income')),
+        const SizedBox(height: 14),
+        TextFormField(
+            decoration:
+                const InputDecoration(labelText: 'Company / Organization')),
+      ],
+    );
+  }
+
+  Widget _family() {
+    return Column(
+      children: [
+        TextFormField(
+            decoration: const InputDecoration(labelText: "Father's Name")),
+        const SizedBox(height: 14),
+        TextFormField(
+            decoration:
+                const InputDecoration(labelText: "Father's Occupation")),
+        const SizedBox(height: 14),
+        TextFormField(
+            decoration: const InputDecoration(labelText: "Mother's Name")),
+        const SizedBox(height: 14),
+        Row(
+          children: [
+            Expanded(
+              child: TextFormField(
+                decoration: const InputDecoration(labelText: 'Brothers'),
+                keyboardType: TextInputType.number,
+              ),
+            ),
+            const SizedBox(width: 14),
+            Expanded(
+              child: TextFormField(
+                decoration: const InputDecoration(labelText: 'Sisters'),
+                keyboardType: TextInputType.number,
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(height: 14),
+        DropdownButtonFormField<String>(
+          value: _familyType,
+          decoration: const InputDecoration(labelText: 'Family Type'),
+          items: ['Nuclear', 'Joint']
+              .map((e) => DropdownMenuItem(value: e, child: Text(e)))
+              .toList(),
+          onChanged: (v) => setState(() => _familyType = v!),
+        ),
+      ],
+    );
+  }
+
+  Widget _horoscope() {
+    return Column(
+      children: [
+        TextFormField(
+            decoration: const InputDecoration(labelText: 'Time of Birth')),
+        const SizedBox(height: 14),
+        TextFormField(
+            decoration: const InputDecoration(labelText: 'Place of Birth')),
+        const SizedBox(height: 14),
+        TextFormField(
+            decoration: const InputDecoration(labelText: 'Star (Nakshatram)')),
+        const SizedBox(height: 14),
+        TextFormField(
+            decoration: const InputDecoration(labelText: 'Rasi')),
+        const SizedBox(height: 14),
+        DropdownButtonFormField<String>(
+          value: 'No',
+          decoration: const InputDecoration(labelText: 'Dosham'),
+          items: ['No', 'Yes', "Don't Know"]
+              .map((e) => DropdownMenuItem(value: e, child: Text(e)))
+              .toList(),
+          onChanged: (_) {},
+        ),
+      ],
+    );
+  }
+
+  Widget _photoContact() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const Text('Client Photos',
+            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+        const SizedBox(height: 12),
+        Row(
+          children: List.generate(3, (i) {
+            return Expanded(
+              child: Container(
+                height: 100,
+                margin: EdgeInsets.only(right: i < 2 ? 8 : 0),
+                decoration: BoxDecoration(
+                  color: AppColors.background,
+                  borderRadius: BorderRadius.circular(12),
+                  border: Border.all(color: AppColors.divider),
+                ),
+                child: const Icon(Icons.add_a_photo,
+                    color: AppColors.textSecondary),
+              ),
+            );
+          }),
+        ),
+        const SizedBox(height: 20),
+        const Text('Contact Details',
+            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+        const SizedBox(height: 12),
+        TextFormField(
+            decoration: const InputDecoration(labelText: 'Phone Number'),
+            keyboardType: TextInputType.phone),
+        const SizedBox(height: 14),
+        TextFormField(
+            decoration: const InputDecoration(labelText: 'WhatsApp Number'),
+            keyboardType: TextInputType.phone),
+        const SizedBox(height: 14),
+        TextFormField(
+            decoration: const InputDecoration(labelText: 'Email'),
+            keyboardType: TextInputType.emailAddress),
+        const SizedBox(height: 14),
+        TextFormField(
+            decoration: const InputDecoration(labelText: 'Address'),
+            maxLines: 3),
+        const SizedBox(height: 14),
+        DropdownButtonFormField<String>(
+          value: _diet,
+          decoration: const InputDecoration(labelText: 'Diet Preference'),
+          items: ['Vegetarian', 'Non-Vegetarian', 'Eggetarian']
+              .map((e) => DropdownMenuItem(value: e, child: Text(e)))
+              .toList(),
+          onChanged: (v) => setState(() => _diet = v!),
+        ),
+      ],
+    );
+  }
+}
