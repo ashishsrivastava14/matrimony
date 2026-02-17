@@ -1,9 +1,9 @@
 /// Application-wide constants
 class AppConstants {
-  static const String appName = 'Tamil Matrimony';
-  static const String tagline = 'Biggest Matrimony Service for Tamils';
-  static const String yearsText = '26 Years of Successful Matchmaking';
-  static const String membersText = '4 Crore+ Customers Served';
+  static const String appName = 'AP Matrimony';
+  static const String tagline = 'Biggest Matrimony Service for AP';
+  static const String yearsText = '10 Years of Successful Matchmaking';
+  static const String membersText = '1 Crore+ Customers Served';
 
   // Dummy avatar placeholders
   static const String maleAvatar = 'https://i.pravatar.cc/300?img=68';

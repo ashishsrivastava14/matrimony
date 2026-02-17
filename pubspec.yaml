@@ -27,5 +27,6 @@ flutter:
   
   # Assets
   assets:
+    - assets/images/
     - assets/images/profiles/
     - assets/images/success_stories/
