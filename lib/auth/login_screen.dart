@@ -117,7 +117,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         const SizedBox(height: 12),
                         const Text(
-                          'TamilMatrimony',
+                          'APMatrimony',
                           style: TextStyle(
                             fontSize: 32,
                             fontWeight: FontWeight.bold,
@@ -133,7 +133,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         const SizedBox(height: 6),
                         const Text(
-                          'The biggest and most trusted\nmatrimony service for Tamils!',
+                          'The biggest and most trusted\nmatrimony service for AP!',
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             fontSize: 13,

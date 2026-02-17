@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-/// App color constants derived from Tamil Matrimony reference screenshots
+/// App color constants derived from AP Matrimony reference screenshots
 class AppColors {
   static const Color primary = Color(0xFF00897B);       // Teal green
   static const Color primaryDark = Color(0xFF00695C);

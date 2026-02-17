@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../core/theme.dart';
 import '../models/profile_model.dart';
 
-/// Reusable profile card matching Tamil Matrimony style
+/// Reusable profile card matching AP Matrimony style
 class ProfileCard extends StatelessWidget {
   final ProfileModel profile;
   final VoidCallback? onTap;

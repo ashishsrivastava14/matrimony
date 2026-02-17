@@ -110,7 +110,7 @@ class _RoleSelectionScreenState extends State<RoleSelectionScreen>
                     ),
                     const SizedBox(height: 14),
                     const Text(
-                      'Tamil Matrimony',
+                      'AP Matrimony',
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 30,

@@ -24,7 +24,7 @@ class HomeScreen extends StatelessWidget {
               children: [
                 const Icon(Icons.favorite, size: 24),
                 const SizedBox(width: 8),
-                const Text('Tamil Matrimony'),
+                const Text('AP Matrimony'),
               ],
             ),
             actions: [

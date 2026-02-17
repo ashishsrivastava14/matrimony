@@ -153,7 +153,7 @@ class _SplashScreenState extends State<SplashScreen>
                     ),
                     const SizedBox(height: 16),
                     const Text(
-                      'Tamil Matrimony',
+                      'AP Matrimony',
                       style: TextStyle(
                         fontSize: 32,
                         fontWeight: FontWeight.bold,
