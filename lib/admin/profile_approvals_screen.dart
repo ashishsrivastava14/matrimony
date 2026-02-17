@@ -89,10 +89,10 @@ class _ProfileApprovalsScreenState extends State<ProfileApprovalsScreen>
                   children: [
                     CircleAvatar(
                       radius: 28,
-                      backgroundImage: NetworkImage(
+                      backgroundImage: AssetImage(
                           p.photos.isNotEmpty
                               ? p.photos.first
-                              : 'https://i.pravatar.cc/100?img=1'),
+                              : 'assets/images/profiles/profile_68.jpg'),
                       onBackgroundImageError: (_, __) {},
                     ),
                     const SizedBox(width: 12),

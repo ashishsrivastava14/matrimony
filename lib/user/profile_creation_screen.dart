@@ -458,13 +458,14 @@ class _ProfileCreationScreenState extends State<ProfileCreationScreen> {
           children: [
             // Existing mock photos
             ...List.generate(3, (i) {
+              final imageIds = [68, 11, 12];
               return ClipRRect(
                 borderRadius: BorderRadius.circular(12),
                 child: Stack(
                   fit: StackFit.expand,
                   children: [
-                    Image.network(
-                      'https://i.pravatar.cc/200?img=${68 + i}',
+                    Image.asset(
+                      'assets/images/profiles/profile_${imageIds[i]}.jpg',
                       fit: BoxFit.cover,
                       errorBuilder: (_, __, ___) => Container(
                         color: Colors.grey.shade200,

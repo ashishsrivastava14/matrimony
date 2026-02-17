@@ -35,7 +35,7 @@ class ProfileCard extends StatelessWidget {
                   aspectRatio: 1.1,
                   child: Container(
                     color: Colors.grey.shade200,
-                    child: Image.network(
+                    child: Image.asset(
                       profile.profileImage,
                       fit: BoxFit.cover,
                       errorBuilder: (_, __, ___) => Center(
@@ -290,7 +290,7 @@ class ProfileCardCompact extends StatelessWidget {
                   const BorderRadius.vertical(top: Radius.circular(14)),
               child: AspectRatio(
                 aspectRatio: 1,
-                child: Image.network(
+                child: Image.asset(
                   profile.profileImage,
                   fit: BoxFit.cover,
                   errorBuilder: (_, __, ___) => Container(

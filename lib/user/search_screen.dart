@@ -155,7 +155,7 @@ class _SearchResultCard extends StatelessWidget {
                 children: [
                   ClipRRect(
                     borderRadius: BorderRadius.circular(12),
-                    child: Image.network(
+                    child: Image.asset(
                       profile.profileImage,
                       width: 80,
                       height: 80,

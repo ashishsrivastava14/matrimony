@@ -137,10 +137,10 @@ class MediatorDashboard extends StatelessWidget {
                   margin: const EdgeInsets.only(bottom: 8),
                   child: ListTile(
                     leading: CircleAvatar(
-                      backgroundImage: NetworkImage(
+                      backgroundImage: AssetImage(
                           p.photos.isNotEmpty
                               ? p.photos.first
-                              : 'https://i.pravatar.cc/100?img=1'),
+                              : 'assets/images/profiles/profile_68.jpg'),
                       onBackgroundImageError: (_, __) {},
                     ),
                     title: Text(p.name,

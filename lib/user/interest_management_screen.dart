@@ -128,9 +128,9 @@ class _InterestManagementScreenState extends State<InterestManagementScreen>
                 // Avatar
                 CircleAvatar(
                   radius: 30,
-                  backgroundImage: NetworkImage(profile.photos.isNotEmpty
+                  backgroundImage: AssetImage(profile.photos.isNotEmpty
                       ? profile.photos.first
-                      : 'https://i.pravatar.cc/150?img=1'),
+                      : 'assets/images/profiles/profile_68.jpg'),
                   onBackgroundImageError: (_, __) {},
                   child: profile.photos.isEmpty
                       ? const Icon(Icons.person)

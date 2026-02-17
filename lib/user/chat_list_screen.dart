@@ -79,7 +79,7 @@ class _ConversationTile extends StatelessWidget {
         children: [
           CircleAvatar(
             radius: 26,
-            backgroundImage: NetworkImage(conversation.recipientImage),
+            backgroundImage: AssetImage(conversation.recipientImage),
             onBackgroundImageError: (_, __) {},
             child: conversation.recipientImage.isEmpty
                 ? const Icon(Icons.person)

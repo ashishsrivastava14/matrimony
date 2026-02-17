@@ -30,7 +30,7 @@ class MatchDetailScreen extends StatelessWidget {
                   background: Stack(
                     fit: StackFit.expand,
                     children: [
-                      Image.network(
+                      Image.asset(
                         profile.profileImage,
                         fit: BoxFit.cover,
                         errorBuilder: (_, __, ___) => Container(
