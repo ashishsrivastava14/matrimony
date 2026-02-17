@@ -294,7 +294,7 @@ class _CollageImage extends StatelessWidget {
               ),
             );
           },
-          errorBuilder: (_, __, ___) => Container(
+          errorBuilder: (_, _, _) => Container(
             color: AppColors.primaryDark.withValues(alpha: 0.3),
             child: Center(
               child: Icon(

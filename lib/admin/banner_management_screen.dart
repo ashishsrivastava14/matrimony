@@ -79,7 +79,7 @@ class BannerManagementScreen extends StatelessWidget {
                             Switch(
                               value: b['status'] == 'Active',
                               onChanged: (_) {},
-                              activeColor: AppColors.primary,
+                              activeThumbColor: AppColors.primary,
                             ),
                             IconButton(
                               onPressed: () {},
@@ -114,7 +114,7 @@ class BannerManagementScreen extends StatelessWidget {
                 decoration: const InputDecoration(labelText: 'Banner Title')),
             const SizedBox(height: 12),
             DropdownButtonFormField<String>(
-              value: 'Home',
+              initialValue: 'Home',
               decoration: const InputDecoration(labelText: 'Position'),
               items: ['Home', 'Search', 'Profile', 'Login']
                   .map((e) => DropdownMenuItem(value: e, child: Text(e)))

@@ -38,7 +38,7 @@ class ProfileCard extends StatelessWidget {
                     child: Image.asset(
                       profile.profileImage,
                       fit: BoxFit.cover,
-                      errorBuilder: (_, __, ___) => Center(
+                      errorBuilder: (_, _, _) => Center(
                         child: Icon(Icons.person, size: 60,
                             color: Colors.grey.shade400),
                       ),
@@ -293,7 +293,7 @@ class ProfileCardCompact extends StatelessWidget {
                 child: Image.asset(
                   profile.profileImage,
                   fit: BoxFit.cover,
-                  errorBuilder: (_, __, ___) => Container(
+                  errorBuilder: (_, _, _) => Container(
                     color: Colors.grey.shade200,
                     child: const Icon(Icons.person, size: 40),
                   ),

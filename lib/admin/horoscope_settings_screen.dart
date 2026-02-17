@@ -45,7 +45,7 @@ class _HoroscopeSettingsScreenState extends State<HoroscopeSettingsScreen> {
                       value: _enableHoroscope,
                       onChanged: (v) =>
                           setState(() => _enableHoroscope = v),
-                      activeColor: AppColors.primary,
+                      activeThumbColor: AppColors.primary,
                     ),
                     SwitchListTile(
                       title: const Text('Auto Horoscope Matching'),
@@ -54,7 +54,7 @@ class _HoroscopeSettingsScreenState extends State<HoroscopeSettingsScreen> {
                       value: _autoMatch,
                       onChanged: (v) =>
                           setState(() => _autoMatch = v),
-                      activeColor: AppColors.primary,
+                      activeThumbColor: AppColors.primary,
                     ),
                     SwitchListTile(
                       title: const Text('Show Dosham Warning'),
@@ -63,7 +63,7 @@ class _HoroscopeSettingsScreenState extends State<HoroscopeSettingsScreen> {
                       value: _showDosham,
                       onChanged: (v) =>
                           setState(() => _showDosham = v),
-                      activeColor: AppColors.primary,
+                      activeThumbColor: AppColors.primary,
                     ),
                   ],
                 ),
@@ -214,7 +214,7 @@ class _HoroscopeSettingsScreenState extends State<HoroscopeSettingsScreen> {
           Switch(
             value: p['enabled'] as bool,
             onChanged: (_) {},
-            activeColor: AppColors.primary,
+            activeThumbColor: AppColors.primary,
           ),
         ],
       ),

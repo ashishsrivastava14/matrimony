@@ -202,27 +202,27 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
   Widget _basicInfo() {
     return Column(
       children: [
-        Row(
-          children: [
-            Expanded(
-              child: RadioListTile<String>(
-                title: const Text('Male'),
-                value: 'Male',
-                groupValue: _gender,
-                onChanged: (v) => setState(() => _gender = v!),
-                contentPadding: EdgeInsets.zero,
+        RadioGroup<String>(
+          groupValue: _gender,
+          onChanged: (v) => setState(() => _gender = v ?? _gender),
+          child: Row(
+            children: [
+              Expanded(
+                child: RadioListTile<String>(
+                  title: const Text('Male'),
+                  value: 'Male',
+                  contentPadding: EdgeInsets.zero,
+                ),
               ),
-            ),
-            Expanded(
-              child: RadioListTile<String>(
-                title: const Text('Female'),
-                value: 'Female',
-                groupValue: _gender,
-                onChanged: (v) => setState(() => _gender = v!),
-                contentPadding: EdgeInsets.zero,
+              Expanded(
+                child: RadioListTile<String>(
+                  title: const Text('Female'),
+                  value: 'Female',
+                  contentPadding: EdgeInsets.zero,
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
         const SizedBox(height: 10),
         TextFormField(
@@ -235,7 +235,7 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
             decoration: const InputDecoration(labelText: 'Height')),
         const SizedBox(height: 14),
         DropdownButtonFormField<String>(
-          value: _maritalStatus,
+          initialValue: _maritalStatus,
           decoration: const InputDecoration(labelText: 'Marital Status'),
           items: ['Never Married', 'Divorced', 'Widowed', 'Awaiting Divorce']
               .map((e) => DropdownMenuItem(value: e, child: Text(e)))
@@ -254,7 +254,7 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
     return Column(
       children: [
         DropdownButtonFormField<String>(
-          value: _religion,
+          initialValue: _religion,
           decoration: const InputDecoration(labelText: 'Religion'),
           items: ['Hindu', 'Muslim', 'Christian', 'Jain', 'Sikh']
               .map((e) => DropdownMenuItem(value: e, child: Text(e)))
@@ -285,7 +285,7 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
             decoration: const InputDecoration(labelText: 'Occupation')),
         const SizedBox(height: 14),
         DropdownButtonFormField<String>(
-          value: 'Private Sector',
+          initialValue: 'Private Sector',
           decoration: const InputDecoration(labelText: 'Employed In'),
           items: [
             'Private Sector',
@@ -339,7 +339,7 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
         ),
         const SizedBox(height: 14),
         DropdownButtonFormField<String>(
-          value: _familyType,
+          initialValue: _familyType,
           decoration: const InputDecoration(labelText: 'Family Type'),
           items: ['Nuclear', 'Joint']
               .map((e) => DropdownMenuItem(value: e, child: Text(e)))
@@ -366,7 +366,7 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
             decoration: const InputDecoration(labelText: 'Rasi')),
         const SizedBox(height: 14),
         DropdownButtonFormField<String>(
-          value: 'No',
+          initialValue: 'No',
           decoration: const InputDecoration(labelText: 'Dosham'),
           items: ['No', 'Yes', "Don't Know"]
               .map((e) => DropdownMenuItem(value: e, child: Text(e)))
@@ -422,7 +422,7 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
             maxLines: 3),
         const SizedBox(height: 14),
         DropdownButtonFormField<String>(
-          value: _diet,
+          initialValue: _diet,
           decoration: const InputDecoration(labelText: 'Diet Preference'),
           items: ['Vegetarian', 'Non-Vegetarian', 'Eggetarian']
               .map((e) => DropdownMenuItem(value: e, child: Text(e)))

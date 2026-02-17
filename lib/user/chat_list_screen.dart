@@ -44,7 +44,7 @@ class ChatListScreen extends StatelessWidget {
 
           return ListView.separated(
             itemCount: chat.conversations.length,
-            separatorBuilder: (_, __) => const Divider(height: 1, indent: 80),
+            separatorBuilder: (_, _) => const Divider(height: 1, indent: 80),
             itemBuilder: (context, i) {
               final conv = chat.conversations[i];
               return _ConversationTile(
@@ -80,7 +80,7 @@ class _ConversationTile extends StatelessWidget {
           CircleAvatar(
             radius: 26,
             backgroundImage: AssetImage(conversation.recipientImage),
-            onBackgroundImageError: (_, __) {},
+            onBackgroundImageError: (_, _) {},
             child: conversation.recipientImage.isEmpty
                 ? const Icon(Icons.person)
                 : null,

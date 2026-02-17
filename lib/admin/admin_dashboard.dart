@@ -198,7 +198,7 @@ class AdminDashboard extends StatelessWidget {
                         p.photos.isNotEmpty
                             ? p.photos.first
                             : 'assets/images/profiles/profile_68.jpg'),
-                    onBackgroundImageError: (_, __) {},
+                    onBackgroundImageError: (_, _) {},
                   ),
                   title: Text(p.name,
                       style: const TextStyle(

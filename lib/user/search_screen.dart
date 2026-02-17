@@ -88,7 +88,7 @@ class _ByCriteriaTab extends StatelessWidget {
             trailing: Switch(
               value: nearbyEnabled,
               onChanged: onNearbyToggle,
-              activeColor: AppColors.primary,
+              activeThumbColor: AppColors.primary,
             ),
           ),
         ),
@@ -160,7 +160,7 @@ class _SearchResultCard extends StatelessWidget {
                       width: 80,
                       height: 80,
                       fit: BoxFit.cover,
-                      errorBuilder: (_, __, ___) => Container(
+                      errorBuilder: (_, _, _) => Container(
                         width: 80,
                         height: 80,
                         color: Colors.grey.shade200,

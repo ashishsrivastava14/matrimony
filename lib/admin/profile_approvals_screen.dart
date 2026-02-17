@@ -93,7 +93,7 @@ class _ProfileApprovalsScreenState extends State<ProfileApprovalsScreen>
                           p.photos.isNotEmpty
                               ? p.photos.first
                               : 'assets/images/profiles/profile_68.jpg'),
-                      onBackgroundImageError: (_, __) {},
+                      onBackgroundImageError: (_, _) {},
                     ),
                     const SizedBox(width: 12),
                     Expanded(

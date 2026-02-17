@@ -187,7 +187,7 @@ class _ProfileCreationScreenState extends State<ProfileCreationScreen> {
         ),
         const SizedBox(height: 14),
         DropdownButtonFormField<String>(
-          value: _maritalStatus,
+          initialValue: _maritalStatus,
           decoration: const InputDecoration(labelText: 'Marital Status'),
           items: ['Never Married', 'Divorced', 'Widowed', 'Awaiting Divorce']
               .map((e) => DropdownMenuItem(value: e, child: Text(e)))
@@ -202,7 +202,7 @@ class _ProfileCreationScreenState extends State<ProfileCreationScreen> {
     return Column(
       children: [
         DropdownButtonFormField<String>(
-          value: _religion,
+          initialValue: _religion,
           decoration: const InputDecoration(labelText: 'Religion'),
           items: ['Hindu', 'Muslim', 'Christian', 'Jain', 'Sikh']
               .map((e) => DropdownMenuItem(value: e, child: Text(e)))
@@ -241,7 +241,7 @@ class _ProfileCreationScreenState extends State<ProfileCreationScreen> {
         ),
         const SizedBox(height: 14),
         DropdownButtonFormField<String>(
-          value: 'Private Sector',
+          initialValue: 'Private Sector',
           decoration: const InputDecoration(labelText: 'Employed In'),
           items: ['Private Sector', 'Government', 'Business', 'Not Working']
               .map((e) => DropdownMenuItem(value: e, child: Text(e)))
@@ -297,7 +297,7 @@ class _ProfileCreationScreenState extends State<ProfileCreationScreen> {
         ),
         const SizedBox(height: 14),
         DropdownButtonFormField<String>(
-          value: _familyType,
+          initialValue: _familyType,
           decoration: const InputDecoration(labelText: 'Family Type'),
           items: ['Nuclear', 'Joint']
               .map((e) => DropdownMenuItem(value: e, child: Text(e)))
@@ -306,7 +306,7 @@ class _ProfileCreationScreenState extends State<ProfileCreationScreen> {
         ),
         const SizedBox(height: 14),
         DropdownButtonFormField<String>(
-          value: _familyStatus,
+          initialValue: _familyStatus,
           decoration: const InputDecoration(labelText: 'Family Status'),
           items: ['Middle Class', 'Upper Middle Class', 'Rich', 'Affluent']
               .map((e) => DropdownMenuItem(value: e, child: Text(e)))
@@ -348,7 +348,7 @@ class _ProfileCreationScreenState extends State<ProfileCreationScreen> {
         ),
         const SizedBox(height: 14),
         DropdownButtonFormField<String>(
-          value: 'No',
+          initialValue: 'No',
           decoration: const InputDecoration(labelText: 'Dosham'),
           items: ['No', 'Yes', "Don't Know"]
               .map((e) => DropdownMenuItem(value: e, child: Text(e)))
@@ -363,7 +363,7 @@ class _ProfileCreationScreenState extends State<ProfileCreationScreen> {
     return Column(
       children: [
         DropdownButtonFormField<String>(
-          value: _diet,
+          initialValue: _diet,
           decoration: const InputDecoration(labelText: 'Diet'),
           items: ['Vegetarian', 'Non-Vegetarian', 'Eggetarian', 'Vegan']
               .map((e) => DropdownMenuItem(value: e, child: Text(e)))
@@ -372,7 +372,7 @@ class _ProfileCreationScreenState extends State<ProfileCreationScreen> {
         ),
         const SizedBox(height: 14),
         DropdownButtonFormField<String>(
-          value: _smoking,
+          initialValue: _smoking,
           decoration: const InputDecoration(labelText: 'Smoking'),
           items: ['No', 'Yes', 'Occasionally']
               .map((e) => DropdownMenuItem(value: e, child: Text(e)))
@@ -381,7 +381,7 @@ class _ProfileCreationScreenState extends State<ProfileCreationScreen> {
         ),
         const SizedBox(height: 14),
         DropdownButtonFormField<String>(
-          value: _drinking,
+          initialValue: _drinking,
           decoration: const InputDecoration(labelText: 'Drinking'),
           items: ['No', 'Yes', 'Occasionally']
               .map((e) => DropdownMenuItem(value: e, child: Text(e)))
@@ -467,7 +467,7 @@ class _ProfileCreationScreenState extends State<ProfileCreationScreen> {
                     Image.asset(
                       'assets/images/profiles/profile_${imageIds[i]}.jpg',
                       fit: BoxFit.cover,
-                      errorBuilder: (_, __, ___) => Container(
+                      errorBuilder: (_, _, _) => Container(
                         color: Colors.grey.shade200,
                         child: const Icon(Icons.person),
                       ),
@@ -592,7 +592,7 @@ class _PrivacyToggleState extends State<_PrivacyToggle> {
           style: const TextStyle(fontSize: 12, color: AppColors.textSecondary)),
       value: _value,
       onChanged: (v) => setState(() => _value = v),
-      activeColor: AppColors.primary,
+      activeThumbColor: AppColors.primary,
       contentPadding: EdgeInsets.zero,
     );
   }

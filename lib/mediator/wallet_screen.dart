@@ -189,7 +189,7 @@ class WalletScreen extends StatelessWidget {
             ),
             const SizedBox(height: 14),
             DropdownButtonFormField<String>(
-              value: 'Bank Transfer',
+              initialValue: 'Bank Transfer',
               decoration:
                   const InputDecoration(labelText: 'Withdraw To'),
               items: ['Bank Transfer', 'UPI']

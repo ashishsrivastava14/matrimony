@@ -33,7 +33,7 @@ class MatchDetailScreen extends StatelessWidget {
                       Image.asset(
                         profile.profileImage,
                         fit: BoxFit.cover,
-                        errorBuilder: (_, __, ___) => Container(
+                        errorBuilder: (_, _, _) => Container(
                           color: Colors.grey.shade300,
                           child: const Icon(Icons.person, size: 80),
                         ),

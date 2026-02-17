@@ -109,7 +109,7 @@ class _CommissionHistoryScreenState extends State<CommissionHistoryScreen>
     return ListView.separated(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       itemCount: items.length,
-      separatorBuilder: (_, __) =>
+      separatorBuilder: (_, _) =>
           const Divider(height: 1),
       itemBuilder: (context, index) {
         final item = items[index];

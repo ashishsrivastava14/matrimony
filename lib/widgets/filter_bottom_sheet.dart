@@ -153,7 +153,7 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
     return Padding(
       padding: const EdgeInsets.only(bottom: 16),
       child: DropdownButtonFormField<String>(
-        value: value,
+        initialValue: value,
         decoration: InputDecoration(labelText: label),
         items: items
             .map((i) => DropdownMenuItem(value: i, child: Text(i)))

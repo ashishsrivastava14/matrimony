@@ -380,9 +380,18 @@ class _SubscriptionScreenState extends State<SubscriptionScreen>
             const SizedBox(height: 8),
             const Text('Select Payment Method:'),
             const SizedBox(height: 8),
-            _paymentOption('UPI', Icons.account_balance),
-            _paymentOption('Credit / Debit Card', Icons.credit_card),
-            _paymentOption('Net Banking', Icons.language),
+            RadioGroup<String>(
+              groupValue: 'UPI',
+              onChanged: (_) {},
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  _paymentOption('UPI', Icons.account_balance),
+                  _paymentOption('Credit / Debit Card', Icons.credit_card),
+                  _paymentOption('Net Banking', Icons.language),
+                ],
+              ),
+            ),
           ],
         ),
         actions: [
@@ -446,7 +455,7 @@ class _SubscriptionScreenState extends State<SubscriptionScreen>
       dense: true,
       leading: Icon(icon, size: 20),
       title: Text(label, style: const TextStyle(fontSize: 14)),
-      trailing: Radio(value: label, groupValue: 'UPI', onChanged: (_) {}),
+      trailing: Radio<String>(value: label),
       contentPadding: EdgeInsets.zero,
     );
   }

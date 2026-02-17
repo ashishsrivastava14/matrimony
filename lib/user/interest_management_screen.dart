@@ -131,7 +131,7 @@ class _InterestManagementScreenState extends State<InterestManagementScreen>
                   backgroundImage: AssetImage(profile.photos.isNotEmpty
                       ? profile.photos.first
                       : 'assets/images/profiles/profile_68.jpg'),
-                  onBackgroundImageError: (_, __) {},
+                  onBackgroundImageError: (_, _) {},
                   child: profile.photos.isEmpty
                       ? const Icon(Icons.person)
                       : null,
