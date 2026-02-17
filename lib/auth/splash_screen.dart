@@ -1,7 +1,24 @@
 import 'package:flutter/material.dart';
-import 'dart:math' as math;
+import 'dart:math';
+import '../core/theme.dart';
 
-/// Splash screen shown on app start with celebration theme
+/// Diverse Indian wedding couple images — Hindu, Tamil, Maharashtrian, etc.
+const _splashCoupleImages = [
+  'https://images.unsplash.com/photo-1610173826608-e311c4781e40?w=400&h=500&fit=crop',  // Hindu wedding couple with garlands
+  'https://images.unsplash.com/photo-1637259883498-f5939e13eb53?w=400&h=500&fit=crop',  // Tamil bride & groom thali ceremony
+  'https://images.unsplash.com/photo-1621665421558-831f91fd8f1b?w=400&h=500&fit=crop',  // Maharashtrian couple in traditional attire
+  'https://images.unsplash.com/photo-1614093302611-8efc4de12964?w=400&h=500&fit=crop',  // South Indian wedding mangalsutra
+  'https://images.unsplash.com/photo-1604604557984-245cea7ed41c?w=400&h=500&fit=crop',  // Indian bride & groom portrait
+  'https://images.unsplash.com/photo-1591604466107-ec97de577aff?w=400&h=500&fit=crop',  // Hindu wedding fire ceremony
+  'https://images.unsplash.com/photo-1583037189850-1921ae7c6c22?w=400&h=500&fit=crop',  // Indian couple with henna
+  'https://images.unsplash.com/photo-1609151376730-f246fae4d5a4?w=400&h=500&fit=crop',  // Couple in silk saree & dhoti
+  'https://images.unsplash.com/photo-1605774337664-7a846e9cdf17?w=400&h=500&fit=crop',  // Indian wedding celebrations
+  'https://images.unsplash.com/photo-1622396090075-ab6b8396dccc?w=400&h=500&fit=crop',  // Couple in gold jewellery
+  'https://images.unsplash.com/photo-1609951651556-5334e2706168?w=400&h=500&fit=crop',  // Telugu couple wedding
+  'https://images.unsplash.com/photo-1600096194534-95cf5ece04cf?w=400&h=500&fit=crop',  // Indian couple together
+];
+
+/// Splash screen shown on app start with couple-photo collage background
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
 
@@ -10,25 +27,42 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen>
-    with SingleTickerProviderStateMixin {
-  late AnimationController _controller;
+    with TickerProviderStateMixin {
+  late AnimationController _fadeCtrl;
+  late AnimationController _pulseCtrl;
   late Animation<double> _fadeAnim;
   late Animation<double> _slideAnim;
+  late Animation<double> _pulseAnim;
+  late Animation<double> _numberScaleAnim;
 
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(
+
+    _fadeCtrl = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 1800),
+      duration: const Duration(milliseconds: 1600),
     );
-    _fadeAnim = Tween<double>(begin: 0, end: 1).animate(
-      CurvedAnimation(parent: _controller, curve: Curves.easeIn),
+    _fadeAnim = CurvedAnimation(parent: _fadeCtrl, curve: Curves.easeOut);
+    _slideAnim = Tween<double>(begin: 40, end: 0).animate(
+      CurvedAnimation(parent: _fadeCtrl, curve: Curves.easeOutCubic),
     );
-    _slideAnim = Tween<double>(begin: 50, end: 0).animate(
-      CurvedAnimation(parent: _controller, curve: Curves.easeOut),
+    _numberScaleAnim = Tween<double>(begin: 0.5, end: 1.0).animate(
+      CurvedAnimation(
+        parent: _fadeCtrl,
+        curve: const Interval(0.3, 1.0, curve: Curves.elasticOut),
+      ),
     );
-    _controller.forward();
+
+    _pulseCtrl = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 1400),
+    )..repeat(reverse: true);
+    _pulseAnim = Tween<double>(begin: 0.85, end: 1.0).animate(
+      CurvedAnimation(parent: _pulseCtrl, curve: Curves.easeInOut),
+    );
+
+    _fadeCtrl.forward();
 
     Future.delayed(const Duration(seconds: 4), () {
       if (mounted) {
@@ -39,41 +73,44 @@ class _SplashScreenState extends State<SplashScreen>
 
   @override
   void dispose() {
-    _controller.dispose();
+    _fadeCtrl.dispose();
+    _pulseCtrl.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+
     return Scaffold(
-      body: Container(
-        width: double.infinity,
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: [
-              Colors.green.shade50,
-              Colors.orange.shade50,
-              Colors.purple.shade50,
-            ],
-          ),
-        ),
-        child: Stack(
-          children: [
-            // Decorative bunting flags at top
-            Positioned(
-              top: 0,
-              left: 0,
-              right: 0,
-              child: CustomPaint(
-                size: const Size(double.infinity, 120),
-                painter: _BuntingPainter(),
+      body: Stack(
+        fit: StackFit.expand,
+        children: [
+          // ── Background couple photo collage ──
+          _SplashPhotoCollage(screenSize: size),
+
+          // ── Dark gradient overlay ──
+          Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [
+                  Colors.black.withValues(alpha: 0.55),
+                  const Color(0xFF004D40).withValues(alpha: 0.85),
+                  const Color(0xFF004D40).withValues(alpha: 0.95),
+                ],
+                stops: const [0.0, 0.5, 1.0],
               ),
             ),
-            
-            // Main content
-            FadeTransition(
+          ),
+
+          // ── Subtle floating hearts ──
+          ..._buildFloatingHearts(size),
+
+          // ── Foreground content ──
+          SafeArea(
+            child: FadeTransition(
               opacity: _fadeAnim,
               child: AnimatedBuilder(
                 animation: _slideAnim,
@@ -84,264 +121,284 @@ class _SplashScreenState extends State<SplashScreen>
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    // Logo with gradient background
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 40,
-                        vertical: 20,
-                      ),
-                      decoration: BoxDecoration(
-                        gradient: const LinearGradient(
-                          colors: [Color(0xFF4CAF50), Color(0xFFFF9800)],
-                        ),
-                        borderRadius: BorderRadius.circular(20),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black.withValues(alpha: 0.2),
-                            blurRadius: 15,
-                            offset: const Offset(0, 5),
+                    const Spacer(flex: 2),
+
+                    // ── Logo ──
+                    ScaleTransition(
+                      scale: _pulseAnim,
+                      child: Container(
+                        width: 80,
+                        height: 80,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Colors.white.withValues(alpha: 0.15),
+                          border: Border.all(
+                            color: Colors.white.withValues(alpha: 0.3),
+                            width: 2,
                           ),
-                        ],
-                      ),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Container(
-                            width: 50,
-                            height: 50,
-                            decoration: const BoxDecoration(
-                              color: Colors.white,
-                              shape: BoxShape.circle,
-                            ),
-                            child: const Icon(
-                              Icons.favorite,
-                              color: Color(0xFFFF9800),
-                              size: 28,
-                            ),
-                          ),
-                          const SizedBox(width: 12),
-                          const Text(
-                            'tamil\nmatrimony',
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
-                              height: 1.2,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    
-                    const SizedBox(height: 40),
-                    
-                    // Celebration text with decorative elements
-                    Stack(
-                      alignment: Alignment.center,
-                      children: [
-                        // Starburst decoration
-                        CustomPaint(
-                          size: const Size(200, 200),
-                          painter: _StarburstPainter(),
-                        ),
-                        
-                        Column(
-                          children: [
-                            const Text(
-                              'Celebrating!',
-                              style: TextStyle(
-                                fontSize: 32,
-                                fontWeight: FontWeight.w600,
-                                color: Color(0xFF00ACC1),
-                                fontStyle: FontStyle.italic,
-                              ),
-                            ),
-                            const SizedBox(height: 20),
-                            
-                            // Big "24" with gradient effect
-                            ShaderMask(
-                              shaderCallback: (bounds) => const LinearGradient(
-                                colors: [
-                                  Color(0xFF9C27B0),
-                                  Color(0xFFFF9800),
-                                  Color(0xFF4CAF50),
-                                ],
-                              ).createShader(bounds),
-                              child: const Text(
-                                '24',
-                                style: TextStyle(
-                                  fontSize: 120,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white,
-                                  letterSpacing: 10,
-                                ),
-                              ),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.white.withValues(alpha: 0.08),
+                              blurRadius: 30,
+                              spreadRadius: 10,
                             ),
                           ],
                         ),
-                      ],
+                        child: const Icon(
+                          Icons.favorite_rounded,
+                          color: Colors.white,
+                          size: 40,
+                        ),
+                      ),
                     ),
-                    
-                    const SizedBox(height: 20),
-                    
-                    // "Years of Matchmaking!" banner
+                    const SizedBox(height: 16),
+                    const Text(
+                      'Tamil Matrimony',
+                      style: TextStyle(
+                        fontSize: 32,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                        letterSpacing: 0.5,
+                        shadows: [
+                          Shadow(color: Colors.black45, blurRadius: 12),
+                        ],
+                      ),
+                    ),
+
+                    const SizedBox(height: 36),
+
+                    // ── Celebration text ──
+                    Text(
+                      'Celebrating',
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w400,
+                        color: Colors.white.withValues(alpha: 0.85),
+                        letterSpacing: 2,
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+
+                    // ── Big "26" with scale animation ──
+                    ScaleTransition(
+                      scale: _numberScaleAnim,
+                      child: ShaderMask(
+                        shaderCallback: (bounds) => const LinearGradient(
+                          colors: [
+                            Color(0xFFFFD54F),
+                            Color(0xFFFFB74D),
+                            Colors.white,
+                          ],
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                        ).createShader(bounds),
+                        child: const Text(
+                          '10',
+                          style: TextStyle(
+                            fontSize: 110,
+                            fontWeight: FontWeight.w900,
+                            color: Colors.white,
+                            height: 1.0,
+                            letterSpacing: 6,
+                            shadows: [
+                              Shadow(color: Colors.black38, blurRadius: 20),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 4),
+
+                    // ── "Years of Matchmaking!" pill ──
                     Container(
                       padding: const EdgeInsets.symmetric(
-                        horizontal: 30,
-                        vertical: 12,
+                        horizontal: 28,
+                        vertical: 10,
                       ),
                       decoration: BoxDecoration(
-                        color: const Color(0xFF00ACC1),
-                        borderRadius: BorderRadius.circular(25),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black.withValues(alpha: 0.15),
-                            blurRadius: 10,
-                            offset: const Offset(0, 3),
-                          ),
-                        ],
+                        color: Colors.white.withValues(alpha: 0.15),
+                        borderRadius: BorderRadius.circular(24),
+                        border: Border.all(
+                          color: Colors.white.withValues(alpha: 0.25),
+                        ),
                       ),
                       child: const Text(
                         'Years of Matchmaking!',
                         style: TextStyle(
-                          fontSize: 18,
+                          fontSize: 17,
                           fontWeight: FontWeight.w600,
                           color: Colors.white,
+                          letterSpacing: 0.8,
                         ),
                       ),
                     ),
-                    
+
                     const SizedBox(height: 40),
-                    
-                    // Success stats
-                    const Column(
-                      children: [
-                        Text(
-                          '10 Million+',
-                          style: TextStyle(
-                            fontSize: 36,
-                            fontWeight: FontWeight.bold,
-                            color: Color(0xFF2E2E2E),
-                          ),
-                        ),
-                        SizedBox(height: 8),
-                        Text(
-                          'Happy Marriages',
-                          style: TextStyle(
-                            fontSize: 24,
-                            fontWeight: FontWeight.w500,
-                            color: Color(0xFF2E2E2E),
-                          ),
-                        ),
-                      ],
+
+                    // ── Stats ──
+                    const Text(
+                      '10 Million+',
+                      style: TextStyle(
+                        fontSize: 34,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                        shadows: [
+                          Shadow(color: Colors.black38, blurRadius: 10),
+                        ],
+                      ),
                     ),
-                    
-                    const SizedBox(height: 50),
-                    
-                    // Gratitude message
+                    const SizedBox(height: 4),
+                    Text(
+                      'Happy Marriages',
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w400,
+                        color: Colors.white.withValues(alpha: 0.85),
+                      ),
+                    ),
+
+                    const Spacer(flex: 2),
+
+                    // ── Bottom gratitude ──
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 40),
-                      child: Text(
-                        'We are truly grateful for your trust in us',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 14,
-                          color: Colors.grey.shade700,
-                        ),
+                      padding: const EdgeInsets.only(bottom: 32),
+                      child: Column(
+                        children: [
+                          Icon(
+                            Icons.volunteer_activism_rounded,
+                            color: Colors.white.withValues(alpha: 0.5),
+                            size: 22,
+                          ),
+                          const SizedBox(height: 6),
+                          Text(
+                            'We are truly grateful for your trust in us',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 13,
+                              color: Colors.white.withValues(alpha: 0.6),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ],
                 ),
               ),
             ),
-          ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  List<Widget> _buildFloatingHearts(Size size) {
+    final rng = Random(99);
+    return List.generate(14, (i) {
+      final left = rng.nextDouble() * size.width;
+      final top = rng.nextDouble() * size.height;
+      final heartSize = 10.0 + rng.nextDouble() * 20;
+      final opacity = 0.03 + rng.nextDouble() * 0.07;
+      return Positioned(
+        left: left,
+        top: top,
+        child: Icon(
+          Icons.favorite,
+          size: heartSize,
+          color: Colors.white.withValues(alpha: opacity),
         ),
+      );
+    });
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Splash background photo collage
+// ─────────────────────────────────────────────────────────────────────────────
+class _SplashPhotoCollage extends StatelessWidget {
+  final Size screenSize;
+  const _SplashPhotoCollage({required this.screenSize});
+
+  @override
+  Widget build(BuildContext context) {
+    const cols = 3;
+    final tileWidth = screenSize.width / cols;
+    final heights = [
+      tileWidth * 1.35,
+      tileWidth * 1.05,
+      tileWidth * 1.25,
+    ];
+
+    final tiles = <Widget>[];
+    int imgIdx = 0;
+    double accumulatedHeight = 0;
+
+    while (accumulatedHeight < screenSize.height + 200) {
+      for (int col = 0; col < cols; col++) {
+        final h = heights[col];
+        tiles.add(
+          Positioned(
+            left: col * tileWidth,
+            top: accumulatedHeight + (col == 1 ? -tileWidth * 0.18 : 0),
+            width: tileWidth,
+            height: h,
+            child: _CollageImage(
+              url: _splashCoupleImages[imgIdx % _splashCoupleImages.length],
+            ),
+          ),
+        );
+        imgIdx++;
+      }
+      accumulatedHeight += heights.reduce(max) * 0.85;
+    }
+
+    return ClipRect(
+      child: SizedBox(
+        width: screenSize.width,
+        height: screenSize.height,
+        child: Stack(children: tiles),
       ),
     );
   }
 }
 
-/// Custom painter for decorative bunting flags at the top
-class _BuntingPainter extends CustomPainter {
+class _CollageImage extends StatelessWidget {
+  final String url;
+  const _CollageImage({required this.url});
+
   @override
-  void paint(Canvas canvas, Size size) {
-    final colors = [
-      const Color(0xFF9C27B0), // Purple
-      const Color(0xFFFF9800), // Orange
-      const Color(0xFF4CAF50), // Green
-      const Color(0xFFE91E63), // Pink
-    ];
-    
-    const flagWidth = 30.0;
-    const flagHeight = 40.0;
-    final flagCount = (size.width / flagWidth).ceil();
-    
-    for (int i = 0; i < flagCount; i++) {
-      final x = i * flagWidth;
-      final color = colors[i % colors.length];
-      
-      final path = Path()
-        ..moveTo(x, 20)
-        ..lineTo(x + flagWidth, 20)
-        ..lineTo(x + flagWidth, 20 + flagHeight)
-        ..lineTo(x + flagWidth / 2, 20 + flagHeight - 10)
-        ..lineTo(x, 20 + flagHeight)
-        ..close();
-      
-      final paint = Paint()
-        ..color = color
-        ..style = PaintingStyle.fill;
-      
-      canvas.drawPath(path, paint);
-    }
-    
-    // Draw the string line
-    final linePaint = Paint()
-      ..color = Colors.grey.shade400
-      ..strokeWidth = 2
-      ..style = PaintingStyle.stroke;
-    
-    canvas.drawLine(
-      const Offset(0, 20),
-      Offset(size.width, 20),
-      linePaint,
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(1.5),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(6),
+        child: Image.network(
+          url,
+          fit: BoxFit.cover,
+          loadingBuilder: (context, child, loadingProgress) {
+            if (loadingProgress == null) return child;
+            return Container(
+              color: AppColors.primaryDark.withValues(alpha: 0.25),
+              child: Center(
+                child: Icon(
+                  Icons.favorite,
+                  color: Colors.white.withValues(alpha: 0.15),
+                  size: 28,
+                ),
+              ),
+            );
+          },
+          errorBuilder: (_, __, ___) => Container(
+            color: AppColors.primaryDark.withValues(alpha: 0.3),
+            child: Center(
+              child: Icon(
+                Icons.favorite,
+                color: Colors.white.withValues(alpha: 0.15),
+                size: 28,
+              ),
+            ),
+          ),
+        ),
+      ),
     );
   }
-
-  @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
-}
-
-/// Custom painter for starburst/firework effect behind the number
-class _StarburstPainter extends CustomPainter {
-  @override
-  void paint(Canvas canvas, Size size) {
-    final center = Offset(size.width / 2, size.height / 2);
-    final colors = [
-      const Color(0xFFFFEB3B).withValues(alpha: 0.3), // Yellow
-      const Color(0xFFFF9800).withValues(alpha: 0.3), // Orange
-      const Color(0xFF4CAF50).withValues(alpha: 0.3), // Green
-    ];
-    
-    for (int i = 0; i < 12; i++) {
-      final angle = (i * 30) * math.pi / 180;
-      final length = 80.0 + (i % 3) * 10;
-      
-      final paint = Paint()
-        ..color = colors[i % colors.length]
-        ..strokeWidth = 3
-        ..strokeCap = StrokeCap.round
-        ..style = PaintingStyle.stroke;
-      
-      final end = Offset(
-        center.dx + math.cos(angle) * length,
-        center.dy + math.sin(angle) * length,
-      );
-      
-      canvas.drawLine(center, end, paint);
-    }
-  }
-
-  @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
 }

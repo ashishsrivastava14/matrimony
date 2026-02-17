@@ -3,20 +3,20 @@ import 'package:flutter/material.dart';
 import '../core/theme.dart';
 import '../core/constants.dart';
 
-/// Curated Indian married couple / wedding images from Unsplash
+/// Diverse Indian wedding couple images — Hindu, Tamil, Maharashtrian, etc.
 const _coupleImages = [
-  'https://images.unsplash.com/photo-1583037189850-1921ae7c6c22?w=400&h=500&fit=crop',  // Indian wedding couple
-  'https://images.unsplash.com/photo-1604604557984-245cea7ed41c?w=400&h=500&fit=crop',  // Indian bride & groom
-  'https://images.unsplash.com/photo-1519741497674-611481863552?w=400&h=500&fit=crop',  // Happy married couple
-  'https://images.unsplash.com/photo-1591604466107-ec97de577aff?w=400&h=500&fit=crop',  // Indian wedding ceremony
-  'https://images.unsplash.com/photo-1609151376730-f246fae4d5a4?w=400&h=500&fit=crop',  // Couple in traditional attire
-  'https://images.unsplash.com/photo-1620735692151-26a7e0748f53?w=400&h=500&fit=crop',  // Indian wedding portrait
-  'https://images.unsplash.com/photo-1611516491426-03025e6043c8?w=400&h=500&fit=crop',  // Traditional couple
-  'https://images.unsplash.com/photo-1545232979-8bf68ee9b1af?w=400&h=500&fit=crop',  // Wedding celebration
-  'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=400&h=500&fit=crop',  // Romantic couple
+  'https://images.unsplash.com/photo-1610173826608-e311c4781e40?w=400&h=500&fit=crop',  // Hindu wedding couple with garlands
+  'https://images.unsplash.com/photo-1637259883498-f5939e13eb53?w=400&h=500&fit=crop',  // Tamil bride & groom thali ceremony
+  'https://images.unsplash.com/photo-1621665421558-831f91fd8f1b?w=400&h=500&fit=crop',  // Maharashtrian couple in traditional attire
+  'https://images.unsplash.com/photo-1614093302611-8efc4de12964?w=400&h=500&fit=crop',  // South Indian wedding mangalsutra
+  'https://images.unsplash.com/photo-1604604557984-245cea7ed41c?w=400&h=500&fit=crop',  // Indian bride & groom portrait
+  'https://images.unsplash.com/photo-1591604466107-ec97de577aff?w=400&h=500&fit=crop',  // Hindu wedding fire ceremony
+  'https://images.unsplash.com/photo-1583037189850-1921ae7c6c22?w=400&h=500&fit=crop',  // Indian couple with henna
+  'https://images.unsplash.com/photo-1609151376730-f246fae4d5a4?w=400&h=500&fit=crop',  // Couple in silk saree & dhoti
+  'https://images.unsplash.com/photo-1605774337664-7a846e9cdf17?w=400&h=500&fit=crop',  // Indian wedding celebrations
+  'https://images.unsplash.com/photo-1622396090075-ab6b8396dccc?w=400&h=500&fit=crop',  // Couple in gold jewellery
+  'https://images.unsplash.com/photo-1609951651556-5334e2706168?w=400&h=500&fit=crop',  // Telugu couple wedding
   'https://images.unsplash.com/photo-1600096194534-95cf5ece04cf?w=400&h=500&fit=crop',  // Indian couple together
-  'https://images.unsplash.com/photo-1606216794074-735e91aa2c92?w=400&h=500&fit=crop',  // Wedding moment
-  'https://images.unsplash.com/photo-1594552072238-b8a33785b261?w=400&h=500&fit=crop',  // Happy couple portrait
 ];
 
 /// Select role before login — redesigned with couple-photo collage background
