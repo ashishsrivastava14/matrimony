@@ -56,6 +56,9 @@ class _SubscriptionScreenState extends State<SubscriptionScreen>
         title: const Text('Subscription Plans'),
         bottom: TabBar(
           controller: _tabController,
+          labelColor: Colors.white,
+          unselectedLabelColor: Colors.white70,
+          indicatorColor: Colors.white,
           tabs: const [
             Tab(text: 'Plans'),
             Tab(text: 'Pay Per Profile'),
