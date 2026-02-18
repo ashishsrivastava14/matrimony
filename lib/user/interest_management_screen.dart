@@ -37,6 +37,20 @@ class _InterestManagementScreenState extends State<InterestManagementScreen>
     return Scaffold(
       bottomNavigationBar: const UserBottomNavigation(),
       appBar: AppBar(
+        elevation: 0,
+        flexibleSpace: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                Color(0xFF00897B),
+                Color(0xFF26A69A),
+                Color(0xFF00796B),
+              ],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
+          ),
+        ),
         title: const Text('Interest Management'),
         bottom: TabBar(
           controller: _tabController,

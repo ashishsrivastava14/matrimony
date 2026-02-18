@@ -39,6 +39,20 @@ class _SubscriptionScreenState extends State<SubscriptionScreen>
     return Scaffold(
       bottomNavigationBar: const UserBottomNavigation(),
       appBar: AppBar(
+        elevation: 0,
+        flexibleSpace: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                Color(0xFF00897B),
+                Color(0xFF26A69A),
+                Color(0xFF00796B),
+              ],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
+          ),
+        ),
         title: const Text('Subscription Plans'),
         bottom: TabBar(
           controller: _tabController,

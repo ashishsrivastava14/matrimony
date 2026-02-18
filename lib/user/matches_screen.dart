@@ -37,6 +37,20 @@ class _MatchesScreenState extends State<MatchesScreen>
 
         return Scaffold(
           appBar: AppBar(
+            elevation: 0,
+            flexibleSpace: Container(
+              decoration: const BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [
+                    Color(0xFF00897B),
+                    Color(0xFF26A69A),
+                    Color(0xFF00796B),
+                  ],
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                ),
+              ),
+            ),
             title: Row(
               children: [
                 // Regular / Prime toggle
@@ -44,13 +58,13 @@ class _MatchesScreenState extends State<MatchesScreen>
                   padding:
                       const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                   decoration: BoxDecoration(
-                    border: Border.all(color: AppColors.accent),
+                    border: Border.all(color: Colors.white),
                     borderRadius: BorderRadius.circular(20),
                   ),
                   child: const Text(
                     'Regular',
                     style: TextStyle(
-                        color: AppColors.accent,
+                        color: Colors.white,
                         fontSize: 12,
                         fontWeight: FontWeight.w600),
                   ),
@@ -60,7 +74,7 @@ class _MatchesScreenState extends State<MatchesScreen>
                   padding:
                       const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                   decoration: BoxDecoration(
-                    color: AppColors.accent,
+                    color: Colors.white.withValues(alpha: 0.3),
                     borderRadius: BorderRadius.circular(20),
                   ),
                   child: const Row(

@@ -171,6 +171,20 @@ class _AdminShellState extends State<AdminShell> {
   Widget _buildMobileLayout() {
     return Scaffold(
       appBar: AppBar(
+        elevation: 0,
+        flexibleSpace: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                Color(0xFF00897B),
+                Color(0xFF26A69A),
+                Color(0xFF00796B),
+              ],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
+          ),
+        ),
         title: Text(_menuItems[_selectedIndex].label),
         leading: Builder(
           builder: (ctx) => IconButton(

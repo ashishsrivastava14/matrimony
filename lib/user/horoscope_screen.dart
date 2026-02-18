@@ -35,7 +35,23 @@ class _HoroscopeScreenState extends State<HoroscopeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Horoscope Matching')),
+      appBar: AppBar(
+        elevation: 0,
+        flexibleSpace: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                Color(0xFF00897B),
+                Color(0xFF26A69A),
+                Color(0xFF00796B),
+              ],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
+          ),
+        ),
+        title: const Text('Horoscope Matching'),
+      ),
       bottomNavigationBar: const UserBottomNavigation(),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
