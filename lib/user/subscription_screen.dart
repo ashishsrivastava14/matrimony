@@ -6,6 +6,7 @@ import '../widgets/plan_card.dart';
 import '../services/mock_data.dart';
 import '../models/subscription_plan.dart';
 import '../widgets/powered_by_footer.dart';
+import '../widgets/user_bottom_navigation.dart';
 
 class SubscriptionScreen extends StatefulWidget {
   const SubscriptionScreen({super.key});
@@ -38,6 +39,7 @@ class _SubscriptionScreenState extends State<SubscriptionScreen>
 
     return Scaffold(
       bottomSheet: const PoweredByFooter(),
+      bottomNavigationBar: const UserBottomNavigation(),
       appBar: AppBar(
         title: const Text('Subscription Plans'),
         bottom: TabBar(

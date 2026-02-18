@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../core/theme.dart';
 import '../widgets/powered_by_footer.dart';
+import '../widgets/user_bottom_navigation.dart';
 
 class HoroscopeScreen extends StatefulWidget {
   const HoroscopeScreen({super.key});
@@ -37,6 +38,7 @@ class _HoroscopeScreenState extends State<HoroscopeScreen> {
     return Scaffold(
       appBar: AppBar(title: const Text('Horoscope Matching')),
       bottomSheet: const PoweredByFooter(),
+      bottomNavigationBar: const UserBottomNavigation(),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
         child: _showResult ? _buildResult() : _buildForm(),

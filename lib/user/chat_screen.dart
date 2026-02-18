@@ -5,6 +5,7 @@ import '../providers/chat_provider.dart';
 import '../models/chat_message.dart';
 import 'package:intl/intl.dart';
 import '../widgets/powered_by_footer.dart';
+import '../widgets/user_bottom_navigation.dart';
 
 /// Individual chat conversation screen — matches screenshot reference
 class ChatScreen extends StatefulWidget {
@@ -48,6 +49,7 @@ class _ChatScreenState extends State<ChatScreen> {
 
     return Scaffold(
       bottomSheet: const PoweredByFooter(),
+      bottomNavigationBar: const UserBottomNavigation(),
       appBar: AppBar(
         titleSpacing: 0,
         title: Row(

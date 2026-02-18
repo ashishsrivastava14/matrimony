@@ -5,6 +5,7 @@ import '../providers/app_state.dart';
 import '../models/profile_model.dart';
 import '../widgets/verified_badge.dart';
 import '../widgets/powered_by_footer.dart';
+import '../widgets/user_bottom_navigation.dart';
 
 /// Full profile detail page for a match
 class MatchDetailScreen extends StatelessWidget {
@@ -22,6 +23,7 @@ class MatchDetailScreen extends StatelessWidget {
 
         return Scaffold(
           bottomSheet: const PoweredByFooter(),
+          bottomNavigationBar: const UserBottomNavigation(),
           body: CustomScrollView(
             slivers: [
               // Profile image sliver app bar

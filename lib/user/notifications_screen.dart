@@ -4,6 +4,7 @@ import '../core/theme.dart';
 import '../providers/app_state.dart';
 import '../models/notification_model.dart';
 import '../widgets/powered_by_footer.dart';
+import '../widgets/user_bottom_navigation.dart';
 
 class NotificationsScreen extends StatelessWidget {
   const NotificationsScreen({super.key});
@@ -15,6 +16,7 @@ class NotificationsScreen extends StatelessWidget {
 
     return Scaffold(
       bottomSheet: const PoweredByFooter(),
+      bottomNavigationBar: const UserBottomNavigation(),
       appBar: AppBar(
         title: const Text('Notifications'),
         actions: [
