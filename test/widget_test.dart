@@ -7,7 +7,7 @@
 
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:matrimony_app/main.dart';
+import 'package:ap_matrimony/main.dart';
 
 void main() {
   testWidgets('App renders smoke test', (WidgetTester tester) async {

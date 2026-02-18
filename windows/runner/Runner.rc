@@ -89,13 +89,13 @@ BEGIN
     BEGIN
         BLOCK "040904e4"
         BEGIN
-            VALUE "CompanyName", "com.matrimony" "\0"
-            VALUE "FileDescription", "matrimony_app" "\0"
+            VALUE "CompanyName", "com.apmatrimony" "\0"
+            VALUE "FileDescription", "AP Matrimony" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "matrimony_app" "\0"
-            VALUE "LegalCopyright", "Copyright (C) 2026 com.matrimony. All rights reserved." "\0"
-            VALUE "OriginalFilename", "matrimony_app.exe" "\0"
-            VALUE "ProductName", "matrimony_app" "\0"
+            VALUE "InternalName", "ap_matrimony" "\0"
+            VALUE "LegalCopyright", "Copyright (C) 2026 com.apmatrimony. All rights reserved." "\0"
+            VALUE "OriginalFilename", "ap_matrimony.exe" "\0"
+            VALUE "ProductName", "AP Matrimony" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

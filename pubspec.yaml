@@ -1,5 +1,5 @@
-name: matrimony_app
-description: "A fully functional frontend-only Matrimony Platform in Flutter."
+name: ap_matrimony
+description: "AP Matrimony - A fully functional frontend-only Matrimony Platform in Flutter."
 publish_to: 'none'
 version: 1.0.0+1
 
@@ -21,6 +21,29 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^6.0.0
+  flutter_launcher_icons: ^0.13.1
+
+flutter_launcher_icons:
+  image_path: "assets/icon/app_icon.png"
+  
+  # Android specific configurations  
+  android:
+    generate: true
+    image_path: "assets/icon/app_icon.png"
+    adaptive_icon_background: "#FFFFFF"
+    adaptive_icon_foreground: "assets/icon/app_icon.png"
+  
+  # iOS specific configurations
+  ios:
+    generate: true
+    image_path: "assets/icon/app_icon.png"
+    
+  # Web specific configurations
+  web:
+    generate: true
+    image_path: "assets/icon/app_icon.png"
+    background_color: "#FFFFFF"
+    theme_color: "#0175C2"
 
 flutter:
   uses-material-design: true
@@ -30,3 +53,4 @@ flutter:
     - assets/images/
     - assets/images/profiles/
     - assets/images/success_stories/
+    - assets/icon/

@@ -1,7 +1,7 @@
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:matrimony_app/core/theme.dart';
+import 'package:ap_matrimony/core/theme.dart';
 
 /// Splash screen with rich gradient, floating hearts, and staggered text.
 class SplashScreen extends StatefulWidget {
