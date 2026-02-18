@@ -37,7 +37,13 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
             ),
           ),
         ),
-        title: const Text('Reset Password'),
+        title: Row(
+          children: [
+            Image.asset('assets/icon/app_icon.png', height: 24, width: 24),
+            const SizedBox(width: 10),
+            const Text('Reset Password'),
+          ],
+        ),
       ),
       body: Center(
         child: SingleChildScrollView(

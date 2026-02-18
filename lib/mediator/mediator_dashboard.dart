@@ -31,7 +31,13 @@ class MediatorDashboard extends StatelessWidget {
             ),
           ),
         ),
-        title: const Text('Mediator Dashboard'),
+        title: Row(
+          children: [
+            Image.asset('assets/icon/app_icon.png', height: 24, width: 24),
+            const SizedBox(width: 10),
+            const Text('Mediator Dashboard'),
+          ],
+        ),
         actions: [
           IconButton(
             onPressed: () => Navigator.pushNamed(context, '/notifications'),

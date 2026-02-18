@@ -53,6 +53,8 @@ class _MatchesScreenState extends State<MatchesScreen>
             ),
             title: Row(
               children: [
+                Image.asset('assets/icon/app_icon.png', height: 24, width: 24),
+                const SizedBox(width: 8),
                 // Regular / Prime toggle
                 Container(
                   padding:

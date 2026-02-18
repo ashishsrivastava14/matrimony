@@ -185,7 +185,13 @@ class _AdminShellState extends State<AdminShell> {
             ),
           ),
         ),
-        title: Text(_menuItems[_selectedIndex].label),
+        title: Row(
+          children: [
+            Image.asset('assets/icon/app_icon.png', height: 24, width: 24),
+            const SizedBox(width: 10),
+            Text(_menuItems[_selectedIndex].label),
+          ],
+        ),
         leading: Builder(
           builder: (ctx) => IconButton(
             icon: const Icon(Icons.menu),

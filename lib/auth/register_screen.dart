@@ -32,7 +32,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
             ),
           ),
         ),
-        title: const Text('Create Account'),
+        title: Row(
+          children: [
+            Image.asset('assets/icon/app_icon.png', height: 24, width: 24),
+            const SizedBox(width: 10),
+            const Text('Create Account'),
+          ],
+        ),
       ),
       body: Center(
         child: SingleChildScrollView(

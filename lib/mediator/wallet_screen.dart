@@ -25,7 +25,13 @@ class WalletScreen extends StatelessWidget {
             ),
           ),
         ),
-        title: const Text('Wallet'),
+        title: Row(
+          children: [
+            Image.asset('assets/icon/app_icon.png', height: 24, width: 24),
+            const SizedBox(width: 10),
+            const Text('Wallet'),
+          ],
+        ),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),

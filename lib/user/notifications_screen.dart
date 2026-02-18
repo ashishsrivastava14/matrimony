@@ -30,7 +30,13 @@ class NotificationsScreen extends StatelessWidget {
             ),
           ),
         ),
-        title: const Text('Notifications'),
+        title: Row(
+          children: [
+            Image.asset('assets/icon/app_icon.png', height: 24, width: 24),
+            const SizedBox(width: 10),
+            const Text('Notifications'),
+          ],
+        ),
         actions: [
           TextButton(
             onPressed: () {

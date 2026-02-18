@@ -51,7 +51,13 @@ class _InterestManagementScreenState extends State<InterestManagementScreen>
             ),
           ),
         ),
-        title: const Text('Interest Management'),
+        title: Row(
+          children: [
+            Image.asset('assets/icon/app_icon.png', height: 24, width: 24),
+            const SizedBox(width: 10),
+            const Text('Interest Management'),
+          ],
+        ),
         bottom: TabBar(
           controller: _tabController,
           isScrollable: true,

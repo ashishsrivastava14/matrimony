@@ -50,7 +50,13 @@ class _HoroscopeScreenState extends State<HoroscopeScreen> {
             ),
           ),
         ),
-        title: const Text('Horoscope Matching'),
+        title: Row(
+          children: [
+            Image.asset('assets/icon/app_icon.png', height: 24, width: 24),
+            const SizedBox(width: 10),
+            const Text('Horoscope Matching'),
+          ],
+        ),
       ),
       bottomNavigationBar: const UserBottomNavigation(),
       body: SingleChildScrollView(

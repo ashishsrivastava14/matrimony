@@ -29,7 +29,13 @@ class ProfileScreen extends StatelessWidget {
                 ),
               ),
             ),
-            title: const Text('My Profile'),
+            title: Row(
+              children: [
+                Image.asset('assets/icon/app_icon.png', height: 24, width: 24),
+                const SizedBox(width: 10),
+                const Text('My Profile'),
+              ],
+            ),
             actions: [
               IconButton(
                 icon: const Icon(Icons.settings),

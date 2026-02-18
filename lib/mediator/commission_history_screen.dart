@@ -43,7 +43,13 @@ class _CommissionHistoryScreenState extends State<CommissionHistoryScreen>
             ),
           ),
         ),
-        title: const Text('Commission History'),
+        title: Row(
+          children: [
+            Image.asset('assets/icon/app_icon.png', height: 24, width: 24),
+            const SizedBox(width: 10),
+            const Text('Commission History'),
+          ],
+        ),
         bottom: TabBar(
           controller: _tabController,
           tabs: const [

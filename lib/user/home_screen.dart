@@ -46,7 +46,7 @@ class HomeScreen extends StatelessWidget {
                         color: Colors.white.withValues(alpha: 0.2),
                         borderRadius: BorderRadius.circular(8),
                       ),
-                      child: const Icon(Icons.favorite, size: 20, color: Colors.white),
+                      child: Image.asset('assets/icon/app_icon.png', width: 20, height: 20),
                     ),
                     const SizedBox(width: 10),
                     const Text(

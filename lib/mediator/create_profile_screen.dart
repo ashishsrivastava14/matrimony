@@ -44,7 +44,13 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
             ),
           ),
         ),
-        title: const Text('Create Client Profile'),
+        title: Row(
+          children: [
+            Image.asset('assets/icon/app_icon.png', height: 24, width: 24),
+            const SizedBox(width: 10),
+            const Text('Create Client Profile'),
+          ],
+        ),
         actions: [
           TextButton(
             onPressed: () {

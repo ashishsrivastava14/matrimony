@@ -53,7 +53,13 @@ class _ProfileCreationScreenState extends State<ProfileCreationScreen> {
             ),
           ),
         ),
-        title: Text('Step ${_currentStep + 1}: ${_stepTitles[_currentStep]}'),
+        title: Row(
+          children: [
+            Image.asset('assets/icon/app_icon.png', height: 24, width: 24),
+            const SizedBox(width: 10),
+            Text('Step ${_currentStep + 1}: ${_stepTitles[_currentStep]}'),
+          ],
+        ),
       ),
       bottomNavigationBar: const UserBottomNavigation(),
       body: Form(

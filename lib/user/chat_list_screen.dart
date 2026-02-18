@@ -27,7 +27,13 @@ class ChatListScreen extends StatelessWidget {
             ),
           ),
         ),
-        title: const Text('Chat'),
+        title: Row(
+          children: [
+            Image.asset('assets/icon/app_icon.png', height: 24, width: 24),
+            const SizedBox(width: 10),
+            const Text('Chat'),
+          ],
+        ),
         actions: [
           IconButton(icon: const Icon(Icons.search), onPressed: () {}),
         ],
