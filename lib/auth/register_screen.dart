@@ -34,7 +34,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   const Text(
-                    'Join QP Matrimony',
+                    'Join AP Matrimony',
                     style: TextStyle(
                       fontSize: 24,
                       fontWeight: FontWeight.bold,
