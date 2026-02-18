@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../core/theme.dart';
 import '../core/constants.dart';
+import '../widgets/powered_by_footer.dart';
 
 /// Login screen — email / mobile mock login
 class LoginScreen extends StatefulWidget {
@@ -46,6 +47,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomSheet: const PoweredByFooter(),
       body: SafeArea(
         child: Column(
           children: [

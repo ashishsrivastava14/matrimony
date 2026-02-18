@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../core/theme.dart';
 import '../services/mock_data.dart';
+import '../widgets/powered_by_footer.dart';
 
 class SubscriptionManagementScreen extends StatelessWidget {
   const SubscriptionManagementScreen({super.key});
@@ -9,6 +10,7 @@ class SubscriptionManagementScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final plans = MockDataService.getMockPlans();
     return Scaffold(
+      bottomSheet: const PoweredByFooter(),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
         child: Column(

@@ -4,6 +4,7 @@ import '../core/theme.dart';
 import '../providers/app_state.dart';
 import '../models/profile_model.dart';
 import '../widgets/filter_bottom_sheet.dart';
+import '../widgets/powered_by_footer.dart';
 
 /// Search screen with quick search, filters, and results
 class SearchScreen extends StatefulWidget {
@@ -35,6 +36,7 @@ class _SearchScreenState extends State<SearchScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomSheet: const PoweredByFooter(),
       appBar: AppBar(
         title: const Text('Search'),
         bottom: TabBar(

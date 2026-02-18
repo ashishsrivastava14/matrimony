@@ -5,6 +5,7 @@ import '../core/theme.dart';
 import '../providers/app_state.dart';
 import '../widgets/profile_card.dart';
 import '../widgets/premium_banner.dart';
+import '../widgets/powered_by_footer.dart';
 
 /// User home screen
 class HomeScreen extends StatelessWidget {
@@ -19,6 +20,7 @@ class HomeScreen extends StatelessWidget {
         final suggested = profiles.reversed.take(5).toList();
 
         return Scaffold(
+          bottomSheet: const PoweredByFooter(),
           appBar: AppBar(
             title: Row(
               children: [

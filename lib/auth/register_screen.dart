@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../core/theme.dart';
+import '../widgets/powered_by_footer.dart';
 
 /// Registration screen — mock form
 class RegisterScreen extends StatefulWidget {
@@ -23,6 +24,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
         elevation: 0,
         foregroundColor: AppColors.textPrimary,
       ),
+      bottomSheet: const PoweredByFooter(),
       body: Center(
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(24),

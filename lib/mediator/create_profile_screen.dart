@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../core/theme.dart';
+import '../widgets/powered_by_footer.dart';
 
 /// Mediator: Create a profile on behalf of a client
 class CreateProfileScreen extends StatefulWidget {
@@ -29,6 +30,7 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomSheet: const PoweredByFooter(),
       appBar: AppBar(
         title: const Text('Create Client Profile'),
         actions: [

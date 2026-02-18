@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../core/theme.dart';
 import '../core/constants.dart';
+import '../widgets/powered_by_footer.dart';
 
 /// Role-selection screen with couple-photo background, strong gradient overlay,
 /// and a clean, focused layout for end users.
@@ -50,6 +51,7 @@ class _RoleSelectionScreenState extends State<RoleSelectionScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomSheet: const PoweredByFooter(),
       body: Stack(
         fit: StackFit.expand,
         children: [

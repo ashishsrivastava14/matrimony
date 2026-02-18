@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../core/theme.dart';
 import '../widgets/stat_card.dart';
 import '../services/mock_data.dart';
+import '../widgets/powered_by_footer.dart';
 
 class AdminDashboard extends StatelessWidget {
   const AdminDashboard({super.key});
@@ -12,6 +13,7 @@ class AdminDashboard extends StatelessWidget {
     final stories = MockDataService.getSuccessStories();
 
     return Scaffold(
+      bottomSheet: const PoweredByFooter(),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(20),
         child: Column(

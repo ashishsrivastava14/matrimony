@@ -4,6 +4,7 @@ import '../core/theme.dart';
 import '../providers/app_state.dart';
 import '../models/profile_model.dart';
 import '../widgets/verified_badge.dart';
+import '../widgets/powered_by_footer.dart';
 
 /// Full profile detail page for a match
 class MatchDetailScreen extends StatelessWidget {
@@ -20,6 +21,7 @@ class MatchDetailScreen extends StatelessWidget {
         final canViewContact = state.isSubscribed || state.unlockCount > 0;
 
         return Scaffold(
+          bottomSheet: const PoweredByFooter(),
           body: CustomScrollView(
             slivers: [
               // Profile image sliver app bar

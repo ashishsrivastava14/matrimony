@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../core/theme.dart';
+import '../widgets/powered_by_footer.dart';
 
 /// Forgot password screen — mock flow
 class ForgotPasswordScreen extends StatefulWidget {
@@ -28,6 +29,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
         elevation: 0,
         foregroundColor: AppColors.textPrimary,
       ),
+      bottomSheet: const PoweredByFooter(),
       body: Center(
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(28),

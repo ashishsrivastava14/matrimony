@@ -4,6 +4,7 @@ import '../core/theme.dart';
 import '../providers/chat_provider.dart';
 import '../models/chat_message.dart' show ChatConversation;
 import 'package:intl/intl.dart';
+import '../widgets/powered_by_footer.dart';
 
 /// Chat conversations list screen
 class ChatListScreen extends StatelessWidget {
@@ -12,6 +13,7 @@ class ChatListScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomSheet: const PoweredByFooter(),
       appBar: AppBar(
         title: const Text('Chat'),
         actions: [

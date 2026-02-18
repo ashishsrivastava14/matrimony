@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../core/theme.dart';
 import '../services/mock_data.dart';
+import '../widgets/powered_by_footer.dart';
 
 class MediatorManagementScreen extends StatefulWidget {
   const MediatorManagementScreen({super.key});
@@ -25,6 +26,7 @@ class _MediatorManagementScreenState extends State<MediatorManagementScreen> {
     }).toList();
 
     return Scaffold(
+      bottomSheet: const PoweredByFooter(),
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(

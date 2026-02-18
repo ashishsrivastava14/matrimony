@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import '../core/theme.dart';
 import '../providers/app_state.dart';
 import '../widgets/profile_card.dart';
+import '../widgets/powered_by_footer.dart';
 
 /// Matches screen with tabs: All, Newly Joined, filters
 class MatchesScreen extends StatefulWidget {
@@ -36,6 +37,7 @@ class _MatchesScreenState extends State<MatchesScreen>
         final profiles = state.profiles;
 
         return Scaffold(
+          bottomSheet: const PoweredByFooter(),
           appBar: AppBar(
             title: Row(
               children: [

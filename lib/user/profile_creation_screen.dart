@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../core/theme.dart';
+import '../widgets/powered_by_footer.dart';
 
 /// Multi-step profile creation form
 class ProfileCreationScreen extends StatefulWidget {
@@ -40,6 +41,7 @@ class _ProfileCreationScreenState extends State<ProfileCreationScreen> {
       appBar: AppBar(
         title: Text('Step ${_currentStep + 1}: ${_stepTitles[_currentStep]}'),
       ),
+      bottomSheet: const PoweredByFooter(),
       body: Form(
         key: _formKey,
         child: Column(

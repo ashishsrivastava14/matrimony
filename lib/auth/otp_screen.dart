@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import '../core/theme.dart';
 import '../core/constants.dart';
 import '../providers/app_state.dart';
+import '../widgets/powered_by_footer.dart';
 
 /// OTP verification screen — mock validation with "1234"
 class OtpScreen extends StatefulWidget {
@@ -86,6 +87,7 @@ class _OtpScreenState extends State<OtpScreen> {
         elevation: 0,
         foregroundColor: AppColors.textPrimary,
       ),
+      bottomSheet: const PoweredByFooter(),
       body: Center(
         child: SingleChildScrollView(
           padding: const EdgeInsets.symmetric(horizontal: 28),
