@@ -4,7 +4,6 @@ import '../core/theme.dart';
 import '../providers/app_state.dart';
 import '../models/profile_model.dart';
 import '../widgets/verified_badge.dart';
-import '../widgets/powered_by_footer.dart';
 import '../widgets/user_bottom_navigation.dart';
 
 /// Full profile detail page for a match
@@ -22,7 +21,6 @@ class MatchDetailScreen extends StatelessWidget {
         final canViewContact = state.isSubscribed || state.unlockCount > 0;
 
         return Scaffold(
-          bottomSheet: const PoweredByFooter(),
           bottomNavigationBar: const UserBottomNavigation(),
           body: CustomScrollView(
             slivers: [

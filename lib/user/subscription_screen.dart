@@ -5,7 +5,6 @@ import '../providers/app_state.dart';
 import '../widgets/plan_card.dart';
 import '../services/mock_data.dart';
 import '../models/subscription_plan.dart';
-import '../widgets/powered_by_footer.dart';
 import '../widgets/user_bottom_navigation.dart';
 
 class SubscriptionScreen extends StatefulWidget {
@@ -38,7 +37,6 @@ class _SubscriptionScreenState extends State<SubscriptionScreen>
     final bundles = MockDataService.getMockBundles();
 
     return Scaffold(
-      bottomSheet: const PoweredByFooter(),
       bottomNavigationBar: const UserBottomNavigation(),
       appBar: AppBar(
         title: const Text('Subscription Plans'),

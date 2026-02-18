@@ -3,7 +3,6 @@ import 'package:provider/provider.dart';
 import '../core/theme.dart';
 import '../providers/app_state.dart';
 import '../services/mock_data.dart';
-import '../widgets/powered_by_footer.dart';
 
 class UserManagementScreen extends StatefulWidget {
   const UserManagementScreen({super.key});
@@ -34,7 +33,6 @@ class _UserManagementScreenState extends State<UserManagementScreen> {
     }).toList();
 
     return Scaffold(
-      bottomSheet: const PoweredByFooter(),
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(

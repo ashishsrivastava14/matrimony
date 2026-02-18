@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import '../core/theme.dart';
-import '../widgets/powered_by_footer.dart';
 
 class CommissionHistoryScreen extends StatefulWidget {
   const CommissionHistoryScreen({super.key});
@@ -29,7 +28,6 @@ class _CommissionHistoryScreenState extends State<CommissionHistoryScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomSheet: const PoweredByFooter(),
       appBar: AppBar(
         title: const Text('Commission History'),
         bottom: TabBar(

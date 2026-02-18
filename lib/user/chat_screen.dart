@@ -4,7 +4,6 @@ import '../core/theme.dart';
 import '../providers/chat_provider.dart';
 import '../models/chat_message.dart';
 import 'package:intl/intl.dart';
-import '../widgets/powered_by_footer.dart';
 import '../widgets/user_bottom_navigation.dart';
 
 /// Individual chat conversation screen — matches screenshot reference
@@ -48,7 +47,6 @@ class _ChatScreenState extends State<ChatScreen> {
         ModalRoute.of(context)!.settings.arguments as ChatConversation;
 
     return Scaffold(
-      bottomSheet: const PoweredByFooter(),
       bottomNavigationBar: const UserBottomNavigation(),
       appBar: AppBar(
         titleSpacing: 0,

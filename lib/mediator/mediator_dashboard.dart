@@ -4,7 +4,6 @@ import '../core/theme.dart';
 import '../providers/app_state.dart';
 import '../services/mock_data.dart';
 import '../widgets/stat_card.dart';
-import '../widgets/powered_by_footer.dart';
 
 class MediatorDashboard extends StatelessWidget {
   const MediatorDashboard({super.key});
@@ -17,7 +16,6 @@ class MediatorDashboard extends StatelessWidget {
     final profiles = MockDataService.getMockProfiles();
 
     return Scaffold(
-      bottomSheet: const PoweredByFooter(),
       appBar: AppBar(
         title: const Text('Mediator Dashboard'),
         actions: [

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import '../core/theme.dart';
 import '../services/mock_data.dart';
-import '../widgets/powered_by_footer.dart';
 
 class WalletScreen extends StatelessWidget {
   const WalletScreen({super.key});
@@ -12,7 +11,6 @@ class WalletScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(title: const Text('Wallet')),
-      bottomSheet: const PoweredByFooter(),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
         child: Column(

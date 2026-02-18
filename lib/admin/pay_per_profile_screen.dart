@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import '../core/theme.dart';
 import '../services/mock_data.dart';
-import '../widgets/powered_by_footer.dart';
 
 class PayPerProfileScreen extends StatelessWidget {
   const PayPerProfileScreen({super.key});
@@ -11,7 +10,6 @@ class PayPerProfileScreen extends StatelessWidget {
     final bundles = MockDataService.getMockBundles();
 
     return Scaffold(
-      bottomSheet: const PoweredByFooter(),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
         child: Column(

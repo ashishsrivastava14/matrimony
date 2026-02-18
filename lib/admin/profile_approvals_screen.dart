@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import '../core/theme.dart';
 import '../services/mock_data.dart';
-import '../widgets/powered_by_footer.dart';
 
 class ProfileApprovalsScreen extends StatefulWidget {
   const ProfileApprovalsScreen({super.key});
@@ -32,7 +31,6 @@ class _ProfileApprovalsScreenState extends State<ProfileApprovalsScreen>
     final profiles = MockDataService.getMockProfiles();
 
     return Scaffold(
-      bottomSheet: const PoweredByFooter(),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import '../core/theme.dart';
-import '../widgets/powered_by_footer.dart';
 import '../widgets/user_bottom_navigation.dart';
 
 /// Multi-step profile creation form
@@ -42,7 +41,6 @@ class _ProfileCreationScreenState extends State<ProfileCreationScreen> {
       appBar: AppBar(
         title: Text('Step ${_currentStep + 1}: ${_stepTitles[_currentStep]}'),
       ),
-      bottomSheet: const PoweredByFooter(),
       bottomNavigationBar: const UserBottomNavigation(),
       body: Form(
         key: _formKey,

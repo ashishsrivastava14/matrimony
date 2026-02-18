@@ -3,7 +3,6 @@ import 'package:provider/provider.dart';
 import '../core/theme.dart';
 import '../providers/app_state.dart';
 import '../services/mock_data.dart';
-import '../widgets/powered_by_footer.dart';
 import '../widgets/user_bottom_navigation.dart';
 
 class InterestManagementScreen extends StatefulWidget {
@@ -36,7 +35,6 @@ class _InterestManagementScreenState extends State<InterestManagementScreen>
     final profiles = MockDataService.getMockProfiles();
 
     return Scaffold(
-      bottomSheet: const PoweredByFooter(),
       bottomNavigationBar: const UserBottomNavigation(),
       appBar: AppBar(
         title: const Text('Interest Management'),

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import '../core/theme.dart';
-import '../widgets/powered_by_footer.dart';
 
 class NotificationBroadcastScreen extends StatefulWidget {
   const NotificationBroadcastScreen({super.key});
@@ -18,7 +17,6 @@ class _NotificationBroadcastScreenState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomSheet: const PoweredByFooter(),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
         child: Column(

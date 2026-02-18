@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import '../core/theme.dart';
-import '../widgets/powered_by_footer.dart';
 
 class HoroscopeSettingsScreen extends StatefulWidget {
   const HoroscopeSettingsScreen({super.key});
@@ -19,7 +18,6 @@ class _HoroscopeSettingsScreenState extends State<HoroscopeSettingsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomSheet: const PoweredByFooter(),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
         child: Column(

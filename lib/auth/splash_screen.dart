@@ -2,7 +2,6 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:matrimony_app/core/theme.dart';
-import '../widgets/powered_by_footer.dart';
 
 /// Splash screen with rich gradient, floating hearts, and staggered text.
 class SplashScreen extends StatefulWidget {
@@ -128,7 +127,6 @@ class _SplashScreenState extends State<SplashScreen>
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
-      bottomSheet: const PoweredByFooter(),
       body: Stack(
         children: [
           // ── gradient background ──────────────────────────────────────

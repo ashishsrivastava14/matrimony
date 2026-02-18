@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../core/theme.dart';
 import '../providers/app_state.dart';
-import '../widgets/powered_by_footer.dart';
 
 /// User profile screen
 class ProfileScreen extends StatelessWidget {
@@ -15,7 +14,6 @@ class ProfileScreen extends StatelessWidget {
         final user = state.currentUser;
 
         return Scaffold(
-          bottomSheet: const PoweredByFooter(),
           appBar: AppBar(
             title: const Text('My Profile'),
             actions: [

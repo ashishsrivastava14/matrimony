@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import '../core/theme.dart';
-import '../widgets/powered_by_footer.dart';
 
 class CmsScreen extends StatefulWidget {
   const CmsScreen({super.key});
@@ -28,7 +27,6 @@ class _CmsScreenState extends State<CmsScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomSheet: const PoweredByFooter(),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
