@@ -20,23 +20,85 @@ class HomeScreen extends StatelessWidget {
 
         return Scaffold(
           appBar: AppBar(
-            title: Row(
+            elevation: 0,
+            flexibleSpace: Container(
+              decoration: const BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [
+                    Color(0xFF00897B),
+                    Color(0xFF26A69A),
+                    Color(0xFF00796B),
+                  ],
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                ),
+              ),
+            ),
+            title: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Icon(Icons.favorite, size: 24),
-                const SizedBox(width: 8),
-                const Text('AP Matrimony'),
+                Row(
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.all(6),
+                      decoration: BoxDecoration(
+                        color: Colors.white.withValues(alpha: 0.2),
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: const Icon(Icons.favorite, size: 20, color: Colors.white),
+                    ),
+                    const SizedBox(width: 10),
+                    const Text(
+                      'AP Matrimony',
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                        letterSpacing: 0.5,
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 2),
+                Row(
+                  children: [
+                    Icon(
+                      Icons.auto_awesome,
+                      size: 11,
+                      color: Colors.white.withValues(alpha: 0.9),
+                    ),
+                    const SizedBox(width: 4),
+                    Text(
+                      'Powered by QuickPrepAI',
+                      style: TextStyle(
+                        fontSize: 11,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.white.withValues(alpha: 0.9),
+                        letterSpacing: 0.3,
+                      ),
+                    ),
+                  ],
+                ),
               ],
             ),
             actions: [
               // Notification bell
-              IconButton(
-                icon: Badge(
-                  label: Text('${state.unreadNotifications}'),
-                  isLabelVisible: state.unreadNotifications > 0,
-                  child: const Icon(Icons.notifications_outlined),
+              Container(
+                margin: const EdgeInsets.only(right: 8),
+                decoration: BoxDecoration(
+                  color: Colors.white.withValues(alpha: 0.2),
+                  borderRadius: BorderRadius.circular(12),
                 ),
-                onPressed: () =>
-                    Navigator.of(context).pushNamed('/notifications'),
+                child: IconButton(
+                  icon: Badge(
+                    label: Text('${state.unreadNotifications}'),
+                    isLabelVisible: state.unreadNotifications > 0,
+                    child: const Icon(Icons.notifications_outlined, color: Colors.white),
+                  ),
+                  onPressed: () =>
+                      Navigator.of(context).pushNamed('/notifications'),
+                ),
               ),
             ],
           ),
