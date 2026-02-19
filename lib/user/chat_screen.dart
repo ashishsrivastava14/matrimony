@@ -54,6 +54,95 @@ class _ChatScreenState extends State<ChatScreen> {
     });
   }
 
+  void _showAttachmentOptions(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+      ),
+      builder: (_) {
+        return SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 24),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text(
+                  'Share',
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+                ),
+                const SizedBox(height: 20),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    _attachOption(
+                      context,
+                      icon: Icons.photo_library,
+                      color: Colors.purple,
+                      label: 'Gallery',
+                    ),
+                    _attachOption(
+                      context,
+                      icon: Icons.camera_alt,
+                      color: Colors.blue,
+                      label: 'Camera',
+                    ),
+                    _attachOption(
+                      context,
+                      icon: Icons.insert_drive_file,
+                      color: Colors.orange,
+                      label: 'Document',
+                    ),
+                    _attachOption(
+                      context,
+                      icon: Icons.location_on,
+                      color: Colors.green,
+                      label: 'Location',
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 8),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  Widget _attachOption(
+    BuildContext context, {
+    required IconData icon,
+    required Color color,
+    required String label,
+  }) {
+    return GestureDetector(
+      onTap: () {
+        Navigator.pop(context);
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('$label sharing!'),
+            duration: const Duration(seconds: 2),
+            behavior: SnackBarBehavior.floating,
+          ),
+        );
+      },
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          CircleAvatar(
+            radius: 28,
+            backgroundColor: color.withValues(alpha: 0.15),
+            child: Icon(icon, color: color, size: 26),
+          ),
+          const SizedBox(height: 8),
+          Text(label, style: const TextStyle(fontSize: 12)),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
@@ -242,7 +331,7 @@ class _ChatScreenState extends State<ChatScreen> {
                             horizontal: 16, vertical: 10),
                         suffixIcon: IconButton(
                           icon: const Icon(Icons.attach_file),
-                          onPressed: () {},
+                          onPressed: () => _showAttachmentOptions(context),
                         ),
                       ),
                       onSubmitted: (_) {
