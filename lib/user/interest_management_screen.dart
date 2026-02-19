@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../core/theme.dart';
+import '../models/chat_message.dart';
 import '../providers/app_state.dart';
 import '../services/mock_data.dart';
 import '../widgets/user_bottom_navigation.dart';
@@ -250,7 +251,18 @@ class _InterestManagementScreenState extends State<InterestManagementScreen>
                 ] else if (type == 'accepted') ...[
                   ElevatedButton.icon(
                     onPressed: () {
-                      Navigator.pushNamed(context, '/chat');
+                      final conversation = ChatConversation(
+                        id: profile.id,
+                        recipientName: profile.name,
+                        recipientImage: profile.photos.isNotEmpty
+                            ? profile.photos.first
+                            : 'assets/images/profiles/profile_68.jpg',
+                        lastMessage: '',
+                        lastMessageTime: DateTime.now(),
+                        isVerified: profile.isVerified,
+                      );
+                      Navigator.pushNamed(context, '/chat',
+                          arguments: conversation);
                     },
                     icon: const Icon(Icons.chat, size: 16),
                     label: Text(l10n.chat),
