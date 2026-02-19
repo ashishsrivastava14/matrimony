@@ -37,8 +37,12 @@ class AppState extends ChangeNotifier {
   List<String> _receivedInterests = [];
   List<String> _acceptedInterests = [];
   List<String> _declinedInterests = [];
+  final Set<String> _hiddenProfiles = {};
 
-  List<ProfileModel> get profiles => _profiles;
+  List<ProfileModel> get profiles =>
+      _profiles.where((p) => !_hiddenProfiles.contains(p.id)).toList();
+  Set<String> get hiddenProfiles => _hiddenProfiles;
+  bool isHidden(String profileId) => _hiddenProfiles.contains(profileId);
   List<ProfileModel> get shortlisted => _shortlisted;
   List<String> get sentInterests => _sentInterests;
   List<String> get receivedInterests => _receivedInterests;
@@ -159,6 +163,7 @@ class AppState extends ChangeNotifier {
     _receivedInterests = [];
     _acceptedInterests = [];
     _declinedInterests = [];
+    _hiddenProfiles.clear();
     _notifications = [];
     notifyListeners();
   }
@@ -182,6 +187,12 @@ class AppState extends ChangeNotifier {
       _sentInterests.add(profileId);
       notifyListeners();
     }
+  }
+
+  void hideProfile(String profileId) {
+    _hiddenProfiles.add(profileId);
+    _shortlisted.removeWhere((p) => p.id == profileId);
+    notifyListeners();
   }
 
   void acceptInterest(String profileId) {

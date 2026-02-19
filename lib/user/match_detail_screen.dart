@@ -195,7 +195,10 @@ class MatchDetailScreen extends StatelessWidget {
                             label: l10n.dontShow,
                             color: AppColors.error,
                             filled: false,
-                            onTap: () {},
+                            onTap: () {
+                              state.hideProfile(profile.id);
+                              Navigator.of(context).pop();
+                            },
                           ),
                           // Send Interest
                           _ActionIcon(

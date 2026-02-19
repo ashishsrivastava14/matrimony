@@ -173,7 +173,7 @@ class HomeScreen extends StatelessWidget {
                             ),
                           );
                         },
-                        onDontShow: () {},
+                        onDontShow: () => state.hideProfile(p.id),
                       ),
                     )),
               ],
