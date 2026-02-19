@@ -84,7 +84,7 @@ class MediatorDashboard extends StatelessWidget {
               physics: const NeverScrollableScrollPhysics(),
               crossAxisSpacing: 12,
               mainAxisSpacing: 12,
-              childAspectRatio: 1.6,
+              childAspectRatio: 1.0,
               children: [
                 StatCard(
                   title: l10n.totalProfiles,
