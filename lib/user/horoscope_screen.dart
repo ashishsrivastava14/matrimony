@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:pdf/pdf.dart';
+import 'package:pdf/widgets.dart' as pw;
+import 'package:printing/printing.dart';
 import '../core/theme.dart';
 import '../widgets/user_bottom_navigation.dart';
 import '../l10n/app_localizations.dart';
@@ -366,11 +369,7 @@ class _HoroscopeScreenState extends State<HoroscopeScreen> {
             const SizedBox(width: 12),
             Expanded(
               child: ElevatedButton.icon(
-                onPressed: () {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text(l10n.reportDownloaded)),
-                  );
-                },
+                onPressed: () => _downloadReport(AppLocalizations.of(context)!),
                 icon: const Icon(Icons.download, size: 18),
                 label: Text(l10n.download),
               ),
@@ -378,6 +377,351 @@ class _HoroscopeScreenState extends State<HoroscopeScreen> {
           ],
         ),
       ],
+    );
+  }
+
+  /// Generates a horoscope compatibility PDF and opens the native share/save dialog.
+  Future<void> _downloadReport(AppLocalizations l10n) async {
+    const score = 7.5;
+    const maxScore = 10;
+
+    // Porutham data — mirrors _buildPoruthamItems
+    final poruthams = [
+      (l10n.poruthamDina,           true,  l10n.poruthamDinaDesc),
+      (l10n.poruthamGana,           true,  l10n.poruthamGanaDesc),
+      (l10n.poruthamMahendra,       true,  l10n.poruthamMahendraDesc),
+      (l10n.poruthamStreeDeergha,   true,  l10n.poruthamStreeDeerghaDesc),
+      (l10n.poruthamYoni,           false, l10n.poruthamYoniDesc),
+      (l10n.poruthamRasi,           true,  l10n.poruthamRasiDesc),
+      (l10n.poruthamRasiyathipathi, true,  l10n.poruthamRasiyathipathiDesc),
+      (l10n.poruthamVasya,          false, l10n.poruthamVasyaDesc),
+      (l10n.poruthamRajju,          true,  l10n.poruthamRajjuDesc),
+      (l10n.poruthamVedha,          false, l10n.poruthamVedhaDesc),
+    ];
+
+    final matchCount = poruthams.where((p) => p.$2).length;
+
+    const primaryColor   = PdfColor.fromInt(0xFF00897B);
+    const successColor   = PdfColor.fromInt(0xFF4CAF50);
+    const errorColor     = PdfColor.fromInt(0xFFF44336);
+    const bgLight        = PdfColor.fromInt(0xFFF5F5F5);
+    const textSecondary  = PdfColor.fromInt(0xFF757575);
+    const dividerColor   = PdfColor.fromInt(0xFFE0E0E0);
+
+    final doc = pw.Document(title: '${l10n.horoscopeMatching} – ${_myName.text} & ${_pName.text}');
+
+    doc.addPage(
+      pw.MultiPage(
+        pageFormat: PdfPageFormat.a4,
+        margin: const pw.EdgeInsets.all(36),
+        header: (_) => pw.Container(
+          padding: const pw.EdgeInsets.only(bottom: 12),
+          decoration: const pw.BoxDecoration(
+            border: pw.Border(bottom: pw.BorderSide(color: primaryColor, width: 2)),
+          ),
+          child: pw.Row(
+            mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
+            children: [
+              pw.Text(
+                l10n.horoscopeMatching,
+                style: pw.TextStyle(
+                  fontSize: 18,
+                  fontWeight: pw.FontWeight.bold,
+                  color: primaryColor,
+                ),
+              ),
+              pw.Text(
+                'Generated: ${DateTime.now().day}/${DateTime.now().month}/${DateTime.now().year}',
+                style: const pw.TextStyle(fontSize: 10, color: textSecondary),
+              ),
+            ],
+          ),
+        ),
+        footer: (ctx) => pw.Container(
+          padding: const pw.EdgeInsets.only(top: 8),
+          decoration: const pw.BoxDecoration(
+            border: pw.Border(top: pw.BorderSide(color: dividerColor)),
+          ),
+          child: pw.Row(
+            mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
+            children: [
+              pw.Text('AP Matrimony', style: const pw.TextStyle(fontSize: 9, color: textSecondary)),
+              pw.Text('Page ${ctx.pageNumber} of ${ctx.pagesCount}',
+                  style: const pw.TextStyle(fontSize: 9, color: textSecondary)),
+            ],
+          ),
+        ),
+        build: (ctx) => [
+          pw.SizedBox(height: 16),
+
+          // ── Couple names ──────────────────────────────────────
+          pw.Center(
+            child: pw.Text(
+              '${_myName.text}  ❤  ${_pName.text}',
+              style: pw.TextStyle(
+                fontSize: 22,
+                fontWeight: pw.FontWeight.bold,
+                color: primaryColor,
+              ),
+            ),
+          ),
+          pw.SizedBox(height: 4),
+          pw.Center(
+            child: pw.Text(
+              l10n.compatibilityScore,
+              style: const pw.TextStyle(fontSize: 12, color: textSecondary),
+            ),
+          ),
+          pw.SizedBox(height: 20),
+
+          // ── Score box ─────────────────────────────────────────
+          pw.Container(
+            padding: const pw.EdgeInsets.all(16),
+            decoration: pw.BoxDecoration(
+              color: bgLight,
+              borderRadius: pw.BorderRadius.circular(8),
+              border: pw.Border.all(color: successColor, width: 1.5),
+            ),
+            child: pw.Row(
+              mainAxisAlignment: pw.MainAxisAlignment.center,
+              children: [
+                pw.Column(
+                  crossAxisAlignment: pw.CrossAxisAlignment.center,
+                  children: [
+                    pw.Text(
+                      '$score / $maxScore',
+                      style: pw.TextStyle(
+                        fontSize: 36,
+                        fontWeight: pw.FontWeight.bold,
+                        color: successColor,
+                      ),
+                    ),
+                    pw.SizedBox(height: 4),
+                    pw.Container(
+                      padding: const pw.EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                      decoration: pw.BoxDecoration(
+                        color: successColor,
+                        borderRadius: pw.BorderRadius.circular(12),
+                      ),
+                      child: pw.Text(
+                        l10n.excellentMatch,
+                        style: pw.TextStyle(
+                          fontSize: 12,
+                          fontWeight: pw.FontWeight.bold,
+                          color: PdfColors.white,
+                        ),
+                      ),
+                    ),
+                    pw.SizedBox(height: 8),
+                    pw.Text(
+                      '$matchCount out of ${poruthams.length} poruthams matched',
+                      style: const pw.TextStyle(fontSize: 11, color: textSecondary),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+          pw.SizedBox(height: 24),
+
+          // ── Profile details side-by-side ──────────────────────
+          pw.Row(
+            crossAxisAlignment: pw.CrossAxisAlignment.start,
+            children: [
+              pw.Expanded(
+                child: _pdfProfileBox(
+                  l10n.yourDetails,
+                  primaryColor,
+                  [
+                    (l10n.name,           _myName.text),
+                    (l10n.dateOfBirth,    _myDob.text),
+                    (l10n.timeOfBirth,    _myTob.text),
+                    (l10n.placeOfBirth,   _myPob.text),
+                    (l10n.starNakshatram, _myStar.text),
+                    (l10n.rasi,           _myRasi.text),
+                    (l10n.dosham,         _myDosham.text),
+                  ],
+                ),
+              ),
+              pw.SizedBox(width: 12),
+              pw.Expanded(
+                child: _pdfProfileBox(
+                  l10n.partnersDetails,
+                  primaryColor,
+                  [
+                    (l10n.name,           _pName.text),
+                    (l10n.dateOfBirth,    _pDob.text),
+                    (l10n.timeOfBirth,    _pTob.text),
+                    (l10n.placeOfBirth,   _pPob.text),
+                    (l10n.starNakshatram, _pStar.text),
+                    (l10n.rasi,           _pRasi.text),
+                    (l10n.dosham,         _pDosham.text),
+                  ],
+                ),
+              ),
+            ],
+          ),
+          pw.SizedBox(height: 24),
+
+          // ── Porutham table ─────────────────────────────────────
+          pw.Text(
+            l10n.tenPoruthamDetails,
+            style: pw.TextStyle(
+              fontSize: 15,
+              fontWeight: pw.FontWeight.bold,
+              color: primaryColor,
+            ),
+          ),
+          pw.SizedBox(height: 8),
+          pw.Table(
+            border: pw.TableBorder.all(color: dividerColor),
+            columnWidths: const {
+              0: pw.FlexColumnWidth(3),
+              1: pw.FlexColumnWidth(3),
+              2: pw.FlexColumnWidth(2),
+            },
+            children: [
+              // Header row
+              pw.TableRow(
+                decoration: const pw.BoxDecoration(color: primaryColor),
+                children: [
+                  _pdfCell('Porutham', isHeader: true),
+                  _pdfCell('Description', isHeader: true),
+                  _pdfCell('Result', isHeader: true, center: true),
+                ],
+              ),
+              // Data rows
+              for (final p in poruthams)
+                pw.TableRow(
+                  decoration: pw.BoxDecoration(
+                    color: p.$2
+                        ? const PdfColor.fromInt(0xFFE8F5E9)
+                        : const PdfColor.fromInt(0xFFFFEBEE),
+                  ),
+                  children: [
+                    _pdfCell(p.$1),
+                    _pdfCell(p.$3, color: textSecondary),
+                    _pdfCell(
+                      p.$2 ? l10n.matchLabel : l10n.noMatchLabel,
+                      center: true,
+                      color: p.$2 ? successColor : errorColor,
+                      bold: true,
+                    ),
+                  ],
+                ),
+            ],
+          ),
+          pw.SizedBox(height: 24),
+
+          // ── Summary ────────────────────────────────────────────
+          pw.Container(
+            padding: const pw.EdgeInsets.all(14),
+            decoration: pw.BoxDecoration(
+              color: const PdfColor.fromInt(0xFFE8F5E9),
+              borderRadius: pw.BorderRadius.circular(8),
+              border: pw.Border.all(color: successColor),
+            ),
+            child: pw.Column(
+              crossAxisAlignment: pw.CrossAxisAlignment.start,
+              children: [
+                pw.Text(
+                  l10n.summary,
+                  style: pw.TextStyle(
+                    fontSize: 13,
+                    fontWeight: pw.FontWeight.bold,
+                    color: successColor,
+                  ),
+                ),
+                pw.SizedBox(height: 6),
+                pw.Text(
+                  l10n.horoscopeSummaryText,
+                  style: const pw.TextStyle(fontSize: 11, lineSpacing: 3),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+
+    await Printing.layoutPdf(
+      onLayout: (_) async => doc.save(),
+      name: 'Horoscope_${_myName.text}_${_pName.text}.pdf',
+    );
+  }
+
+  /// Helper: profile detail box for the PDF.
+  pw.Widget _pdfProfileBox(
+    String title,
+    PdfColor color,
+    List<(String, String)> fields,
+  ) {
+    return pw.Container(
+      padding: const pw.EdgeInsets.all(10),
+      decoration: pw.BoxDecoration(
+        border: pw.Border.all(color: color),
+        borderRadius: pw.BorderRadius.circular(6),
+      ),
+      child: pw.Column(
+        crossAxisAlignment: pw.CrossAxisAlignment.start,
+        children: [
+          pw.Text(
+            title,
+            style: pw.TextStyle(
+              fontSize: 12,
+              fontWeight: pw.FontWeight.bold,
+              color: color,
+            ),
+          ),
+          pw.SizedBox(height: 6),
+          for (final f in fields)
+            pw.Padding(
+              padding: const pw.EdgeInsets.only(bottom: 4),
+              child: pw.Row(
+                crossAxisAlignment: pw.CrossAxisAlignment.start,
+                children: [
+                  pw.SizedBox(
+                    width: 80,
+                    child: pw.Text(
+                      f.$1,
+                      style: const pw.TextStyle(
+                          fontSize: 9, color: PdfColor.fromInt(0xFF757575)),
+                    ),
+                  ),
+                  pw.Expanded(
+                    child: pw.Text(
+                      f.$2.isEmpty ? '—' : f.$2,
+                      style: pw.TextStyle(
+                          fontSize: 9, fontWeight: pw.FontWeight.bold),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+        ],
+      ),
+    );
+  }
+
+  /// Helper: table cell for the PDF.
+  pw.Widget _pdfCell(
+    String text, {
+    bool isHeader = false,
+    bool center = false,
+    bool bold = false,
+    PdfColor color = PdfColors.black,
+  }) {
+    return pw.Padding(
+      padding: const pw.EdgeInsets.all(6),
+      child: pw.Text(
+        text,
+        textAlign: center ? pw.TextAlign.center : pw.TextAlign.left,
+        style: pw.TextStyle(
+          fontSize: isHeader ? 10 : 9,
+          fontWeight: (isHeader || bold) ? pw.FontWeight.bold : pw.FontWeight.normal,
+          color: isHeader ? PdfColors.white : color,
+        ),
+      ),
     );
   }
 
