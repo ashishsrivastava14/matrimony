@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
+import 'l10n/app_localizations.dart';
 
 import 'core/theme.dart';
 import 'providers/app_state.dart';
 import 'providers/chat_provider.dart';
+import 'providers/language_provider.dart';
 
 // Auth screens
 import 'auth/splash_screen.dart';
@@ -29,7 +32,8 @@ import 'mediator/mediator_shell.dart';
 // Admin screens
 import 'admin/admin_shell.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const MatrimonyApp());
 }
 
@@ -42,13 +46,31 @@ class MatrimonyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (_) => AppState()),
         ChangeNotifierProvider(create: (_) => ChatProvider()),
+        ChangeNotifierProvider(create: (_) => LanguageProvider()..loadSavedLanguage()),
       ],
-      child: MaterialApp(
-        title: 'Matrimony',
-        debugShowCheckedModeBanner: false,
-        theme: buildAppTheme(),
-        initialRoute: '/',
-        onGenerateRoute: _onGenerateRoute,
+      child: Consumer<LanguageProvider>(
+        builder: (context, languageProvider, child) {
+          return MaterialApp(
+            title: 'Matrimony',
+            debugShowCheckedModeBanner: false,
+            theme: buildAppTheme(),
+            locale: languageProvider.locale,
+            localizationsDelegates: const [
+              AppLocalizations.delegate,
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+            ],
+            supportedLocales: const [
+              Locale('en'), // English
+              Locale('hi'), // Hindi
+              Locale('ta'), // Tamil
+              Locale('te'), // Telugu
+            ],
+            initialRoute: '/',
+            onGenerateRoute: _onGenerateRoute,
+          );
+        },
       ),
     );
   }

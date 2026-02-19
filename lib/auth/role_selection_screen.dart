@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../core/theme.dart';
 import '../core/constants.dart';
+import '../l10n/app_localizations.dart';
 
 /// Role-selection screen with couple-photo background, strong gradient overlay,
 /// and a clean, focused layout for end users.
@@ -49,6 +50,7 @@ class _RoleSelectionScreenState extends State<RoleSelectionScreen>
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Scaffold(
       body: Stack(
         fit: StackFit.expand,
@@ -119,7 +121,7 @@ class _RoleSelectionScreenState extends State<RoleSelectionScreen>
 
                       // ── App name ────────────────────────────────────
                       Text(
-                        AppConstants.appName,
+                        l10n.appName,
                         style: GoogleFonts.playfairDisplay(
                           fontSize: 34,
                           fontWeight: FontWeight.w700,
@@ -136,7 +138,7 @@ class _RoleSelectionScreenState extends State<RoleSelectionScreen>
                       ),
                       const SizedBox(height: 8),
                       Text(
-                        AppConstants.tagline,
+                        l10n.tagline,
                         style: GoogleFonts.poppins(
                           fontSize: 14,
                           fontWeight: FontWeight.w400,
@@ -178,7 +180,7 @@ class _RoleSelectionScreenState extends State<RoleSelectionScreen>
                           icon: const Icon(Icons.arrow_forward_rounded,
                               size: 20),
                           label: Text(
-                            'Get Started',
+                            l10n.getStarted,
                             style: GoogleFonts.poppins(
                               fontSize: 16,
                               fontWeight: FontWeight.w600,
@@ -206,7 +208,7 @@ class _RoleSelectionScreenState extends State<RoleSelectionScreen>
                           color: Colors.white.withValues(alpha: 0.8),
                         ),
                         label: Text(
-                          'Browse as Guest',
+                          l10n.browseAsGuest,
                           style: GoogleFonts.poppins(
                             fontSize: 14,
                             fontWeight: FontWeight.w500,
@@ -239,7 +241,7 @@ class _RoleSelectionScreenState extends State<RoleSelectionScreen>
                             padding:
                                 const EdgeInsets.symmetric(horizontal: 14),
                             child: Text(
-                              'Other roles',
+                              l10n.otherRoles,
                               style: GoogleFonts.poppins(
                                 fontSize: 12,
                                 color: Colors.white.withValues(alpha: 0.55),
@@ -262,8 +264,8 @@ class _RoleSelectionScreenState extends State<RoleSelectionScreen>
                           Expanded(
                             child: _SecondaryRoleButton(
                               icon: Icons.handshake_outlined,
-                              label: 'Mediator',
-                              subtitle: 'Manage & earn',
+                              label: l10n.mediator,
+                              subtitle: l10n.manageAndEarn,
                               onTap: () =>
                                   _navigateToLogin(UserRole.mediator),
                             ),
@@ -272,8 +274,8 @@ class _RoleSelectionScreenState extends State<RoleSelectionScreen>
                           Expanded(
                             child: _SecondaryRoleButton(
                               icon: Icons.admin_panel_settings_outlined,
-                              label: 'Admin',
-                              subtitle: 'Platform access',
+                              label: l10n.admin,
+                              subtitle: l10n.platformAccess,
                               onTap: () =>
                                   _navigateToLogin(UserRole.admin),
                             ),
@@ -293,7 +295,7 @@ class _RoleSelectionScreenState extends State<RoleSelectionScreen>
                           ),
                           const SizedBox(width: 6),
                           Text(
-                            AppConstants.yearsText,
+                            l10n.yearsOfService,
                             style: GoogleFonts.poppins(
                               fontSize: 11,
                               color: Colors.white.withValues(alpha: 0.55),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../core/theme.dart';
 import '../services/mock_data.dart';
+import '../l10n/app_localizations.dart';
 
 class ProfileApprovalsScreen extends StatefulWidget {
   const ProfileApprovalsScreen({super.key});
@@ -28,6 +29,7 @@ class _ProfileApprovalsScreenState extends State<ProfileApprovalsScreen>
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     final profiles = MockDataService.getMockProfiles();
 
     return Scaffold(
@@ -39,11 +41,11 @@ class _ProfileApprovalsScreenState extends State<ProfileApprovalsScreen>
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text('Profile Approvals',
-                    style: TextStyle(
+                Text(l10n.profileApprovals,
+                    style: const TextStyle(
                         fontSize: 22, fontWeight: FontWeight.bold)),
                 const SizedBox(height: 4),
-                Text('Review and approve new profiles',
+                Text(l10n.reviewApproveProfiles,
                     style: TextStyle(color: Colors.grey.shade600)),
               ],
             ),
@@ -51,9 +53,9 @@ class _ProfileApprovalsScreenState extends State<ProfileApprovalsScreen>
           TabBar(
             controller: _tabController,
             tabs: [
-              Tab(text: 'Pending (${profiles.where((p) => !p.isVerified).length})'),
-              Tab(text: 'Approved (${profiles.where((p) => p.isVerified).length})'),
-              const Tab(text: 'Rejected (0)'),
+              Tab(text: l10n.pendingLabel(profiles.where((p) => !p.isVerified).length)),
+              Tab(text: l10n.approvedLabel(profiles.where((p) => p.isVerified).length)),
+              Tab(text: l10n.rejectedLabel),
             ],
           ),
           Expanded(
@@ -62,9 +64,9 @@ class _ProfileApprovalsScreenState extends State<ProfileApprovalsScreen>
               children: [
                 _buildProfileList(profiles.where((p) => !p.isVerified).toList(), 'pending'),
                 _buildProfileList(profiles.where((p) => p.isVerified).toList(), 'approved'),
-                const Center(
-                    child: Text('No rejected profiles',
-                        style: TextStyle(color: AppColors.textSecondary))),
+                Center(
+                    child: Text(l10n.noRejectedProfiles,
+                        style: const TextStyle(color: AppColors.textSecondary))),
               ],
             ),
           ),
@@ -130,12 +132,12 @@ class _ProfileApprovalsScreenState extends State<ProfileApprovalsScreen>
                           onPressed: () {
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
-                                  content: Text('${p.name} rejected'),
+                                  content: Text(AppLocalizations.of(context)!.rejectedName(p.name)),
                                   backgroundColor: Colors.red),
                             );
                           },
                           icon: const Icon(Icons.close, size: 16),
-                          label: const Text('Reject'),
+                          label: Text(AppLocalizations.of(context)!.reject),
                           style: OutlinedButton.styleFrom(
                             foregroundColor: Colors.red,
                           ),
@@ -147,12 +149,12 @@ class _ProfileApprovalsScreenState extends State<ProfileApprovalsScreen>
                           onPressed: () {
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
-                                  content: Text('${p.name} approved!'),
-                                  backgroundColor: AppColors.success),
-                            );
+                                content: Text(AppLocalizations.of(context)!.approvedName(p.name)),
+                                backgroundColor: AppColors.success),
+                          );
                           },
                           icon: const Icon(Icons.check, size: 16),
-                          label: const Text('Approve'),
+                          label: Text(AppLocalizations.of(context)!.approve),
                         ),
                       ),
                     ],

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../core/theme.dart';
+import '../l10n/app_localizations.dart';
 
 class CommissionHistoryScreen extends StatefulWidget {
   const CommissionHistoryScreen({super.key});
@@ -27,6 +28,7 @@ class _CommissionHistoryScreenState extends State<CommissionHistoryScreen>
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -47,15 +49,15 @@ class _CommissionHistoryScreenState extends State<CommissionHistoryScreen>
           children: [
             Image.asset('assets/icon/app_icon.png', height: 24, width: 24),
             const SizedBox(width: 10),
-            const Text('Commission History'),
+            Text(l10n.commissionHistory),
           ],
         ),
         bottom: TabBar(
           controller: _tabController,
-          tabs: const [
-            Tab(text: 'All'),
-            Tab(text: 'Earned'),
-            Tab(text: 'Pending'),
+          tabs: [
+            Tab(text: l10n.allTab),
+            Tab(text: l10n.earnedTab),
+            Tab(text: l10n.pendingTab),
           ],
         ),
       ),
@@ -74,13 +76,13 @@ class _CommissionHistoryScreenState extends State<CommissionHistoryScreen>
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                _summaryItem('Total Earned', '₹15,000'),
+                _summaryItem(l10n.totalEarned, '₹15,000'),
                 Container(
                     width: 1, height: 40, color: Colors.white24),
-                _summaryItem('This Month', '₹4,000'),
+                _summaryItem(l10n.thisMonth, '₹4,000'),
                 Container(
                     width: 1, height: 40, color: Colors.white24),
-                _summaryItem('Pending', '₹2,000'),
+                _summaryItem(l10n.pendingTab, '₹2,000'),
               ],
             ),
           ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../core/theme.dart';
+import '../l10n/app_localizations.dart';
 
 /// Forgot password screen — mock flow
 class ForgotPasswordScreen extends StatefulWidget {
@@ -21,6 +22,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -41,7 +43,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
           children: [
             Image.asset('assets/icon/app_icon.png', height: 24, width: 24),
             const SizedBox(width: 10),
-            const Text('Reset Password'),
+            Text(l10n.resetPassword),
           ],
         ),
       ),
@@ -60,7 +62,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                 ),
                 const SizedBox(height: 24),
                 Text(
-                  _sent ? 'Check Your Email' : 'Forgot Password?',
+                  _sent ? l10n.checkYourEmail : l10n.forgotPasswordTitle,
                   style: const TextStyle(
                     fontSize: 24,
                     fontWeight: FontWeight.bold,
@@ -70,8 +72,8 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                 const SizedBox(height: 8),
                 Text(
                   _sent
-                      ? 'We have sent a password reset link to your email address.'
-                      : 'Enter your email address and we\'ll send you a link to reset your password.',
+                      ? l10n.passwordResetSent
+                      : l10n.passwordResetInstructions,
                   textAlign: TextAlign.center,
                   style: const TextStyle(
                     color: AppColors.textSecondary,
@@ -83,9 +85,9 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                 if (!_sent) ...[
                   TextFormField(
                     controller: _emailController,
-                    decoration: const InputDecoration(
-                      labelText: 'Email Address',
-                      prefixIcon: Icon(Icons.email_outlined),
+                    decoration: InputDecoration(
+                      labelText: l10n.emailAddress,
+                      prefixIcon: const Icon(Icons.email_outlined),
                     ),
                     keyboardType: TextInputType.emailAddress,
                   ),
@@ -97,8 +99,8 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                       onPressed: () {
                         setState(() => _sent = true);
                       },
-                      child: const Text('Send Reset Link',
-                          style: TextStyle(fontSize: 16)),
+                      child: Text(l10n.sendResetLink,
+                          style: const TextStyle(fontSize: 16)),
                     ),
                   ),
                 ] else ...[
@@ -107,8 +109,8 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                     height: 52,
                     child: ElevatedButton(
                       onPressed: () => Navigator.of(context).pop(),
-                      child: const Text('Back to Login',
-                          style: TextStyle(fontSize: 16)),
+                      child: Text(l10n.backToLogin,
+                          style: const TextStyle(fontSize: 16)),
                     ),
                   ),
                 ],

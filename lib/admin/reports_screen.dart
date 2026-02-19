@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
 import '../core/theme.dart';
+import '../l10n/app_localizations.dart';
 
 class ReportsScreen extends StatelessWidget {
   const ReportsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Scaffold(
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text('Reports & Analytics',
-                style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
+            Text(l10n.reportsAnalytics,
+                style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
             const SizedBox(height: 16),
 
             // Quick metrics
@@ -27,10 +29,10 @@ class ReportsScreen extends StatelessWidget {
                 mainAxisSpacing: 12,
                 childAspectRatio: 2.0,
                 children: [
-                  _metricCard('New Users (Today)', '42', '+18%', AppColors.primary),
-                  _metricCard('Active Sessions', '1,245', '+5%', Colors.blue),
-                  _metricCard('Revenue (Today)', '₹28,500', '+22%', AppColors.success),
-                  _metricCard('Interests Sent', '368', '+12%', Colors.pink),
+                  _metricCard(l10n.newUsersToday, '42', '+18%', AppColors.primary),
+                  _metricCard(l10n.activeSessions, '1,245', '+5%', Colors.blue),
+                  _metricCard(l10n.revenueToday, '₹28,500', '+22%', AppColors.success),
+                  _metricCard(l10n.interestsSent, '368', '+12%', Colors.pink),
                 ],
               );
             }),
@@ -46,12 +48,12 @@ class ReportsScreen extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        const Text('User Registrations',
-                            style: TextStyle(
+                        Text(l10n.userRegistrations,
+                            style: const TextStyle(
                                 fontSize: 16, fontWeight: FontWeight.bold)),
                         DropdownButton<String>(
-                          value: 'Last 7 Days',
-                          items: ['Last 7 Days', 'Last 30 Days', 'This Year']
+                          value: l10n.last7Days,
+                          items: [l10n.last7Days, l10n.last30Days, l10n.thisYear]
                               .map((e) =>
                                   DropdownMenuItem(value: e, child: Text(e)))
                               .toList(),

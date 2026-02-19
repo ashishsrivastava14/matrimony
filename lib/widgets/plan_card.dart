@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../core/theme.dart';
 import '../models/subscription_plan.dart';
+import '../l10n/app_localizations.dart';
 
 /// Subscription plan card
 class PlanCard extends StatelessWidget {
@@ -21,6 +22,7 @@ class PlanCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return GestureDetector(
       onTap: onSelect ?? onSubscribe,
       child: Container(
@@ -56,8 +58,8 @@ class PlanCard extends StatelessWidget {
                     borderRadius: BorderRadius.vertical(
                         bottom: Radius.circular(8)),
                   ),
-                  child: const Text(
-                    'POPULAR',
+                  child: Text(
+                    l10n.mostPopular,
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 10,
@@ -147,10 +149,10 @@ class PlanCard extends StatelessWidget {
                         color: AppColors.success.withValues(alpha: 0.1),
                         borderRadius: BorderRadius.circular(8),
                       ),
-                      child: const Text(
-                        'Current Plan',
+                      child: Text(
+                        l10n.currentPlan,
                         textAlign: TextAlign.center,
-                        style: TextStyle(
+                        style: const TextStyle(
                           color: AppColors.success,
                           fontWeight: FontWeight.bold,
                         ),
@@ -162,7 +164,7 @@ class PlanCard extends StatelessWidget {
                       width: double.infinity,
                       child: ElevatedButton(
                         onPressed: onSubscribe,
-                        child: const Text('Subscribe'),
+                        child: Text(l10n.subscribePlan),
                       ),
                     ),
                   ],

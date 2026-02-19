@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
+import '../l10n/app_localizations.dart';
 import '../core/theme.dart';
 import '../providers/app_state.dart';
 import '../widgets/profile_card.dart';
@@ -12,6 +13,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Consumer<AppState>(
       builder: (context, state, _) {
         final profiles = state.profiles;
@@ -49,9 +51,9 @@ class HomeScreen extends StatelessWidget {
                       child: Image.asset('assets/icon/app_icon.png', width: 20, height: 20),
                     ),
                     const SizedBox(width: 10),
-                    const Text(
-                      'AP Matrimony',
-                      style: TextStyle(
+                    Text(
+                      l10n.appTitle,
+                      style: const TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
                         color: Colors.white,
@@ -70,7 +72,7 @@ class HomeScreen extends StatelessWidget {
                     ),
                     const SizedBox(width: 4),
                     Text(
-                      'Powered by QuickPrepAI',
+                      l10n.poweredBy,
                       style: TextStyle(
                         fontSize: 11,
                         fontWeight: FontWeight.w500,
@@ -126,8 +128,8 @@ class HomeScreen extends StatelessWidget {
 
                 // Recently Joined
                 _SectionHeader(
-                  title: 'Recently Joined',
-                  subtitle: 'New profiles on the platform',
+                  title: l10n.recentlyJoined,
+                  subtitle: l10n.newProfilesOnPlatform,
                   onViewAll: () {},
                 ),
                 SizedBox(
@@ -150,8 +152,8 @@ class HomeScreen extends StatelessWidget {
 
                 // Suggested Matches
                 _SectionHeader(
-                  title: 'Suggested Matches',
-                  subtitle: '${profiles.length} matches based on your preferences',
+                  title: l10n.suggestedMatches,
+                  subtitle: l10n.matchesBasedOnPreferences('${profiles.length}'),
                   onViewAll: () {},
                 ),
                 ...suggested.map((p) => Padding(
@@ -166,7 +168,7 @@ class HomeScreen extends StatelessWidget {
                           state.sendInterest(p.id);
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(
-                              content: Text('Interest sent to ${p.name}'),
+                              content: Text(l10n.interestSentTo(p.name)),
                               backgroundColor: AppColors.success,
                             ),
                           );
@@ -194,6 +196,7 @@ class _ProfileCompletionCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Container(
       margin: const EdgeInsets.all(16),
       padding: const EdgeInsets.all(16),
@@ -232,7 +235,7 @@ class _ProfileCompletionCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Hi $name!',
+                  l10n.hiName(name),
                   style: const TextStyle(
                     fontSize: 17,
                     fontWeight: FontWeight.bold,
@@ -242,8 +245,8 @@ class _ProfileCompletionCard extends StatelessWidget {
                 const SizedBox(height: 4),
                 Text(
                   completion < 80
-                      ? 'Complete your profile to get more matches'
-                      : 'Your profile is looking great!',
+                      ? l10n.completeProfileForMatches
+                      : l10n.profileLookingGreat,
                   style: const TextStyle(
                     fontSize: 12,
                     color: AppColors.textSecondary,
@@ -256,7 +259,7 @@ class _ProfileCompletionCard extends StatelessWidget {
             TextButton(
               onPressed: () =>
                   Navigator.of(context).pushNamed('/profile-creation'),
-              child: const Text('Complete'),
+              child: Text(l10n.completeButton),
             ),
         ],
       ),
@@ -277,6 +280,7 @@ class _SectionHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
       child: Row(
@@ -306,7 +310,7 @@ class _SectionHeader extends StatelessWidget {
           if (onViewAll != null)
             TextButton(
               onPressed: onViewAll,
-              child: const Text('View All'),
+              child: Text(l10n.viewAll),
             ),
         ],
       ),

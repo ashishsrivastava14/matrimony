@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../l10n/app_localizations.dart';
 import '../core/theme.dart';
 import '../core/constants.dart';
+import '../providers/language_provider.dart';
 
 /// Login screen — email / mobile mock login
 class LoginScreen extends StatefulWidget {
@@ -43,10 +46,110 @@ class _LoginScreenState extends State<LoginScreen> {
     }
   }
 
+  void _showLanguageBottomSheet(BuildContext context) {
+    final languageProvider = Provider.of<LanguageProvider>(context, listen: false);
+    final currentLocale = languageProvider.locale.languageCode;
+    final l10n = AppLocalizations.of(context)!;
+    
+    showModalBottomSheet(
+      context: context,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+      ),
+      builder: (context) {
+        return Container(
+          padding: const EdgeInsets.symmetric(vertical: 20),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Container(
+                width: 40,
+                height: 4,
+                decoration: BoxDecoration(
+                  color: Colors.grey.shade300,
+                  borderRadius: BorderRadius.circular(2),
+                ),
+              ),
+              const SizedBox(height: 16),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Text(
+                  l10n.selectLanguage,
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w700,
+                    color: AppColors.textPrimary,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 20),
+              ...LanguageProvider.getSupportedLanguages().map((lang) {
+                final isSelected = currentLocale == lang['code'];
+                return InkWell(
+                  onTap: () {
+                    languageProvider.changeLanguage(lang['code']!);
+                    Navigator.pop(context);
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+                    decoration: BoxDecoration(
+                      color: isSelected ? const Color(0xFF00897B).withValues(alpha: 0.1) : null,
+                      border: Border(
+                        left: BorderSide(
+                          color: isSelected ? const Color(0xFF00897B) : Colors.transparent,
+                          width: 3,
+                        ),
+                      ),
+                    ),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                lang['nativeName']!,
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: isSelected ? FontWeight.w700 : FontWeight.w600,
+                                  color: isSelected ? const Color(0xFF00897B) : AppColors.textPrimary,
+                                ),
+                              ),
+                              Text(
+                                lang['name']!,
+                                style: TextStyle(
+                                  fontSize: 12,
+                                  color: AppColors.textSecondary,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        if (isSelected)
+                          const Icon(
+                            Icons.check_circle,
+                            color: Color(0xFF00897B),
+                            size: 24,
+                          ),
+                      ],
+                    ),
+                  ),
+                );
+              }),
+              const SizedBox(height: 10),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final screenHeight = MediaQuery.of(context).size.height;
     final isCompact = screenHeight < 700;
+    final l10n = AppLocalizations.of(context)!;
+    final languageProvider = Provider.of<LanguageProvider>(context);
     
     return Scaffold(
       backgroundColor: const Color(0xFFF5F7FA),
@@ -129,7 +232,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   ),
                                   SizedBox(height: isCompact ? 10 : 12),
                                   Text(
-                                    'AP Matrimony',
+                                    l10n.appTitle,
                                     style: TextStyle(
                                       fontSize: isCompact ? 28 : 32,
                                       fontWeight: FontWeight.w800,
@@ -155,7 +258,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                       ),
                                       const SizedBox(width: 4),
                                       Text(
-                                        'Powered by QuickPrepAI',
+                                        l10n.poweredBy,
                                         style: TextStyle(
                                           fontSize: 11,
                                           color: Colors.white.withValues(alpha: 0.9),
@@ -202,8 +305,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                       // Welcome text
                                       Text(
                                         _selectedRole != null
-                                            ? 'Login as ${_selectedRole!.label}'
-                                            : 'Welcome Back! 👋',
+                                            ? l10n.loginAs(_selectedRole!.getLabel(context))
+                                            : l10n.welcomeBack,
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
                                           color: AppColors.textPrimary,
@@ -212,16 +315,58 @@ class _LoginScreenState extends State<LoginScreen> {
                                         ),
                                       ),
                                       const SizedBox(height: 4),
-                                      const Text(
-                                        'Sign in to continue',
+                                      Text(
+                                        l10n.signInToContinue,
                                         textAlign: TextAlign.center,
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                           color: AppColors.textSecondary,
                                           fontSize: 13,
                                           fontWeight: FontWeight.w400,
                                         ),
                                       ),
-                                      SizedBox(height: isCompact ? 20 : 24),
+                                      SizedBox(height: isCompact ? 16 : 20),
+
+                                      // Language selector
+                                      InkWell(
+                                        onTap: () => _showLanguageBottomSheet(context),
+                                        borderRadius: BorderRadius.circular(12),
+                                        child: Container(
+                                          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+                                          decoration: BoxDecoration(
+                                            color: const Color(0xFFF8F9FA),
+                                            borderRadius: BorderRadius.circular(12),
+                                            border: Border.all(
+                                              color: Colors.grey.shade200,
+                                              width: 1,
+                                            ),
+                                          ),
+                                          child: Row(
+                                            children: [
+                                              const Icon(
+                                                Icons.language,
+                                                color: Color(0xFF00897B),
+                                                size: 22,
+                                              ),
+                                              const SizedBox(width: 12),
+                                              Expanded(
+                                                child: Text(
+                                                  LanguageProvider.getLanguageName(languageProvider.locale.languageCode),
+                                                  style: const TextStyle(
+                                                    fontSize: 15,
+                                                    fontWeight: FontWeight.w500,
+                                                    color: AppColors.textPrimary,
+                                                  ),
+                                                ),
+                                              ),
+                                              Icon(
+                                                Icons.arrow_drop_down,
+                                                color: Colors.grey.shade600,
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                      SizedBox(height: isCompact ? 16 : 20),
 
                                       // Toggle email / phone with modern design
                                       Container(
@@ -234,14 +379,14 @@ class _LoginScreenState extends State<LoginScreen> {
                                           children: [
                                             Expanded(
                                               child: _TabButton(
-                                                label: 'Email',
+                                                label: l10n.email,
                                                 isSelected: !_usePhone,
                                                 onTap: () => setState(() => _usePhone = false),
                                               ),
                                             ),
                                             Expanded(
                                               child: _TabButton(
-                                                label: 'Mobile',
+                                                label: l10n.mobile,
                                                 isSelected: _usePhone,
                                                 onTap: () => setState(() => _usePhone = true),
                                               ),
@@ -258,8 +403,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                             ? TextInputType.phone
                                             : TextInputType.emailAddress,
                                         decoration: InputDecoration(
-                                          labelText: _usePhone ? 'Mobile Number' : 'Email Address',
-                                          hintText: _usePhone ? 'Enter mobile' : 'Enter email',
+                                          labelText: _usePhone ? l10n.mobileNumber : l10n.emailAddress,
+                                          hintText: _usePhone ? l10n.enterMobile : l10n.enterEmail,
                                           prefixIcon: Icon(
                                             _usePhone ? Icons.phone_android_rounded : Icons.email_outlined,
                                             color: const Color(0xFF00897B),
@@ -298,7 +443,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                           ),
                                         ),
                                         validator: (v) =>
-                                            v == null || v.isEmpty ? 'Required' : null,
+                                            v == null || v.isEmpty ? l10n.required : null,
                                       ),
                                       SizedBox(height: isCompact ? 14 : 16),
 
@@ -307,8 +452,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                         controller: _passwordController,
                                         obscureText: _obscure,
                                         decoration: InputDecoration(
-                                          labelText: 'Password',
-                                          hintText: 'Enter password',
+                                          labelText: l10n.password,
+                                          hintText: l10n.enterPassword,
                                           prefixIcon: const Icon(
                                             Icons.lock_outline_rounded,
                                             color: Color(0xFF00897B),
@@ -355,7 +500,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                           ),
                                         ),
                                         validator: (v) =>
-                                            v == null || v.isEmpty ? 'Required' : null,
+                                            v == null || v.isEmpty ? l10n.required : null,
                                       ),
 
                                       // Forgot password
@@ -369,9 +514,9 @@ class _LoginScreenState extends State<LoginScreen> {
                                             minimumSize: Size.zero,
                                             tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                                           ),
-                                          child: const Text(
-                                            'Forgot Password?',
-                                            style: TextStyle(
+                                          child: Text(
+                                            l10n.forgotPassword,
+                                            style: const TextStyle(
                                               fontWeight: FontWeight.w600,
                                               fontSize: 12,
                                             ),
@@ -410,9 +555,9 @@ class _LoginScreenState extends State<LoginScreen> {
                                                 borderRadius: BorderRadius.circular(12),
                                               ),
                                             ),
-                                            child: const Text(
-                                              'Login',
-                                              style: TextStyle(
+                                            child: Text(
+                                              l10n.login,
+                                              style: const TextStyle(
                                                 fontSize: 16,
                                                 fontWeight: FontWeight.w700,
                                                 letterSpacing: 0.5,
@@ -435,7 +580,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                           Padding(
                                             padding: const EdgeInsets.symmetric(horizontal: 12),
                                             child: Text(
-                                              'OR',
+                                              l10n.or,
                                               style: TextStyle(
                                                 color: Colors.grey.shade600,
                                                 fontSize: 11,
@@ -458,7 +603,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                         mainAxisAlignment: MainAxisAlignment.center,
                                         children: [
                                           Text(
-                                            "Don't have an account? ",
+                                            l10n.dontHaveAccount,
                                             style: TextStyle(
                                               color: Colors.grey.shade700,
                                               fontSize: 13,
@@ -472,9 +617,9 @@ class _LoginScreenState extends State<LoginScreen> {
                                               minimumSize: Size.zero,
                                               tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                                             ),
-                                            child: const Text(
-                                              'Register',
-                                              style: TextStyle(
+                                            child: Text(
+                                              l10n.register,
+                                              style: const TextStyle(
                                                 fontSize: 13,
                                                 fontWeight: FontWeight.w700,
                                               ),

@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import '../core/theme.dart';
+import '../l10n/app_localizations.dart';
 
 class BannerManagementScreen extends StatelessWidget {
   const BannerManagementScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Scaffold(
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
@@ -15,13 +17,13 @@ class BannerManagementScreen extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text('Banner Management',
-                    style: TextStyle(
+                Text(l10n.bannerManagement,
+                    style: const TextStyle(
                         fontSize: 22, fontWeight: FontWeight.bold)),
                 ElevatedButton.icon(
                   onPressed: () => _showAddBannerDialog(context),
                   icon: const Icon(Icons.add, size: 18),
-                  label: const Text('Add Banner'),
+                  label: Text(l10n.addBanner),
                 ),
               ],
             ),
@@ -67,8 +69,8 @@ class BannerManagementScreen extends StatelessWidget {
                                   Text(b['title'] as String,
                                       style: const TextStyle(
                                           fontWeight: FontWeight.bold)),
-                                  Text(
-                                    'Position: ${b['position']} · ${b['status']}',
+                              Text(
+                                '${l10n.position}: ${b['position']} \u00b7 ${b['status']}',
                                     style: const TextStyle(
                                         fontSize: 12,
                                         color: AppColors.textSecondary),
@@ -103,19 +105,20 @@ class BannerManagementScreen extends StatelessWidget {
   }
 
   void _showAddBannerDialog(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     showDialog(
       context: context,
       builder: (ctx) => AlertDialog(
-        title: const Text('Add New Banner'),
+        title: Text(l10n.addNewBanner),
         content: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             TextFormField(
-                decoration: const InputDecoration(labelText: 'Banner Title')),
+                decoration: InputDecoration(labelText: l10n.bannerTitle)),
             const SizedBox(height: 12),
             DropdownButtonFormField<String>(
               initialValue: 'Home',
-              decoration: const InputDecoration(labelText: 'Position'),
+              decoration: InputDecoration(labelText: l10n.position),
               items: ['Home', 'Search', 'Profile', 'Login']
                   .map((e) => DropdownMenuItem(value: e, child: Text(e)))
                   .toList(),
@@ -123,29 +126,29 @@ class BannerManagementScreen extends StatelessWidget {
             ),
             const SizedBox(height: 12),
             TextFormField(
-                decoration: const InputDecoration(labelText: 'Link URL')),
+                decoration: InputDecoration(labelText: l10n.linkUrl)),
             const SizedBox(height: 12),
             OutlinedButton.icon(
               onPressed: () {},
               icon: const Icon(Icons.upload),
-              label: const Text('Upload Image'),
+              label: Text(l10n.uploadImage),
             ),
           ],
         ),
         actions: [
           TextButton(
               onPressed: () => Navigator.pop(ctx),
-              child: const Text('Cancel')),
+              child: Text(l10n.cancel)),
           ElevatedButton(
             onPressed: () {
               Navigator.pop(ctx);
               ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(
-                    content: Text('Banner added!'),
+                SnackBar(
+                    content: Text(l10n.bannerAdded),
                     backgroundColor: AppColors.success),
               );
             },
-            child: const Text('Add'),
+            child: Text(l10n.add),
           ),
         ],
       ),

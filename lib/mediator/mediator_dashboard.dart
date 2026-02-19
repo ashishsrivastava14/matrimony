@@ -4,12 +4,14 @@ import '../core/theme.dart';
 import '../providers/app_state.dart';
 import '../services/mock_data.dart';
 import '../widgets/stat_card.dart';
+import '../l10n/app_localizations.dart';
 
 class MediatorDashboard extends StatelessWidget {
   const MediatorDashboard({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     final appState = context.watch<AppState>();
     final mediators = MockDataService.getMockMediators();
     final mediator = mediators.isNotEmpty ? mediators.first : null;
@@ -35,7 +37,7 @@ class MediatorDashboard extends StatelessWidget {
           children: [
             Image.asset('assets/icon/app_icon.png', height: 24, width: 24),
             const SizedBox(width: 10),
-            const Text('Mediator Dashboard'),
+            Text(l10n.mediatorDashboard),
           ],
         ),
         actions: [
@@ -63,7 +65,7 @@ class MediatorDashboard extends StatelessWidget {
           children: [
             // Welcome
             Text(
-              'Welcome, ${mediator?.name ?? "Mediator"}!',
+              l10n.welcomeMediator(mediator?.name ?? 'Mediator'),
               style:
                   const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
             ),
@@ -85,26 +87,26 @@ class MediatorDashboard extends StatelessWidget {
               childAspectRatio: 1.6,
               children: [
                 StatCard(
-                  title: 'Total Profiles',
+                  title: l10n.totalProfiles,
                   value: '${mediator?.totalProfiles ?? 24}',
                   icon: Icons.people,
                   color: AppColors.primary,
                 ),
                 StatCard(
-                  title: 'Active Matches',
+                  title: l10n.activeMatches,
                   value: '${mediator?.activeMatches ?? 8}',
                   icon: Icons.handshake,
                   color: AppColors.accent,
                 ),
                 StatCard(
-                  title: 'Commission',
+                  title: l10n.commission,
                   value:
                       '₹${mediator?.commissionEarned.toStringAsFixed(0) ?? "15,000"}',
                   icon: Icons.currency_rupee,
                   color: AppColors.success,
                 ),
                 StatCard(
-                  title: 'Wallet Balance',
+                  title: l10n.walletBalance,
                   value:
                       '₹${mediator?.walletBalance.toStringAsFixed(0) ?? "8,500"}',
                   icon: Icons.account_balance_wallet,
@@ -121,18 +123,18 @@ class MediatorDashboard extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text('Performance Overview',
-                        style: TextStyle(
+                    Text(l10n.performanceOverview,
+                        style: const TextStyle(
                             fontSize: 16, fontWeight: FontWeight.bold)),
                     const SizedBox(height: 16),
                     _buildProgressRow(
-                        'Profile Approvals', 22, 24, AppColors.success),
+                        l10n.profileApprovals, 22, 24, AppColors.success),
                     const SizedBox(height: 12),
                     _buildProgressRow(
-                        'Successful Matches', 8, 24, AppColors.primary),
+                        l10n.successfulMatches, 8, 24, AppColors.primary),
                     const SizedBox(height: 12),
                     _buildProgressRow(
-                        'Pending Reviews', 2, 24, AppColors.accent),
+                        l10n.pendingReviews, 2, 24, AppColors.accent),
                   ],
                 ),
               ),
@@ -143,12 +145,12 @@ class MediatorDashboard extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text('Recent Profiles',
+                Text(l10n.recentProfiles,
                     style:
-                        TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                        const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
                 TextButton(
                   onPressed: () {},
-                  child: const Text('View All'),
+                  child: Text(l10n.viewAll),
                 ),
               ],
             ),
@@ -179,7 +181,7 @@ class MediatorDashboard extends StatelessWidget {
                         borderRadius: BorderRadius.circular(8),
                       ),
                       child: Text(
-                        p.isVerified ? 'Verified' : 'Pending',
+                        p.isVerified ? l10n.verified : l10n.pendingTab,
                         style: TextStyle(
                           fontSize: 11,
                           fontWeight: FontWeight.w500,
@@ -197,8 +199,8 @@ class MediatorDashboard extends StatelessWidget {
             const SizedBox(height: 20),
 
             // Recent matches
-            const Text('Recent Successful Matches',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+            Text(l10n.recentSuccessfulMatches,
+                style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
             const SizedBox(height: 8),
             ...[
               _matchRow('Karthick S.', 'Priya D.', '₹2,000', 'Completed'),

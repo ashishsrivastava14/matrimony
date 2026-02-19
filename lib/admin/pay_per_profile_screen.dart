@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import '../core/theme.dart';
 import '../services/mock_data.dart';
+import '../l10n/app_localizations.dart';
 
 class PayPerProfileScreen extends StatelessWidget {
   const PayPerProfileScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     final bundles = MockDataService.getMockBundles();
 
     return Scaffold(
@@ -18,13 +20,13 @@ class PayPerProfileScreen extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text('Pay Per Profile Settings',
-                    style: TextStyle(
+                Text(l10n.payPerProfileSettings,
+                    style: const TextStyle(
                         fontSize: 22, fontWeight: FontWeight.bold)),
                 ElevatedButton.icon(
                   onPressed: () => _showAddBundleDialog(context),
                   icon: const Icon(Icons.add, size: 18),
-                  label: const Text('Add Bundle'),
+                  label: Text(l10n.addBundle),
                 ),
               ],
             ),
@@ -33,19 +35,19 @@ class PayPerProfileScreen extends StatelessWidget {
             // Stats
             Row(
               children: [
-                _statCard('Total Unlocks Sold', '3,428', AppColors.primary),
+                _statCard(l10n.totalUnlocksSold, '3,428', AppColors.primary),
                 const SizedBox(width: 12),
-                _statCard('Revenue', '₹3.5L', AppColors.success),
+                _statCard(l10n.revenue, '₹3.5L', AppColors.success),
                 const SizedBox(width: 12),
-                _statCard('Avg Per User', '2.4', AppColors.accent),
+                _statCard(l10n.avgPerUser, '2.4', AppColors.accent),
               ],
             ),
             const SizedBox(height: 24),
 
             // Active bundles
-            const Text('Active Bundles',
+            Text(l10n.activeBundlesTitle,
                 style:
-                    TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                    const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
             const SizedBox(height: 12),
             ...bundles.map((b) => Card(
                   margin: const EdgeInsets.only(bottom: 10),

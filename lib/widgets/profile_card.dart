@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../core/theme.dart';
 import '../models/profile_model.dart';
+import '../l10n/app_localizations.dart';
 
 /// Reusable profile card matching AP Matrimony style
 class ProfileCard extends StatelessWidget {
@@ -21,6 +22,7 @@ class ProfileCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Card(
       clipBehavior: Clip.antiAlias,
       child: InkWell(
@@ -57,14 +59,14 @@ class ProfileCard extends StatelessWidget {
                         color: Colors.black54,
                         borderRadius: BorderRadius.circular(6),
                       ),
-                      child: const Row(
+                      child: Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          Icon(Icons.verified_user,
+                          const Icon(Icons.verified_user,
                               size: 14, color: Colors.greenAccent),
-                          SizedBox(width: 4),
-                          Text('Photo Verified',
-                              style: TextStyle(
+                          const SizedBox(width: 4),
+                          Text(l10n.photoVerified,
+                              style: const TextStyle(
                                   color: Colors.white, fontSize: 10)),
                         ],
                       ),
@@ -123,7 +125,7 @@ class ProfileCard extends StatelessWidget {
                       if (profile.isVerified) ...[
                         _Badge(
                           icon: Icons.verified,
-                          label: 'ID Verified',
+                          label: l10n.idVerified,
                           color: AppColors.verified,
                         ),
                         const SizedBox(width: 8),
@@ -131,7 +133,7 @@ class ProfileCard extends StatelessWidget {
                       if (profile.isPremium)
                         _Badge(
                           icon: Icons.workspace_premium,
-                          label: 'Premium Member',
+                          label: l10n.premiumMember,
                           color: AppColors.accent,
                         ),
                     ],
@@ -186,8 +188,8 @@ class ProfileCard extends StatelessWidget {
                           child: OutlinedButton.icon(
                             onPressed: onDontShow,
                             icon: const Icon(Icons.close, size: 16),
-                            label: const Text("Don't Show",
-                                style: TextStyle(fontSize: 12)),
+                            label: Text(l10n.dontShow,
+                                style: const TextStyle(fontSize: 12)),
                             style: OutlinedButton.styleFrom(
                               padding: const EdgeInsets.symmetric(vertical: 10),
                             ),
@@ -198,8 +200,8 @@ class ProfileCard extends StatelessWidget {
                           child: ElevatedButton.icon(
                             onPressed: onSendInterest,
                             icon: const Icon(Icons.favorite_border, size: 16),
-                            label: const Text('Send Interest',
-                                style: TextStyle(fontSize: 12)),
+                            label: Text(l10n.sendInterest,
+                                style: const TextStyle(fontSize: 12)),
                             style: ElevatedButton.styleFrom(
                               backgroundColor: AppColors.accent,
                               padding: const EdgeInsets.symmetric(vertical: 10),

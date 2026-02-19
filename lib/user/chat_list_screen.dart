@@ -4,6 +4,7 @@ import '../core/theme.dart';
 import '../providers/chat_provider.dart';
 import '../models/chat_message.dart' show ChatConversation;
 import 'package:intl/intl.dart';
+import '../l10n/app_localizations.dart';
 
 /// Chat conversations list screen
 class ChatListScreen extends StatelessWidget {
@@ -11,6 +12,7 @@ class ChatListScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -31,7 +33,7 @@ class ChatListScreen extends StatelessWidget {
           children: [
             Image.asset('assets/icon/app_icon.png', height: 24, width: 24),
             const SizedBox(width: 10),
-            const Text('Chat'),
+            Text(l10n.chat),
           ],
         ),
         actions: [
@@ -48,14 +50,14 @@ class ChatListScreen extends StatelessWidget {
                   Icon(Icons.chat_bubble_outline,
                       size: 64, color: Colors.grey.shade300),
                   const SizedBox(height: 16),
-                  const Text('No Conversations Yet',
-                      style: TextStyle(
+                  Text(l10n.noConversationsYet,
+                      style: const TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.w600,
                           color: AppColors.textSecondary)),
                   const SizedBox(height: 8),
-                  const Text('Start chatting with your matches',
-                      style: TextStyle(
+                  Text(l10n.startChattingMatches,
+                      style: const TextStyle(
                           fontSize: 13, color: AppColors.textSecondary)),
                 ],
               ),
@@ -90,7 +92,7 @@ class _ConversationTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final timeText = _formatTime(conversation.lastMessageTime);
+    final timeText = _formatTime(context, conversation.lastMessageTime);
 
     return ListTile(
       onTap: onTap,
@@ -194,12 +196,12 @@ class _ConversationTile extends StatelessWidget {
     );
   }
 
-  String _formatTime(DateTime dt) {
+  String _formatTime(BuildContext context, DateTime dt) {
     final now = DateTime.now();
     final diff = now.difference(dt);
     if (diff.inMinutes < 60) return '${diff.inMinutes}m ago';
     if (diff.inHours < 24) return DateFormat('h:mm a').format(dt);
-    if (diff.inDays == 1) return 'Yesterday';
+    if (diff.inDays == 1) return AppLocalizations.of(context)!.yesterday;
     return DateFormat('dd/MM').format(dt);
   }
 }

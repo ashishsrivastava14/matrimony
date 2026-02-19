@@ -1,44 +1,48 @@
+import 'package:flutter/material.dart';
+import '../l10n/app_localizations.dart';
+
 /// Application-wide constants
 class AppConstants {
-  static const String appName = 'AP Matrimony';
-  static const String tagline = 'Biggest Matrimony Service for AP';
-  static const String yearsText = '10 Years of Successful Matchmaking';
-  static const String membersText = '1 Crore+ Customers Served';
-
-  // Dummy avatar placeholders
+  // Non-localizable constants
   static const String maleAvatar = 'https://i.pravatar.cc/300?img=68';
   static const String femaleAvatar = 'https://i.pravatar.cc/300?img=47';
-
-  // Mock OTP
   static const String mockOtp = '1234';
 
   // Subscription tiers
   static const List<String> planDurations = ['Monthly', 'Quarterly', 'Yearly'];
 
-  // Roles
+  // Roles (keys only - use for identification)
   static const String roleGuest = 'guest';
   static const String roleUser = 'user';
   static const String rolePaid = 'paid';
   static const String roleMediator = 'mediator';
   static const String roleAdmin = 'admin';
+  
+  // Localizable app info - use AppLocalizations instead
+  // appName → l10n.appName
+  // tagline → l10n.tagline
+  // yearsOfService → l10n.yearsOfService
+  // customersServed → l10n.customersServed
 }
 
 /// Enum for user roles
 enum UserRole { guest, user, paid, mediator, admin }
 
 extension UserRoleX on UserRole {
-  String get label {
+  /// Get localized label for the role
+  String getLabel(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     switch (this) {
       case UserRole.guest:
-        return 'Guest';
+        return l10n.guest;
       case UserRole.user:
-        return 'Registered User (Free)';
+        return l10n.registeredUser;
       case UserRole.paid:
-        return 'Paid Member';
+        return l10n.paidMember;
       case UserRole.mediator:
-        return 'Mediator / Broker';
+        return l10n.mediatorBroker;
       case UserRole.admin:
-        return 'Admin';
+        return l10n.admin;
     }
   }
 

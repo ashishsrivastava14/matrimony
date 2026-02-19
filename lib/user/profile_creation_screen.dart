@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../core/theme.dart';
 import '../widgets/user_bottom_navigation.dart';
+import '../l10n/app_localizations.dart';
 
 /// Multi-step profile creation form
 class ProfileCreationScreen extends StatefulWidget {
@@ -37,6 +38,7 @@ class _ProfileCreationScreenState extends State<ProfileCreationScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -124,7 +126,7 @@ class _ProfileCreationScreenState extends State<ProfileCreationScreen> {
                       child: OutlinedButton(
                         onPressed: () =>
                             setState(() => _currentStep--),
-                        child: const Text('Previous'),
+                        child: Text(l10n.previous),
                       ),
                     ),
                   if (_currentStep > 0) const SizedBox(width: 12),
@@ -135,8 +137,8 @@ class _ProfileCreationScreenState extends State<ProfileCreationScreen> {
                           setState(() => _currentStep++);
                         } else {
                           ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
-                              content: Text('Profile saved successfully!'),
+                            SnackBar(
+                              content: Text(l10n.profileSavedSuccess),
                               backgroundColor: AppColors.success,
                             ),
                           );
@@ -145,8 +147,8 @@ class _ProfileCreationScreenState extends State<ProfileCreationScreen> {
                       },
                       child: Text(
                         _currentStep < _stepTitles.length - 1
-                            ? 'Next'
-                            : 'Save Profile',
+                            ? l10n.next
+                            : l10n.save,
                       ),
                     ),
                   ),
@@ -458,6 +460,7 @@ class _ProfileCreationScreenState extends State<ProfileCreationScreen> {
   }
 
   Widget _photoUploadStep() {
+    final l10n = AppLocalizations.of(context)!;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -514,7 +517,7 @@ class _ProfileCreationScreenState extends State<ProfileCreationScreen> {
             GestureDetector(
               onTap: () {
                 ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('Photo picker (mock)')),
+                  SnackBar(content: Text(l10n.photoPickerMock)),
                 );
               },
               child: Container(

@@ -5,6 +5,7 @@ import '../providers/app_state.dart';
 import '../models/profile_model.dart';
 import '../widgets/verified_badge.dart';
 import '../widgets/user_bottom_navigation.dart';
+import '../l10n/app_localizations.dart';
 
 /// Full profile detail page for a match
 class MatchDetailScreen extends StatelessWidget {
@@ -12,6 +13,7 @@ class MatchDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     final profile =
         ModalRoute.of(context)!.settings.arguments as ProfileModel;
 
@@ -65,13 +67,13 @@ class MatchDetailScreen extends StatelessWidget {
                                   color: Colors.black45,
                                   borderRadius: BorderRadius.circular(6),
                                 ),
-                                child: const Row(
+                                child: Row(
                                   children: [
-                                    Icon(Icons.verified_user,
+                                    const Icon(Icons.verified_user,
                                         size: 14, color: Colors.greenAccent),
-                                    SizedBox(width: 4),
-                                    Text('Photo Verified',
-                                        style: TextStyle(
+                                    const SizedBox(width: 4),
+                                    Text(l10n.photoVerified,
+                                        style: const TextStyle(
                                             color: Colors.white,
                                             fontSize: 11)),
                                   ],
@@ -109,13 +111,13 @@ class MatchDetailScreen extends StatelessWidget {
                                   color: Colors.black45,
                                   borderRadius: BorderRadius.circular(6),
                                 ),
-                                child: const Row(
+                                child: Row(
                                   children: [
-                                    Icon(Icons.auto_graph,
+                                    const Icon(Icons.auto_graph,
                                         size: 14, color: Colors.orangeAccent),
-                                    SizedBox(width: 4),
-                                    Text('View Horoscope',
-                                        style: TextStyle(
+                                    const SizedBox(width: 4),
+                                    Text(l10n.viewHoroscope,
+                                        style: const TextStyle(
                                             color: Colors.white,
                                             fontSize: 11)),
                                   ],
@@ -190,7 +192,7 @@ class MatchDetailScreen extends StatelessWidget {
                             child: OutlinedButton.icon(
                               onPressed: () {},
                               icon: const Icon(Icons.close, size: 18),
-                              label: const Text("Don't Show"),
+                              label: Text(l10n.dontShow),
                             ),
                           ),
                           const SizedBox(width: 12),
@@ -201,13 +203,13 @@ class MatchDetailScreen extends StatelessWidget {
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(
                                     content: Text(
-                                        'Interest sent to ${profile.name}'),
+                                        l10n.interestSentTo(profile.name)),
                                     backgroundColor: AppColors.success,
                                   ),
                                 );
                               },
                               icon: const Icon(Icons.favorite, size: 18),
-                              label: const Text('Send Interest'),
+                              label: Text(l10n.sendInterest),
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: AppColors.accent,
                               ),
@@ -227,8 +229,8 @@ class MatchDetailScreen extends StatelessWidget {
                         onUnlock: () {
                           if (state.useUnlock()) {
                             ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(
-                                  content: Text('Contact unlocked!')),
+                              SnackBar(
+                                  content: Text(l10n.contactUnlocked)),
                             );
                           }
                         },
@@ -237,12 +239,12 @@ class MatchDetailScreen extends StatelessWidget {
                       const Divider(height: 32),
 
                       // About
-                      _SectionTitle('About ${profile.name}'),
+                      _SectionTitle('${l10n.aboutProfile(profile.name)}'),
                       const SizedBox(height: 8),
                       Text(
                         profile.aboutMe.isNotEmpty
                             ? profile.aboutMe
-                            : 'No description provided.',
+                            : l10n.noDescriptionProvided,
                         style: const TextStyle(
                             fontSize: 14,
                             color: AppColors.textSecondary,
@@ -252,63 +254,63 @@ class MatchDetailScreen extends StatelessWidget {
                       const Divider(height: 32),
 
                       // Basic Details
-                      _SectionTitle('Basic Details'),
+                      _SectionTitle(l10n.basicDetails),
                       const SizedBox(height: 8),
                       _DetailGrid(items: {
-                        'Age': '${profile.age} years',
-                        'Height': profile.height,
-                        'Marital Status': profile.maritalStatus,
-                        'Mother Tongue': profile.motherTongue,
-                        'Religion': profile.religion,
-                        'Caste': profile.caste,
-                        'Diet': profile.diet,
+                        l10n.age: '${l10n.ageYears(profile.age.toString())}',
+                        l10n.height: profile.height,
+                        l10n.maritalStatus: profile.maritalStatus,
+                        l10n.motherTongue: profile.motherTongue,
+                        l10n.religion: profile.religion,
+                        l10n.caste: profile.caste,
+                        l10n.diet: profile.diet,
                       }),
 
                       const Divider(height: 32),
 
                       // Education & Career
-                      _SectionTitle('Education & Career'),
+                      _SectionTitle(l10n.educationAndCareer),
                       const SizedBox(height: 8),
                       _DetailGrid(items: {
-                        'Education': profile.education,
-                        'Occupation': profile.occupation,
-                        'Employed In': profile.employedIn,
-                        'Annual Income': profile.annualIncome,
+                        l10n.education: profile.education,
+                        l10n.occupation: profile.occupation,
+                        l10n.employedIn: profile.employedIn,
+                        l10n.annualIncome: profile.annualIncome,
                       }),
 
                       const Divider(height: 32),
 
                       // Family
-                      _SectionTitle('Family Details'),
+                      _SectionTitle(l10n.familyDetailsTitle),
                       const SizedBox(height: 8),
                       _DetailGrid(items: {
-                        'Family Type': profile.familyType,
-                        'Family Status': profile.familyStatus,
-                        'Brothers': '${profile.brothers}',
-                        'Sisters': '${profile.sisters}',
+                        l10n.familyType: profile.familyType,
+                        l10n.familyStatus: profile.familyStatus,
+                        l10n.brothers: '${profile.brothers}',
+                        l10n.sisters: '${profile.sisters}',
                       }),
 
                       const Divider(height: 32),
 
                       // Location
-                      _SectionTitle('Location'),
+                      _SectionTitle(l10n.locationTitle),
                       const SizedBox(height: 8),
                       _DetailGrid(items: {
-                        'City': profile.city,
-                        'State': profile.state,
-                        'Country': profile.country,
+                        l10n.city: profile.city,
+                        l10n.state: profile.state,
+                        l10n.country: profile.country,
                       }),
 
-                      if (profile.star != null || profile.rasi != null) ...[
+                      if (profile.star != null || profile.rasi != null) ...[  
                         const Divider(height: 32),
-                        _SectionTitle('Horoscope'),
+                        _SectionTitle(l10n.horoscopeTitle),
                         const SizedBox(height: 8),
                         _DetailGrid(items: {
-                          if (profile.star != null) 'Star': profile.star!,
-                          if (profile.rasi != null) 'Rasi': profile.rasi!,
+                          if (profile.star != null) l10n.star: profile.star!,
+                          if (profile.rasi != null) l10n.rasi: profile.rasi!,
                           if (profile.dosham != null)
-                            'Dosham': profile.dosham!,
-                          if (profile.dob != null) 'DOB': profile.dob!,
+                            l10n.dosham: profile.dosham!,
+                          if (profile.dob != null) l10n.dateOfBirth: profile.dob!,
                         }),
                         const SizedBox(height: 12),
                         SizedBox(
@@ -318,7 +320,7 @@ class MatchDetailScreen extends StatelessWidget {
                                 .pushNamed('/horoscope'),
                             icon: const Icon(Icons.auto_graph),
                             label:
-                                const Text('Check Horoscope Compatibility'),
+                                Text(l10n.checkHoroscopeCompatibility),
                           ),
                         ),
                       ],
@@ -326,14 +328,14 @@ class MatchDetailScreen extends StatelessWidget {
                       const Divider(height: 32),
 
                       // Partner Preferences
-                      _SectionTitle('Partner Preferences'),
+                      _SectionTitle(l10n.partnerPreferencesTitle),
                       const SizedBox(height: 8),
                       _DetailGrid(items: {
-                        'Age': profile.partnerAgeRange,
-                        'Height': profile.partnerHeightRange,
-                        'Education': profile.partnerEducation,
-                        'Occupation': profile.partnerOccupation,
-                        'Location': profile.partnerLocation,
+                        l10n.age: profile.partnerAgeRange,
+                        l10n.height: profile.partnerHeightRange,
+                        l10n.education: profile.partnerEducation,
+                        l10n.occupation: profile.partnerOccupation,
+                        l10n.location: profile.partnerLocation,
                       }),
 
                       const Divider(height: 32),
@@ -343,14 +345,14 @@ class MatchDetailScreen extends StatelessWidget {
                         child: TextButton.icon(
                           onPressed: () {
                             ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(
-                                  content: Text('Profile reported.')),
+                              SnackBar(
+                                  content: Text(l10n.profileReported)),
                             );
                           },
                           icon: const Icon(Icons.flag_outlined,
                               color: AppColors.error),
-                          label: const Text('Report this Profile',
-                              style: TextStyle(color: AppColors.error)),
+                          label: Text(l10n.reportThisProfile,
+                              style: const TextStyle(color: AppColors.error)),
                         ),
                       ),
                       const SizedBox(height: 24),

@@ -1,36 +1,38 @@
 import 'package:flutter/material.dart';
 import '../core/theme.dart';
+import '../l10n/app_localizations.dart';
 
 class WalletManagementScreen extends StatelessWidget {
   const WalletManagementScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Scaffold(
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text('Wallet Management',
-                style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
+            Text(l10n.walletManagement,
+                style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
             const SizedBox(height: 16),
 
             // Summary
             Row(
               children: [
-                _card('Total Platform Revenue', '₹28,00,000', AppColors.primary),
+                _card(l10n.totalPlatformRevenue, '₹28,00,000', AppColors.primary),
                 const SizedBox(width: 12),
-                _card('Pending Payouts', '₹45,000', AppColors.accent),
+                _card(l10n.pendingPayouts, '₹45,000', AppColors.accent),
                 const SizedBox(width: 12),
-                _card('Completed Payouts', '₹1,85,000', AppColors.success),
+                _card(l10n.completedPayouts, '₹1,85,000', AppColors.success),
               ],
             ),
             const SizedBox(height: 24),
 
             // Pending withdrawals
-            const Text('Pending Withdrawal Requests',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+            Text(l10n.pendingWithdrawalRequests,
+                style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
             const SizedBox(height: 12),
             ..._pendingWithdrawals.map((w) => Card(
                   margin: const EdgeInsets.only(bottom: 8),
@@ -68,26 +70,26 @@ class WalletManagementScreen extends StatelessWidget {
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
                                   content: Text(
-                                      'Approved ${w['name']}\'s withdrawal'),
+                                      l10n.approveWithdrawal(w['name']!)),
                                   backgroundColor: AppColors.success),
                             );
                           },
                           icon: const Icon(Icons.check_circle,
                               color: AppColors.success),
-                          tooltip: 'Approve',
+                          tooltip: l10n.approve,
                         ),
                         IconButton(
                           onPressed: () {
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
                                   content: Text(
-                                      'Rejected ${w['name']}\'s withdrawal'),
+                                      l10n.rejectWithdrawal(w['name']!)),
                                   backgroundColor: Colors.red),
                             );
                           },
                           icon:
                               const Icon(Icons.cancel, color: Colors.red),
-                          tooltip: 'Reject',
+                          tooltip: l10n.reject,
                         ),
                       ],
                     ),
@@ -96,8 +98,8 @@ class WalletManagementScreen extends StatelessWidget {
             const SizedBox(height: 24),
 
             // Recent payouts
-            const Text('Recent Payouts',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+            Text(l10n.recentPayouts,
+                style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
             const SizedBox(height: 12),
             ..._recentPayouts.map((p) => Card(
                   margin: const EdgeInsets.only(bottom: 6),

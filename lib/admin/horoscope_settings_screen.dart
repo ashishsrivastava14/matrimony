@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../core/theme.dart';
+import '../l10n/app_localizations.dart';
 
 class HoroscopeSettingsScreen extends StatefulWidget {
   const HoroscopeSettingsScreen({super.key});
@@ -17,14 +18,15 @@ class _HoroscopeSettingsScreenState extends State<HoroscopeSettingsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Scaffold(
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text('Horoscope Settings',
-                style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
+            Text(l10n.horoscopeSettings,
+                style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
             const SizedBox(height: 16),
 
             // Feature toggles
@@ -34,32 +36,29 @@ class _HoroscopeSettingsScreenState extends State<HoroscopeSettingsScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text('Feature Configuration',
-                        style: TextStyle(
+                    Text(l10n.featureConfiguration,
+                        style: const TextStyle(
                             fontSize: 16, fontWeight: FontWeight.bold)),
                     const SizedBox(height: 8),
                     SwitchListTile(
-                      title: const Text('Enable Horoscope Matching'),
-                      subtitle: const Text(
-                          'Allow users to check horoscope compatibility'),
+                      title: Text(l10n.enableHoroscopeMatching),
+                      subtitle: Text(l10n.allowUsersHoroscopeCheck),
                       value: _enableHoroscope,
                       onChanged: (v) =>
                           setState(() => _enableHoroscope = v),
                       activeThumbColor: AppColors.primary,
                     ),
                     SwitchListTile(
-                      title: const Text('Auto Horoscope Matching'),
-                      subtitle: const Text(
-                          'Automatically show compatibility on profile view'),
+                      title: Text(l10n.autoHoroscopeMatching),
+                      subtitle: Text(l10n.autoShowCompatibility),
                       value: _autoMatch,
                       onChanged: (v) =>
                           setState(() => _autoMatch = v),
                       activeThumbColor: AppColors.primary,
                     ),
                     SwitchListTile(
-                      title: const Text('Show Dosham Warning'),
-                      subtitle:
-                          const Text('Display dosham status on profiles'),
+                      title: Text(l10n.showDosham),
+                      subtitle: Text(l10n.displayDoshamStatus),
                       value: _showDosham,
                       onChanged: (v) =>
                           setState(() => _showDosham = v),
@@ -78,13 +77,13 @@ class _HoroscopeSettingsScreenState extends State<HoroscopeSettingsScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text('Minimum Porutham Score',
-                        style: TextStyle(
+                    Text(l10n.minimumPoruthamScore,
+                        style: const TextStyle(
                             fontSize: 16, fontWeight: FontWeight.bold)),
                     const SizedBox(height: 4),
-                    const Text(
-                      'Minimum poruthams needed for "Good Match" label',
-                      style: TextStyle(
+                    Text(
+                      l10n.minimumPoruthamDesc,
+                      style: const TextStyle(
                           color: AppColors.textSecondary, fontSize: 13),
                     ),
                     const SizedBox(height: 16),
@@ -119,14 +118,14 @@ class _HoroscopeSettingsScreenState extends State<HoroscopeSettingsScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text('Compatibility Labels',
-                        style: TextStyle(
+                    Text(l10n.compatibilityLabels,
+                        style: const TextStyle(
                             fontSize: 16, fontWeight: FontWeight.bold)),
                     const SizedBox(height: 12),
-                    _labelRow('Excellent', '8-10 Porutham', AppColors.success),
-                    _labelRow('Good', '6-7 Porutham', AppColors.primary),
-                    _labelRow('Average', '4-5 Porutham', AppColors.accent),
-                    _labelRow('Poor', '1-3 Porutham', Colors.red),
+                    _labelRow(l10n.excellent, '8-10 Porutham', AppColors.success),
+                    _labelRow(l10n.good, '6-7 Porutham', AppColors.primary),
+                    _labelRow(l10n.average, '4-5 Porutham', AppColors.accent),
+                    _labelRow(l10n.poor, '1-3 Porutham', Colors.red),
                   ],
                 ),
               ),
@@ -140,8 +139,8 @@ class _HoroscopeSettingsScreenState extends State<HoroscopeSettingsScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text('10 Porutham Configuration',
-                        style: TextStyle(
+                    Text(l10n.tenPoruthamConfiguration,
+                        style: const TextStyle(
                             fontSize: 16, fontWeight: FontWeight.bold)),
                     const SizedBox(height: 12),
                     ..._poruthams.map((p) => _poruthamRow(p)),
@@ -156,13 +155,13 @@ class _HoroscopeSettingsScreenState extends State<HoroscopeSettingsScreen> {
               child: ElevatedButton(
                 onPressed: () {
                   ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                      content: Text('Horoscope settings saved!'),
+                    SnackBar(
+                      content: Text(l10n.horoscopeSettingsSaved),
                       backgroundColor: AppColors.success,
                     ),
                   );
                 },
-                child: const Text('Save Settings'),
+                child: Text(l10n.saveSettings),
               ),
             ),
           ],

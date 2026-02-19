@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../core/theme.dart';
+import '../l10n/app_localizations.dart';
 
 class NotificationBroadcastScreen extends StatefulWidget {
   const NotificationBroadcastScreen({super.key});
@@ -16,14 +17,15 @@ class _NotificationBroadcastScreenState
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Scaffold(
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text('Notification Broadcast',
-                style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
+            Text(l10n.notificationBroadcast,
+                style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
             const SizedBox(height: 16),
 
             // Compose card
@@ -33,49 +35,49 @@ class _NotificationBroadcastScreenState
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text('Compose Notification',
-                        style: TextStyle(
+                    Text(l10n.composeNotification,
+                        style: const TextStyle(
                             fontSize: 16, fontWeight: FontWeight.bold)),
                     const SizedBox(height: 16),
                     TextFormField(
                       decoration:
-                          const InputDecoration(labelText: 'Title'),
+                          InputDecoration(labelText: l10n.title),
                     ),
                     const SizedBox(height: 14),
                     TextFormField(
                       decoration:
-                          const InputDecoration(labelText: 'Message'),
+                          InputDecoration(labelText: l10n.message),
                       maxLines: 4,
                     ),
                     const SizedBox(height: 14),
 
                     // Target audience
-                    const Text('Target Audience',
-                        style: TextStyle(fontWeight: FontWeight.w500)),
+                    Text(l10n.targetAudience,
+                        style: const TextStyle(fontWeight: FontWeight.w500)),
                     const SizedBox(height: 8),
                     Wrap(
                       spacing: 8,
                       children: [
                         ChoiceChip(
-                          label: const Text('All Users'),
+                          label: Text(l10n.allUsers),
                           selected: _target == 'all',
                           onSelected: (_) =>
                               setState(() => _target = 'all'),
                         ),
                         ChoiceChip(
-                          label: const Text('Premium'),
+                          label: Text(l10n.premium),
                           selected: _target == 'premium',
                           onSelected: (_) =>
                               setState(() => _target = 'premium'),
                         ),
                         ChoiceChip(
-                          label: const Text('Free Users'),
+                          label: Text(l10n.freeUsers),
                           selected: _target == 'free',
                           onSelected: (_) =>
                               setState(() => _target = 'free'),
                         ),
                         ChoiceChip(
-                          label: const Text('Mediators'),
+                          label: Text(l10n.mediator),
                           selected: _target == 'mediators',
                           onSelected: (_) =>
                               setState(() => _target = 'mediators'),
@@ -85,8 +87,8 @@ class _NotificationBroadcastScreenState
                     const SizedBox(height: 14),
 
                     // Notification type
-                    const Text('Notification Type',
-                        style: TextStyle(fontWeight: FontWeight.w500)),
+                    Text(l10n.notificationType,
+                        style: const TextStyle(fontWeight: FontWeight.w500)),
                     const SizedBox(height: 8),
                     Wrap(
                       spacing: 8,
@@ -104,7 +106,7 @@ class _NotificationBroadcastScreenState
                               setState(() => _type = 'inapp'),
                         ),
                         ChoiceChip(
-                          label: const Text('Email'),
+                          label: Text(l10n.email),
                           selected: _type == 'email',
                           onSelected: (_) =>
                               setState(() => _type = 'email'),
@@ -125,11 +127,11 @@ class _NotificationBroadcastScreenState
                           child: OutlinedButton(
                             onPressed: () {
                               ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(
-                                    content: Text('Scheduled for later')),
+                                SnackBar(
+                                    content: Text(l10n.scheduledForLater)),
                               );
                             },
-                            child: const Text('Schedule'),
+                            child: Text(l10n.schedule),
                           ),
                         ),
                         const SizedBox(width: 12),
@@ -137,14 +139,14 @@ class _NotificationBroadcastScreenState
                           child: ElevatedButton(
                             onPressed: () {
                               ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(
+                                SnackBar(
                                   content:
-                                      Text('Notification sent to all users!'),
+                                      Text(l10n.notificationSentSuccess),
                                   backgroundColor: AppColors.success,
                                 ),
                               );
                             },
-                            child: const Text('Send Now'),
+                            child: Text(l10n.sendNow),
                           ),
                         ),
                       ],
@@ -156,9 +158,9 @@ class _NotificationBroadcastScreenState
             const SizedBox(height: 20),
 
             // History
-            const Text('Recent Broadcasts',
+            Text(l10n.recentBroadcasts,
                 style:
-                    TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                    const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
             const SizedBox(height: 12),
             ..._recentBroadcasts.map((b) => Card(
                   margin: const EdgeInsets.only(bottom: 8),
@@ -191,11 +193,14 @@ class _NotificationBroadcastScreenState
                         color: AppColors.success.withValues(alpha: 0.1),
                         borderRadius: BorderRadius.circular(8),
                       ),
-                      child: const Text('Sent',
-                          style: TextStyle(
-                              color: AppColors.success,
-                              fontSize: 11,
-                              fontWeight: FontWeight.w500)),
+                      child: Builder(builder: (ctx) {
+                        final l10n2 = AppLocalizations.of(ctx)!;
+                        return Text(l10n2.sentStatus,
+                            style: const TextStyle(
+                                color: AppColors.success,
+                                fontSize: 11,
+                                fontWeight: FontWeight.w500));
+                      }),
                     ),
                   ),
                 )),

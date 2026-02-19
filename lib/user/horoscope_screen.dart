@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../core/theme.dart';
 import '../widgets/user_bottom_navigation.dart';
+import '../l10n/app_localizations.dart';
 
 class HoroscopeScreen extends StatefulWidget {
   const HoroscopeScreen({super.key});
@@ -34,6 +35,7 @@ class _HoroscopeScreenState extends State<HoroscopeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -54,19 +56,19 @@ class _HoroscopeScreenState extends State<HoroscopeScreen> {
           children: [
             Image.asset('assets/icon/app_icon.png', height: 24, width: 24),
             const SizedBox(width: 10),
-            const Text('Horoscope Matching'),
+            Text(l10n.horoscopeMatching),
           ],
         ),
       ),
       bottomNavigationBar: const UserBottomNavigation(),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
-        child: _showResult ? _buildResult() : _buildForm(),
+        child: _showResult ? _buildResult(AppLocalizations.of(context)!) : _buildForm(AppLocalizations.of(context)!),
       ),
     );
   }
 
-  Widget _buildForm() {
+  Widget _buildForm(AppLocalizations l10n) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -115,7 +117,7 @@ class _HoroscopeScreenState extends State<HoroscopeScreen> {
           child: ElevatedButton.icon(
             onPressed: () => setState(() => _showResult = true),
             icon: const Icon(Icons.auto_awesome),
-            label: const Text('Check Compatibility'),
+            label: Text(l10n.checkCompatibility),
           ),
         ),
       ],
@@ -173,7 +175,7 @@ class _HoroscopeScreenState extends State<HoroscopeScreen> {
     );
   }
 
-  Widget _buildResult() {
+  Widget _buildResult(AppLocalizations l10n) {
     const score = 7.5;
     const maxScore = 10.0;
     const percentage = score / maxScore;
@@ -186,9 +188,9 @@ class _HoroscopeScreenState extends State<HoroscopeScreen> {
             padding: const EdgeInsets.all(24),
             child: Column(
               children: [
-                const Text(
-                  'Compatibility Score',
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                Text(
+                  l10n.compatibilityScore,
+                  style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(height: 20),
                 SizedBox(
@@ -224,9 +226,9 @@ class _HoroscopeScreenState extends State<HoroscopeScreen> {
                               color: AppColors.success.withValues(alpha: 0.1),
                               borderRadius: BorderRadius.circular(12),
                             ),
-                            child: const Text(
-                              'Excellent',
-                              style: TextStyle(
+                            child: Text(
+                              l10n.excellentMatch,
+                              style: const TextStyle(
                                 color: AppColors.success,
                                 fontWeight: FontWeight.bold,
                                 fontSize: 14,
@@ -266,9 +268,9 @@ class _HoroscopeScreenState extends State<HoroscopeScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
-                  '10 Porutham Details',
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                Text(
+                  l10n.tenPoruthamDetails,
+                  style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(height: 12),
                 ..._buildPoruthamItems(),
@@ -281,23 +283,23 @@ class _HoroscopeScreenState extends State<HoroscopeScreen> {
         // Summary
         Card(
           color: AppColors.success.withValues(alpha: 0.05),
-          child: const Padding(
-            padding: EdgeInsets.all(16),
+          child: Padding(
+            padding: const EdgeInsets.all(16),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Row(
                   children: [
-                    Icon(Icons.check_circle,
+                    const Icon(Icons.check_circle,
                         color: AppColors.success, size: 20),
-                    SizedBox(width: 8),
-                    Text('Summary',
-                        style: TextStyle(
+                    const SizedBox(width: 8),
+                    Text(l10n.summary,
+                        style: const TextStyle(
                             fontSize: 16, fontWeight: FontWeight.bold)),
                   ],
                 ),
-                SizedBox(height: 8),
-                Text(
+                const SizedBox(height: 8),
+                const Text(
                   'This is an excellent match with 7.5 out of 10 poruthams matching. '
                   'The couple is highly compatible for marriage based on horoscope analysis. '
                   'Both nakshatras complement each other well.',
@@ -314,7 +316,7 @@ class _HoroscopeScreenState extends State<HoroscopeScreen> {
             Expanded(
               child: OutlinedButton(
                 onPressed: () => setState(() => _showResult = false),
-                child: const Text('Check Another'),
+                child: Text(l10n.checkAnother),
               ),
             ),
             const SizedBox(width: 12),
@@ -322,11 +324,11 @@ class _HoroscopeScreenState extends State<HoroscopeScreen> {
               child: ElevatedButton.icon(
                 onPressed: () {
                   ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text('Report downloaded (mock)')),
+                    SnackBar(content: Text(l10n.reportDownloaded)),
                   );
                 },
                 icon: const Icon(Icons.download, size: 18),
-                label: const Text('Download'),
+                label: Text(l10n.download),
               ),
             ),
           ],

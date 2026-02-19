@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import '../core/theme.dart';
 import '../services/mock_data.dart';
+import '../l10n/app_localizations.dart';
 
 class SubscriptionManagementScreen extends StatelessWidget {
   const SubscriptionManagementScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     final plans = MockDataService.getMockPlans();
     return Scaffold(
       body: SingleChildScrollView(
@@ -14,8 +16,8 @@ class SubscriptionManagementScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text('Subscription Management',
-                style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
+            Text(l10n.subscriptionManagement,
+                style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
             const SizedBox(height: 16),
 
             // Revenue summary
@@ -38,8 +40,8 @@ class SubscriptionManagementScreen extends StatelessWidget {
             const SizedBox(height: 24),
 
             // Plans table
-            const Text('Active Plans',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+            Text(l10n.activePlans,
+                style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
             const SizedBox(height: 12),
             ...plans.map((plan) => Card(
                   margin: const EdgeInsets.only(bottom: 10),
@@ -67,8 +69,8 @@ class SubscriptionManagementScreen extends StatelessWidget {
                                         borderRadius:
                                             BorderRadius.circular(8),
                                       ),
-                                      child: const Text('Popular',
-                                          style: TextStyle(
+                                      child: Text(l10n.popularLabel,
+                                          style: const TextStyle(
                                               color: Colors.white,
                                               fontSize: 10)),
                                     ),
@@ -91,8 +93,8 @@ class SubscriptionManagementScreen extends StatelessWidget {
                             Text('${245 + plans.indexOf(plan) * 120} users',
                                 style: const TextStyle(
                                     fontWeight: FontWeight.bold)),
-                            const Text('Active',
-                                style: TextStyle(
+                            Text(l10n.activeStatus,
+                                style: const TextStyle(
                                     color: AppColors.success, fontSize: 12)),
                           ],
                         ),

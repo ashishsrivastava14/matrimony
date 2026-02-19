@@ -4,12 +4,14 @@ import '../core/theme.dart';
 import '../providers/app_state.dart';
 import '../models/notification_model.dart';
 import '../widgets/user_bottom_navigation.dart';
+import '../l10n/app_localizations.dart';
 
 class NotificationsScreen extends StatelessWidget {
   const NotificationsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     final appState = context.watch<AppState>();
     final notifications = appState.notifications;
 
@@ -34,7 +36,7 @@ class NotificationsScreen extends StatelessWidget {
           children: [
             Image.asset('assets/icon/app_icon.png', height: 24, width: 24),
             const SizedBox(width: 10),
-            const Text('Notifications'),
+            Text(l10n.notifications),
           ],
         ),
         actions: [
@@ -44,20 +46,20 @@ class NotificationsScreen extends StatelessWidget {
                 appState.markNotificationRead(n.id);
               }
             },
-            child: const Text('Mark all read', style: TextStyle(color: Colors.white)),
+            child: Text(l10n.markAllRead, style: const TextStyle(color: Colors.white)),
           ),
         ],
       ),
       body: notifications.isEmpty
-          ? const Center(
+          ? Center(
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Icon(Icons.notifications_off,
+                  const Icon(Icons.notifications_off,
                       size: 64, color: AppColors.divider),
-                  SizedBox(height: 12),
-                  Text('No notifications yet',
-                      style: TextStyle(color: AppColors.textSecondary)),
+                  const SizedBox(height: 12),
+                  Text(l10n.noNotificationsYet,
+                      style: const TextStyle(color: AppColors.textSecondary)),
                 ],
               ),
             )

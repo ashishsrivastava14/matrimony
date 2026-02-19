@@ -6,6 +6,7 @@ import '../widgets/plan_card.dart';
 import '../services/mock_data.dart';
 import '../models/subscription_plan.dart';
 import '../widgets/user_bottom_navigation.dart';
+import '../l10n/app_localizations.dart';
 
 class SubscriptionScreen extends StatefulWidget {
   const SubscriptionScreen({super.key});
@@ -32,6 +33,7 @@ class _SubscriptionScreenState extends State<SubscriptionScreen>
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     final appState = context.watch<AppState>();
     final plans = MockDataService.getMockPlans();
     final bundles = MockDataService.getMockBundles();
@@ -57,7 +59,7 @@ class _SubscriptionScreenState extends State<SubscriptionScreen>
           children: [
             Image.asset('assets/icon/app_icon.png', height: 24, width: 24),
             const SizedBox(width: 10),
-            const Text('Subscription Plans'),
+            Text(l10n.subscriptionPlans),
           ],
         ),
         bottom: TabBar(
@@ -65,9 +67,9 @@ class _SubscriptionScreenState extends State<SubscriptionScreen>
           labelColor: Colors.white,
           unselectedLabelColor: Colors.white70,
           indicatorColor: Colors.white,
-          tabs: const [
-            Tab(text: 'Plans'),
-            Tab(text: 'Pay Per Profile'),
+          tabs: [
+            Tab(text: l10n.subscriptionPlans),
+            Tab(text: l10n.payPerProfile),
           ],
         ),
       ),
@@ -77,13 +79,14 @@ class _SubscriptionScreenState extends State<SubscriptionScreen>
           // Plans tab
           _buildPlansTab(appState, plans),
           // Pay per profile tab
-          _buildBundlesTab(appState, bundles),
+          _buildBundlesTab(appState, bundles, l10n),
         ],
       ),
     );
   }
 
   Widget _buildPlansTab(AppState appState, List<SubscriptionPlan> plans) {
+    final l10n = AppLocalizations.of(context)!;
     return SingleChildScrollView(
       padding: const EdgeInsets.all(16),
       child: Column(
@@ -91,14 +94,14 @@ class _SubscriptionScreenState extends State<SubscriptionScreen>
         children: [
           // Current plan
           if (appState.currentPlan != null) ...[
-            _buildCurrentPlanCard(appState),
+            _buildCurrentPlanCard(appState, l10n),
             const SizedBox(height: 20),
           ],
 
           // Duration toggle
-          const Text(
+          Text(
             'Choose Your Plan',
-            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 4),
           const Text(
@@ -121,14 +124,14 @@ class _SubscriptionScreenState extends State<SubscriptionScreen>
           const SizedBox(height: 20),
 
           // Feature comparison
-          _buildFeatureComparison(),
+          _buildFeatureComparison(l10n),
         ],
       ),
     );
   }
 
   Widget _buildBundlesTab(
-      AppState appState, List<ProfileUnlockBundle> bundles) {
+      AppState appState, List<ProfileUnlockBundle> bundles, AppLocalizations l10n) {
     return SingleChildScrollView(
       padding: const EdgeInsets.all(16),
       child: Column(
@@ -153,8 +156,8 @@ class _SubscriptionScreenState extends State<SubscriptionScreen>
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text('Available Unlocks',
-                          style: TextStyle(color: AppColors.textSecondary)),
+                      Text(l10n.availableUnlocks,
+                          style: const TextStyle(color: AppColors.textSecondary)),
                       Text(
                         '${appState.profileUnlocksRemaining}',
                         style: const TextStyle(
@@ -171,14 +174,14 @@ class _SubscriptionScreenState extends State<SubscriptionScreen>
           ),
           const SizedBox(height: 20),
 
-          const Text(
-            'Buy Profile Unlocks',
-            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          Text(
+            l10n.buyProfileUnlocks,
+            style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 4),
-          const Text(
-            'View contact details of profiles you are interested in',
-            style: TextStyle(color: AppColors.textSecondary, fontSize: 13),
+          Text(
+            l10n.viewContactDetailsDescription,
+            style: const TextStyle(color: AppColors.textSecondary, fontSize: 13),
           ),
           const SizedBox(height: 16),
 
@@ -215,14 +218,14 @@ class _SubscriptionScreenState extends State<SubscriptionScreen>
                                   CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  '${bundle.unlockCount} Profile Unlock${bundle.unlockCount > 1 ? "s" : ""}',
+                                  l10n.profileUnlocksCountLabel(bundle.unlockCount.toString()),
                                   style: const TextStyle(
                                     fontWeight: FontWeight.bold,
                                     fontSize: 16,
                                   ),
                                 ),
                                 Text(
-                                  '₹${(bundle.price / bundle.unlockCount).toStringAsFixed(0)} per profile',
+                                  l10n.pricePerProfile((bundle.price / bundle.unlockCount).toStringAsFixed(0)),
                                   style: const TextStyle(
                                     color: AppColors.textSecondary,
                                     fontSize: 12,
@@ -250,7 +253,7 @@ class _SubscriptionScreenState extends State<SubscriptionScreen>
     );
   }
 
-  Widget _buildCurrentPlanCard(AppState appState) {
+  Widget _buildCurrentPlanCard(AppState appState, AppLocalizations l10n) {
     final plan = appState.currentPlan!;
     return Card(
       color: AppColors.primary,
@@ -277,14 +280,14 @@ class _SubscriptionScreenState extends State<SubscriptionScreen>
                     color: Colors.white24,
                     borderRadius: BorderRadius.circular(12),
                   ),
-                  child: const Text('Active',
-                      style: TextStyle(color: Colors.white, fontSize: 12)),
+                  child: Text(l10n.active,
+                      style: const TextStyle(color: Colors.white, fontSize: 12)),
                 ),
               ],
             ),
             const SizedBox(height: 8),
             Text(
-              '${plan.contactViews} contact views remaining · ${plan.durationMonths} month duration',
+              l10n.planActiveDetails(plan.contactViews.toString(), plan.durationMonths.toString()),
               style: const TextStyle(color: Colors.white70, fontSize: 13),
             ),
           ],
@@ -293,15 +296,15 @@ class _SubscriptionScreenState extends State<SubscriptionScreen>
     );
   }
 
-  Widget _buildFeatureComparison() {
+  Widget _buildFeatureComparison(AppLocalizations l10n) {
     final features = [
-      ('Send Interest', '✓', '✓', '✓'),
-      ('View Contact Details', '10', '25', 'Unlimited'),
-      ('Chat with Matches', '✗', '✓', '✓'),
-      ('Profile Highlight', '✗', '✓', '✓'),
-      ('Priority Support', '✗', '✗', '✓'),
-      ('Horoscope Matching', '✗', '✓', '✓'),
-      ('Profile Boost', '✗', '✗', '✓'),
+      (l10n.sendInterest, '✓', '✓', '✓'),
+      (l10n.viewContactDetails, '10', '25', 'Unlimited'),
+      (l10n.chatWithMatches, '✗', '✓', '✓'),
+      (l10n.profileHighlight, '✗', '✓', '✓'),
+      (l10n.prioritySupport, '✗', '✗', '✓'),
+      (l10n.horoscopeMatching, '✗', '✓', '✓'),
+      (l10n.profileBoost, '✗', '✗', '✓'),
     ];
 
     return Card(
@@ -310,9 +313,9 @@ class _SubscriptionScreenState extends State<SubscriptionScreen>
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
-              'Feature Comparison',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            Text(
+              l10n.featureComparison,
+              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 12),
             Table(
@@ -323,35 +326,35 @@ class _SubscriptionScreenState extends State<SubscriptionScreen>
                 3: FlexColumnWidth(1),
               },
               children: [
-                const TableRow(
-                  decoration: BoxDecoration(
+                TableRow(
+                  decoration: const BoxDecoration(
                     border: Border(
                       bottom: BorderSide(color: AppColors.divider),
                     ),
                   ),
                   children: [
                     Padding(
-                      padding: EdgeInsets.symmetric(vertical: 8),
-                      child: Text('Feature',
-                          style: TextStyle(fontWeight: FontWeight.bold)),
+                      padding: const EdgeInsets.symmetric(vertical: 8),
+                      child: Text(l10n.feature,
+                          style: const TextStyle(fontWeight: FontWeight.bold)),
                     ),
                     Padding(
-                      padding: EdgeInsets.symmetric(vertical: 8),
-                      child: Text('Silver',
+                      padding: const EdgeInsets.symmetric(vertical: 8),
+                      child: Text(l10n.silver,
                           textAlign: TextAlign.center,
-                          style: TextStyle(fontWeight: FontWeight.bold)),
+                          style: const TextStyle(fontWeight: FontWeight.bold)),
                     ),
                     Padding(
-                      padding: EdgeInsets.symmetric(vertical: 8),
-                      child: Text('Gold',
+                      padding: const EdgeInsets.symmetric(vertical: 8),
+                      child: Text(l10n.gold,
                           textAlign: TextAlign.center,
-                          style: TextStyle(fontWeight: FontWeight.bold)),
+                          style: const TextStyle(fontWeight: FontWeight.bold)),
                     ),
                     Padding(
-                      padding: EdgeInsets.symmetric(vertical: 8),
-                      child: Text('Diamond',
+                      padding: const EdgeInsets.symmetric(vertical: 8),
+                      child: Text(l10n.diamond,
                           textAlign: TextAlign.center,
-                          style: TextStyle(fontWeight: FontWeight.bold)),
+                          style: const TextStyle(fontWeight: FontWeight.bold)),
                     ),
                   ],
                 ),
@@ -390,30 +393,31 @@ class _SubscriptionScreenState extends State<SubscriptionScreen>
   }
 
   void _showPaymentDialog(SubscriptionPlan plan, AppState appState) {
+    final l10n = AppLocalizations.of(context)!;
     showDialog(
       context: context,
       builder: (ctx) => AlertDialog(
-        title: Text('Subscribe to ${plan.name}'),
+        title: Text(l10n.subscribeTo(plan.name)),
         content: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              '₹${plan.price.toStringAsFixed(0)} for ${plan.durationMonths} month${plan.durationMonths > 1 ? "s" : ""}',
+              l10n.planPriceDescription(plan.price.toStringAsFixed(0), plan.durationMonths.toString()),
               style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 8),
-            const Text('Select Payment Method:'),
+            Text(l10n.selectPaymentMethod),
             const SizedBox(height: 8),
             RadioGroup<String>(
-              groupValue: 'UPI',
+              groupValue: l10n.upi,
               onChanged: (_) {},
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  _paymentOption('UPI', Icons.account_balance),
-                  _paymentOption('Credit / Debit Card', Icons.credit_card),
-                  _paymentOption('Net Banking', Icons.language),
+                  _paymentOption(l10n.upi, Icons.account_balance),
+                  _paymentOption(l10n.creditDebitCard, Icons.credit_card),
+                  _paymentOption(l10n.netBanking, Icons.language),
                 ],
               ),
             ),
@@ -422,7 +426,7 @@ class _SubscriptionScreenState extends State<SubscriptionScreen>
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(ctx),
-            child: const Text('Cancel'),
+            child: Text(l10n.cancel),
           ),
           ElevatedButton(
             onPressed: () {
@@ -431,12 +435,12 @@ class _SubscriptionScreenState extends State<SubscriptionScreen>
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
                   content:
-                      Text('Subscribed to ${plan.name} successfully!'),
+                      Text(l10n.subscribedSuccess(plan.name)),
                   backgroundColor: AppColors.success,
                 ),
               );
             },
-            child: const Text('Pay Now'),
+            child: Text(l10n.payNow),
           ),
         ],
       ),
@@ -445,16 +449,17 @@ class _SubscriptionScreenState extends State<SubscriptionScreen>
 
   void _showBundlePaymentDialog(
       ProfileUnlockBundle bundle, AppState appState) {
+    final l10n = AppLocalizations.of(context)!;
     showDialog(
       context: context,
       builder: (ctx) => AlertDialog(
-        title: Text('Buy ${bundle.unlockCount} Unlocks'),
-        content: Text(
-            'Pay ₹${bundle.price.toStringAsFixed(0)} for ${bundle.unlockCount} profile unlock${bundle.unlockCount > 1 ? "s" : ""}?'),
+        title: Text(l10n.buyUnlocks(bundle.unlockCount.toString())),
+        content: Text(l10n.payForUnlocks(
+            bundle.price.toStringAsFixed(0), bundle.unlockCount.toString())),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(ctx),
-            child: const Text('Cancel'),
+            child: Text(l10n.cancel),
           ),
           ElevatedButton(
             onPressed: () {
@@ -463,12 +468,12 @@ class _SubscriptionScreenState extends State<SubscriptionScreen>
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
                   content: Text(
-                      '${bundle.unlockCount} unlocks added!'),
+                      l10n.unlocksPurchased(bundle.unlockCount.toString())),
                   backgroundColor: AppColors.success,
                 ),
               );
             },
-            child: const Text('Pay Now'),
+            child: Text(l10n.payNow),
           ),
         ],
       ),

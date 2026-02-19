@@ -1,0 +1,2122 @@
+{
+  "analysis_date": "2026-02-19",
+  "total_files_scanned": 50,
+  "total_strings_found": 450,
+  "directories_scanned": [
+    "lib/auth/",
+    "lib/user/",
+    "lib/admin/",
+    "lib/mediator/",
+    "lib/widgets/",
+    "lib/core/"
+  ],
+  "hardcoded_strings": {
+    "lib/core/constants.dart": [
+      {
+        "line": 3,
+        "text": "AP Matrimony",
+        "context": "App name constant",
+        "type": "app_name"
+      },
+      {
+        "line": 4,
+        "text": "Biggest Matrimony Service for AP",
+        "context": "App tagline constant",
+        "type": "tagline"
+      },
+      {
+        "line": 5,
+        "text": "10 Years of Successful Matchmaking",
+        "context": "Years text constant - displayed on splash",
+        "type": "marketing_text"
+      },
+      {
+        "line": 6,
+        "text": "1 Crore+ Customers Served",
+        "context": "Members text constant - displayed on splash",
+        "type": "marketing_text"
+      },
+      {
+        "line": 31,
+        "text": "Guest",
+        "context": "UserRole.guest label",
+        "type": "role_label"
+      },
+      {
+        "line": 33,
+        "text": "Registered User",
+        "context": "UserRole.user label",
+        "type": "role_label"
+      },
+      {
+        "line": 35,
+        "text": "Paid Member",
+        "context": "UserRole.paid label",
+        "type": "role_label"
+      },
+      {
+        "line": 37,
+        "text": "Mediator / Broker",
+        "context": "UserRole.mediator label",
+        "type": "role_label"
+      },
+      {
+        "line": 39,
+        "text": "Admin",
+        "context": "UserRole.admin label",
+        "type": "role_label"
+      }
+    ],
+    "lib/auth/login_screen.dart": [
+      {
+        "line": 75,
+        "text": "Select Language",
+        "context": "Language selection bottom sheet title",
+        "type": "section_title"
+      },
+      {
+        "line": 545,
+        "text": "Demo credentials",
+        "context": "Demo credentials section label",
+        "type": "label"
+      },
+      {
+        "line": 555,
+        "text": "User / Paid Member",
+        "context": "Demo credential role label",
+        "type": "label"
+      },
+      {
+        "line": 560,
+        "text": "user@matrimony.com",
+        "context": "Demo email",
+        "type": "demo_data"
+      },
+      {
+        "line": 562,
+        "text": "password",
+        "context": "Demo password",
+        "type": "demo_data"
+      },
+      {
+        "line": 579,
+        "text": "Mediator / Broker",
+        "context": "Demo credential role label",
+        "type": "label"
+      },
+      {
+        "line": 584,
+        "text": "mediator@matrimony.com",
+        "context": "Demo email",
+        "type": "demo_data"
+      },
+      {
+        "line": 586,
+        "text": "password",
+        "context": "Demo password",
+        "type": "demo_data"
+      },
+      {
+        "line": 603,
+        "text": "Admin",
+        "context": "Demo credential role label",
+        "type": "label"
+      },
+      {
+        "line": 608,
+        "text": "admin@matrimony.com",
+        "context": "Demo email",
+        "type": "demo_data"
+      },
+      {
+        "line": 610,
+        "text": "password",
+        "context": "Demo password",
+        "type": "demo_data"
+      },
+      {
+        "line": 618,
+        "text": "Close",
+        "context": "Button to close demo credentials dialog",
+        "type": "button_label"
+      },
+      {
+        "line": 680,
+        "text": "View Demo Credentials",
+        "context": "Button to show demo credentials",
+        "type": "button_label"
+      }
+    ],
+    "lib/auth/role_selection_screen.dart": [
+      {
+        "line": 180,
+        "text": "Get Started",
+        "context": "Primary CTA button for user role",
+        "type": "button_label"
+      },
+      {
+        "line": 208,
+        "text": "Browse as Guest",
+        "context": "Button to browse without registering",
+        "type": "button_label"
+      },
+      {
+        "line": 241,
+        "text": "Other roles",
+        "context": "Divider text for alternate roles section",
+        "type": "section_label"
+      },
+      {
+        "line": 295,
+        "text": "For Mediators & Brokers",
+        "context": "Chip label for mediator role",
+        "type": "role_description"
+      },
+      {
+        "line": 382,
+        "text": "For Administrative Access",
+        "context": "Chip label for admin role",
+        "type": "role_description"
+      },
+      {
+        "line": 391,
+        "text": "Admin Login",
+        "context": "Link text for admin login",
+        "type": "link_label"
+      }
+    ],
+    "lib/auth/splash_screen.dart": [
+      {
+        "line": 240,
+        "text": "AP Matrimony",
+        "context": "App name on splash screen",
+        "type": "app_name"
+      },
+      {
+        "line": 264,
+        "text": "Biggest Matrimony Service for AP",
+        "context": "Tagline on splash screen",
+        "type": "tagline"
+      },
+      {
+        "line": 305,
+        "text": "10 Years",
+        "context": "Years count label",
+        "type": "stat_label"
+      },
+      {
+        "line": 323,
+        "text": "Successful Matchmaking",
+        "context": "Years description text",
+        "type": "stat_description"
+      },
+      {
+        "line": 335,
+        "text": "1 Crore+",
+        "context": "Member count label",
+        "type": "stat_label"
+      },
+      {
+        "line": 375,
+        "text": "Customers Served",
+        "context": "Members description text",
+        "type": "stat_description"
+      }
+    ],
+    "lib/auth/forgot_password_screen.dart": [
+      {
+        "line": 44,
+        "text": "Reset Password",
+        "context": "AppBar title",
+        "type": "screen_title"
+      },
+      {
+        "line": 62,
+        "text": "Check Your Email",
+        "context": "Success state title",
+        "type": "message_title"
+      },
+      {
+        "line": 62,
+        "text": "Forgot Password?",
+        "context": "Initial state title",
+        "type": "message_title"
+      },
+      {
+        "line": 71,
+        "text": "We have sent a password reset link to your email address.",
+        "context": "Success message",
+        "type": "message_text"
+      },
+      {
+        "line": 71,
+        "text": "Enter your email address and we'll send you a link to reset your password.",
+        "context": "Instruction text",
+        "type": "message_text"
+      },
+      {
+        "line": 86,
+        "text": "Email Address",
+        "context": "Form field label",
+        "type": "form_label"
+      },
+      {
+        "line": 100,
+        "text": "Send Reset Link",
+        "context": "Submit button",
+        "type": "button_label"
+      },
+      {
+        "line": 110,
+        "text": "Back to Login",
+        "context": "Navigation button",
+        "type": "button_label"
+      }
+    ],
+    "lib/auth/register_screen.dart": [
+      {
+        "line": 39,
+        "text": "Create Account",
+        "context": "AppBar title",
+        "type": "screen_title"
+      },
+      {
+        "line": 53,
+        "text": "Join AP Matrimony",
+        "context": "Page heading",
+        "type": "page_title"
+      },
+      {
+        "line": 62,
+        "text": "Create your profile and find your perfect match",
+        "context": "Page subtitle",
+        "type": "page_subtitle"
+      },
+      {
+        "line": 69,
+        "text": "I am looking for a",
+        "context": "Form section label",
+        "type": "form_label"
+      },
+      {
+        "line": 107,
+        "text": "Bride",
+        "context": "Looking for option",
+        "type": "option_label"
+      },
+      {
+        "line": 107,
+        "text": "Groom",
+        "context": "Looking for option",
+        "type": "option_label"
+      },
+      {
+        "line": 125,
+        "text": "Full Name",
+        "context": "Form field label",
+        "type": "form_label"
+      },
+      {
+        "line": 140,
+        "text": "Email Address",
+        "context": "Form field label",
+        "type": "form_label"
+      },
+      {
+        "line": 149,
+        "text": "Mobile Number",
+        "context": "Form field label",
+        "type": "form_label"
+      },
+      {
+        "line": 151,
+        "text": "+91 ",
+        "context": "Phone prefix",
+        "type": "form_prefix"
+      },
+      {
+        "line": 159,
+        "text": "Date of Birth",
+        "context": "Form field label",
+        "type": "form_label"
+      },
+      {
+        "line": 161,
+        "text": "DD/MM/YYYY",
+        "context": "Date format hint",
+        "type": "form_hint"
+      },
+      {
+        "line": 168,
+        "text": "Gender",
+        "context": "Form field label",
+        "type": "form_label"
+      },
+      {
+        "line": 172,
+        "text": "Male",
+        "context": "Gender option",
+        "type": "option_label"
+      },
+      {
+        "line": 172,
+        "text": "Female",
+        "context": "Gender option",
+        "type": "option_label"
+      },
+      {
+        "line": 180,
+        "text": "Password",
+        "context": "Form field label",
+        "type": "form_label"
+      },
+      {
+        "line": 184,
+        "text": "Required",
+        "context": "Validation message",
+        "type": "validation_message"
+      },
+      {
+        "line": 195,
+        "text": "Registration successful! Redirecting to OTP...",
+        "context": "Success message",
+        "type": "snackbar_message"
+      },
+      {
+        "line": 203,
+        "text": "Register",
+        "context": "Submit button",
+        "type": "button_label"
+      },
+      {
+        "line": 212,
+        "text": "Already have an account? ",
+        "context": "Login prompt text",
+        "type": "navigation_text"
+      },
+      {
+        "line": 216,
+        "text": "Login",
+        "context": "Login link",
+        "type": "link_label"
+      }
+    ],
+    "lib/auth/otp_screen.dart": [
+      {
+        "line": 73,
+        "text": "Invalid OTP. Use 1234",
+        "context": "Error snackbar message",
+        "type": "snackbar_message"
+      },
+      {
+        "line": 122,
+        "text": "Verification Code",
+        "context": "Screen title",
+        "type": "screen_title"
+      },
+      {
+        "line": 131,
+        "text": "Enter the 4-digit code sent to your\nregistered mobile number",
+        "context": "Instruction text",
+        "type": "instruction_text"
+      },
+      {
+        "line": 141,
+        "text": "Use OTP: 1234",
+        "context": "Demo OTP hint",
+        "type": "demo_hint"
+      },
+      {
+        "line": 215,
+        "text": "Verify OTP",
+        "context": "Submit button",
+        "type": "button_label"
+      },
+      {
+        "line": 224,
+        "text": "Didn't receive code? ",
+        "context": "Resend prompt text",
+        "type": "navigation_text"
+      },
+      {
+        "line": 231,
+        "text": "OTP Resent: 1234",
+        "context": "Resend confirmation message",
+        "type": "snackbar_message"
+      },
+      {
+        "line": 234,
+        "text": "Resend",
+        "context": "Resend button",
+        "type": "button_label"
+      }
+    ],
+    "lib/user/home_screen.dart": [
+      {
+        "line": 171,
+        "text": "Interest sent to ${p.name}",
+        "context": "Interest sent confirmation message",
+        "type": "snackbar_message"
+      },
+      {
+        "line": 219,
+        "text": "No matches yet",
+        "context": "Empty state message",
+        "type": "empty_state_message"
+      },
+      {
+        "line": 236,
+        "text": "Your profile is",
+        "context": "Profile completion card label",
+        "type": "label"
+      },
+      {
+        "line": 245,
+        "text": "complete",
+        "context": "Profile completion status",
+        "type": "status_text"
+      },
+      {
+        "line": 261,
+        "text": "Complete",
+        "context": "Profile completion button",
+        "type": "button_label"
+      },
+      {
+        "line": 290,
+        "text": "Recently Joined",
+        "context": "Section title",
+        "type": "section_title"
+      },
+      {
+        "line": 298,
+        "text": "New profiles on the platform",
+        "context": "Section subtitle",
+        "type": "section_subtitle"
+      },
+      {
+        "line": 311,
+        "text": "View All",
+        "context": "View all button",
+        "type": "button_label"
+      }
+    ],
+    "lib/user/chat_screen.dart": [
+      {
+        "line": 120,
+        "text": "ID verified",
+        "context": "Verification badge text",
+        "type": "badge_label"
+      },
+      {
+        "line": 139,
+        "text": "Paid Member",
+        "context": "Membership badge text",
+        "type": "badge_label"
+      },
+      {
+        "line": 160,
+        "text": "Type your message...",
+        "context": "Message input placeholder",
+        "type": "form_hint"
+      },
+      {
+        "line": 193,
+        "text": "You",
+        "context": "Sender label for own messages",
+        "type": "label"
+      },
+      {
+        "line": 301,
+        "text": "Today",
+        "context": "Date separator text",
+        "type": "date_label"
+      },
+      {
+        "line": 313,
+        "text": "Yesterday",
+        "context": "Date separator text",
+        "type": "date_label"
+      }
+    ],
+    "lib/user/search_screen.dart": [
+      {
+        "line": 57,
+        "text": "Search",
+        "context": "AppBar title",
+        "type": "screen_title"
+      },
+      {
+        "line": 106,
+        "text": "Nearby Profiles",
+        "context": "List tile title",
+        "type": "section_title"
+      },
+      {
+        "line": 107,
+        "text": "Matches near your location",
+        "context": "List tile subtitle",
+        "type": "section_subtitle"
+      },
+      {
+        "line": 123,
+        "text": "Advanced Filters",
+        "context": "Filter chip label",
+        "type": "button_label"
+      },
+      {
+        "line": 133,
+        "text": "No profiles found matching your filters",
+        "context": "Empty state message",
+        "type": "empty_state_message"
+      },
+      {
+        "line": 146,
+        "text": "View More",
+        "context": "View more button",
+        "type": "button_label"
+      },
+      {
+        "line": 208,
+        "text": "Photo Verified",
+        "context": "Verification badge",
+        "type": "badge_label"
+      },
+      {
+        "line": 284,
+        "text": "Basic Filters",
+        "context": "Filter section title",
+        "type": "section_title"
+      },
+      {
+        "line": 292,
+        "text": "Age Range",
+        "context": "Filter label",
+        "type": "form_label"
+      },
+      {
+        "line": 312,
+        "text": "Searching...",
+        "context": "Search progress message",
+        "type": "snackbar_message"
+      },
+      {
+        "line": 315,
+        "text": "Search",
+        "context": "Search button",
+        "type": "button_label"
+      },
+      {
+        "line": 336,
+        "text": "Advanced Filters",
+        "context": "Advanced filter section title",
+        "type": "section_title"
+      },
+      {
+        "line": 345,
+        "text": "Religion, Caste, Location, etc.",
+        "context": "Advanced filter description",
+        "type": "description_text"
+      }
+    ],
+    "lib/user/subscription_screen.dart": [
+      {
+        "line": 60,
+        "text": "Subscription Plans",
+        "context": "AppBar title",
+        "type": "screen_title"
+      },
+      {
+        "line": 99,
+        "text": "Current Plan",
+        "context": "Section title",
+        "type": "section_title"
+      },
+      {
+        "line": 104,
+        "text": "You are currently on the Free plan. Upgrade to unlock premium features!",
+        "context": "Free plan message",
+        "type": "message_text"
+      },
+      {
+        "line": 156,
+        "text": "Available Unlocks",
+        "context": "Stats label",
+        "type": "label"
+      },
+      {
+        "line": 174,
+        "text": "Pay Per Profile",
+        "context": "Section title",
+        "type": "section_title"
+      },
+      {
+        "line": 179,
+        "text": "Unlock individual profiles without a subscription",
+        "context": "Section description",
+        "type": "description_text"
+      },
+      {
+        "line": 202,
+        "text": "Buy",
+        "context": "Buy button prefix",
+        "type": "button_prefix"
+      },
+      {
+        "line": 280,
+        "text": "Active",
+        "context": "Active plan badge",
+        "type": "badge_label"
+      },
+      {
+        "line": 313,
+        "text": "Feature Comparison",
+        "context": "Comparison table title",
+        "type": "section_title"
+      },
+      {
+        "line": 335,
+        "text": "Feature",
+        "context": "Table header",
+        "type": "table_header"
+      },
+      {
+        "line": 340,
+        "text": "Silver",
+        "context": "Plan name header",
+        "type": "table_header"
+      },
+      {
+        "line": 346,
+        "text": "Gold",
+        "context": "Plan name header",
+        "type": "table_header"
+      },
+      {
+        "line": 352,
+        "text": "Diamond",
+        "context": "Plan name header",
+        "type": "table_header"
+      },
+      {
+        "line": 396,
+        "text": "Subscribe to ${plan.name}",
+        "context": "Dialog title",
+        "type": "dialog_title"
+      },
+      {
+        "line": 406,
+        "text": "Select Payment Method:",
+        "context": "Payment method label",
+        "type": "label"
+      },
+      {
+        "line": 425,
+        "text": "Cancel",
+        "context": "Cancel button",
+        "type": "button_label"
+      },
+      {
+        "line": 434,
+        "text": "Subscribed to ${plan.name} successfully!",
+        "context": "Success message",
+        "type": "snackbar_message"
+      },
+      {
+        "line": 439,
+        "text": "Pay Now",
+        "context": "Payment button",
+        "type": "button_label"
+      },
+      {
+        "line": 451,
+        "text": "Buy ${bundle.unlockCount} Unlocks",
+        "context": "Dialog title",
+        "type": "dialog_title"
+      },
+      {
+        "line": 452,
+        "text": "Pay ₹${bundle.price} to get ${bundle.unlockCount} profile unlocks.",
+        "context": "Dialog message",
+        "type": "dialog_message"
+      },
+      {
+        "line": 465,
+        "text": "${bundle.unlockCount} unlocks purchased!",
+        "context": "Success message",
+        "type": "snackbar_message"
+      },
+      {
+        "line": 471,
+        "text": "Pay Now",
+        "context": "Payment button",
+        "type": "button_label"
+      }
+    ],
+    "lib/user/profile_creation_screen.dart": [
+      {
+        "line": 60,
+        "text": "Step ${_currentStep + 1}: ${_stepTitles[_currentStep]}",
+        "context": "Step indicator text",
+        "type": "progress_label"
+      },
+      {
+        "line": 127,
+        "text": "Previous",
+        "context": "Previous button",
+        "type": "button_label"
+      },
+      {
+        "line": 139,
+        "text": "Profile saved successfully!",
+        "context": "Save confirmation message",
+        "type": "snackbar_message"
+      },
+      {
+        "line": 146,
+        "text": "Next",
+        "context": "Next button",
+        "type": "button_label"
+      },
+      {
+        "line": 146,
+        "text": "Finish",
+        "context": "Finish button (last step)",
+        "type": "button_label"
+      },
+      {
+        "line": 464,
+        "text": "Basic Details",
+        "context": "Step 1 title",
+        "type": "step_title"
+      },
+      {
+        "line": 469,
+        "text": "Tell us about yourself",
+        "context": "Step 1 subtitle",
+        "type": "step_subtitle"
+      },
+      {
+        "line": 517,
+        "text": "Photo picker (mock)",
+        "context": "Photo picker mock message",
+        "type": "snackbar_message"
+      },
+      {
+        "line": 532,
+        "text": "Add Photo",
+        "context": "Add photo button",
+        "type": "button_label"
+      },
+      {
+        "line": 549,
+        "text": "Education & Career",
+        "context": "Step 2 title",
+        "type": "step_title"
+      }
+    ],
+    "lib/user/profile_screen.dart": [
+      {
+        "line": 82,
+        "text": "Verified",
+        "context": "Verified badge",
+        "type": "badge_label"
+      },
+      {
+        "line": 91,
+        "text": "Premium Member",
+        "context": "Premium badge",
+        "type": "badge_label"
+      },
+      {
+        "line": 95,
+        "text": "Free Member",
+        "context": "Free member badge",
+        "type": "badge_label"
+      },
+      {
+        "line": 110,
+        "text": "Upgrade to Premium",
+        "context": "Upgrade button chip",
+        "type": "button_label"
+      }
+    ],
+    "lib/user/notifications_screen.dart": [
+      {
+        "line": 37,
+        "text": "Notifications",
+        "context": "AppBar title",
+        "type": "screen_title"
+      },
+      {
+        "line": 47,
+        "text": "Mark all read",
+        "context": "Mark all read button",
+        "type": "button_label"
+      },
+      {
+        "line": 59,
+        "text": "No notifications yet",
+        "context": "Empty state message",
+        "type": "empty_state_message"
+      }
+    ],
+    "lib/user/matches_screen.dart": [
+      {
+        "line": 66,
+        "text": "Your Daily Matches",
+        "context": "Section title",
+        "type": "section_title"
+      },
+      {
+        "line": 85,
+        "text": "PRIME",
+        "context": "Prime badge",
+        "type": "badge_label"
+      },
+      {
+        "line": 124,
+        "text": "NEW",
+        "context": "New badge",
+        "type": "badge_label"
+      },
+      {
+        "line": 130,
+        "text": "View All Matches",
+        "context": "View all button",
+        "type": "button_label"
+      },
+      {
+        "line": 229,
+        "text": "Interest sent to ${p.name}",
+        "context": "Interest sent confirmation",
+        "type": "snackbar_message"
+      },
+      {
+        "line": 266,
+        "text": "No matches available at the moment",
+        "context": "Empty state message",
+        "type": "empty_state_message"
+      },
+      {
+        "line": 301,
+        "text": "Sort By",
+        "context": "Sort dialog title",
+        "type": "dialog_title"
+      }
+    ],
+    "lib/user/match_detail_screen.dart": [
+      {
+        "line": 73,
+        "text": "Photo Verified",
+        "context": "Verification badge",
+        "type": "badge_label"
+      },
+      {
+        "line": 117,
+        "text": "View Horoscope",
+        "context": "Horoscope button",
+        "type": "button_label"
+      },
+      {
+        "line": 193,
+        "text": "Don't Show",
+        "context": "Don't show button",
+        "type": "button_label"
+      },
+      {
+        "line": 203,
+        "text": "Interest sent successfully!",
+        "context": "Interest sent message",
+        "type": "snackbar_message"
+      },
+      {
+        "line": 210,
+        "text": "Send Interest",
+        "context": "Send interest button",
+        "type": "button_label"
+      },
+      {
+        "line": 231,
+        "text": "Contact unlocked!",
+        "context": "Contact unlock message",
+        "type": "snackbar_message"
+      },
+      {
+        "line": 321,
+        "text": "Check Horoscope Compatibility",
+        "context": "Horoscope compatibility button",
+        "type": "button_label"
+      },
+      {
+        "line": 347,
+        "text": "Profile reported.",
+        "context": "Report confirmation message",
+        "type": "snackbar_message"
+      },
+      {
+        "line": 352,
+        "text": "Report this Profile",
+        "context": "Report profile button",
+        "type": "button_label"
+      },
+      {
+        "line": 486,
+        "text": "Upgrade to View",
+        "context": "Upgrade button",
+        "type": "button_label"
+      },
+      {
+        "line": 492,
+        "text": "Unlock (1)",
+        "context": "Unlock button with count",
+        "type": "button_label"
+      }
+    ],
+    "lib/user/interest_management_screen.dart": [
+      {
+        "line": 58,
+        "text": "Interest Management",
+        "context": "AppBar title",
+        "type": "screen_title"
+      },
+      {
+        "line": 127,
+        "text": "No interests found",
+        "context": "Empty state message",
+        "type": "empty_state_message"
+      },
+      {
+        "line": 233,
+        "text": "Accept",
+        "context": "Accept interest button",
+        "type": "button_label"
+      },
+      {
+        "line": 247,
+        "text": "Chat",
+        "context": "Chat button chip",
+        "type": "button_label"
+      },
+      {
+        "line": 262,
+        "text": "Decline",
+        "context": "Decline interest button",
+        "type": "button_label"
+      }
+    ],
+    "lib/user/chat_list_screen.dart": [
+      {
+        "line": 34,
+        "text": "Chat",
+        "context": "AppBar title",
+        "type": "screen_title"
+      },
+      {
+        "line": 51,
+        "text": "No Conversations Yet",
+        "context": "Empty state title",
+        "type": "empty_state_message"
+      },
+      {
+        "line": 57,
+        "text": "Start chatting with your matches",
+        "context": "Empty state subtitle",
+        "type": "empty_state_message"
+      }
+    ],
+    "lib/user/horoscope_screen.dart": [
+      {
+        "line": 57,
+        "text": "Horoscope Matching",
+        "context": "AppBar title",
+        "type": "screen_title"
+      },
+      {
+        "line": 118,
+        "text": "Check Compatibility",
+        "context": "Check compatibility button",
+        "type": "button_label"
+      },
+      {
+        "line": 189,
+        "text": "Compatibility Score",
+        "context": "Results section title",
+        "type": "section_title"
+      },
+      {
+        "line": 227,
+        "text": "Excellent Match!",
+        "context": "High compatibility message",
+        "type": "message_text"
+      },
+      {
+        "line": 269,
+        "text": "10 Porutham Details",
+        "context": "Detailed results title",
+        "type": "section_title"
+      },
+      {
+        "line": 294,
+        "text": "Summary",
+        "context": "Summary section label",
+        "type": "section_title"
+      },
+      {
+        "line": 317,
+        "text": "Check Another",
+        "context": "Check another button",
+        "type": "button_label"
+      },
+      {
+        "line": 325,
+        "text": "Report downloaded (mock)",
+        "context": "Download mock message",
+        "type": "snackbar_message"
+      },
+      {
+        "line": 329,
+        "text": "Download",
+        "context": "Download report button chip",
+        "type": "button_label"
+      }
+    ],
+    "lib/admin/admin_shell.dart": [
+      {
+        "line": 150,
+        "text": "Logout",
+        "context": "Logout menu item",
+        "type": "menu_item"
+      },
+      {
+        "line": 214,
+        "text": "Matrimony Admin",
+        "context": "Drawer header title",
+        "type": "app_title"
+      },
+      {
+        "line": 254,
+        "text": "Logout",
+        "context": "Logout drawer item",
+        "type": "menu_item"
+      }
+    ],
+    "lib/admin/wallet_management_screen.dart": [
+      {
+        "line": 15,
+        "text": "Wallet Management",
+        "context": "Screen title",
+        "type": "screen_title"
+      },
+      {
+        "line": 32,
+        "text": "Pending Withdrawal Requests",
+        "context": "Section title",
+        "type": "section_title"
+      },
+      {
+        "line": 70,
+        "text": "Request approved for ${w['name']}",
+        "context": "Approval confirmation",
+        "type": "snackbar_message"
+      },
+      {
+        "line": 83,
+        "text": "Request rejected",
+        "context": "Rejection confirmation",
+        "type": "snackbar_message"
+      },
+      {
+        "line": 99,
+        "text": "Recent Payouts",
+        "context": "Section title",
+        "type": "section_title"
+      }
+    ],
+    "lib/admin/user_management_screen.dart": [
+      {
+        "line": 41,
+        "text": "User Management",
+        "context": "Screen title",
+        "type": "screen_title"
+      },
+      {
+        "line": 71,
+        "text": "${filtered.length} users found",
+        "context": "User count label",
+        "type": "label"
+      },
+      {
+        "line": 123,
+        "text": "Verified",
+        "context": "Verified badge",
+        "type": "badge_label"
+      },
+      {
+        "line": 123,
+        "text": "Not Verified",
+        "context": "Not verified badge",
+        "type": "badge_label"
+      },
+      {
+        "line": 134,
+        "text": "View Profile",
+        "context": "View profile button",
+        "type": "button_label"
+      }
+    ],
+    "lib/admin/subscription_management_screen.dart": [
+      {
+        "line": 17,
+        "text": "Subscription Management",
+        "context": "Screen title",
+        "type": "screen_title"
+      },
+      {
+        "line": 41,
+        "text": "Active Plans",
+        "context": "Section title",
+        "type": "section_title"
+      },
+      {
+        "line": 70,
+        "text": "Popular",
+        "context": "Popular plan badge",
+        "type": "badge_label"
+      },
+      {
+        "line": 91,
+        "text": "${245 + plans.indexOf(plan) * 120} users",
+        "context": "User count label",
+        "type": "label"
+      },
+      {
+        "line": 94,
+        "text": "Active",
+        "context": "Active status badge",
+        "type": "badge_label"
+      },
+      {
+        "line": 111,
+        "text": "Recent Subscriptions",
+        "context": "Section title",
+        "type": "section_title"
+      },
+      {
+        "line": 162,
+        "text": "Edit $planName Plan",
+        "context": "Dialog title",
+        "type": "dialog_title"
+      },
+      {
+        "line": 181,
+        "text": "Cancel",
+        "context": "Cancel button",
+        "type": "button_label"
+      },
+      {
+        "line": 187,
+        "text": "$planName plan updated!",
+        "context": "Update confirmation",
+        "type": "snackbar_message"
+      },
+      {
+        "line": 191,
+        "text": "Save",
+        "context": "Save button",
+        "type": "button_label"
+      }
+    ],
+    "lib/admin/reports_screen.dart": [
+      {
+        "line": 15,
+        "text": "Reports & Analytics",
+        "context": "Screen title",
+        "type": "screen_title"
+      },
+      {
+        "line": 49,
+        "text": "User Registrations",
+        "context": "Chart title",
+        "type": "section_title"
+      },
+      {
+        "line": 105,
+        "text": "Top Locations",
+        "context": "Section title",
+        "type": "section_title"
+      },
+      {
+        "line": 152,
+        "text": "Download Reports",
+        "context": "Section title",
+        "type": "section_title"
+      },
+      {
+        "line": 225,
+        "text": "Gender Distribution",
+        "context": "Chart title",
+        "type": "section_title"
+      },
+      {
+        "line": 271,
+        "text": "Age Distribution",
+        "context": "Chart title",
+        "type": "section_title"
+      }
+    ],
+    "lib/admin/profile_approvals_screen.dart": [
+      {
+        "line": 42,
+        "text": "Profile Approvals",
+        "context": "Screen title",
+        "type": "screen_title"
+      },
+      {
+        "line": 46,
+        "text": "Review and approve new profiles",
+        "context": "Screen subtitle",
+        "type": "subtitle"
+      },
+      {
+        "line": 66,
+        "text": "No rejected profiles",
+        "context": "Empty state message",
+        "type": "empty_state_message"
+      },
+      {
+        "line": 133,
+        "text": "${p.name} rejected",
+        "context": "Rejection confirmation",
+        "type": "snackbar_message"
+      },
+      {
+        "line": 138,
+        "text": "Reject",
+        "context": "Reject button",
+        "type": "button_label"
+      },
+      {
+        "line": 150,
+        "text": "${p.name} approved!",
+        "context": "Approval confirmation",
+        "type": "snackbar_message"
+      },
+      {
+        "line": 155,
+        "text": "Approve",
+        "context": "Approve button",
+        "type": "button_label"
+      }
+    ],
+    "lib/admin/pay_per_profile_screen.dart": [
+      {
+        "line": 21,
+        "text": "Pay Per Profile Settings",
+        "context": "Screen title",
+        "type": "screen_title"
+      },
+      {
+        "line": 27,
+        "text": "Add Bundle",
+        "context": "Add bundle button chip",
+        "type": "button_label"
+      },
+      {
+        "line": 46,
+        "text": "Active Bundles",
+        "context": "Section title",
+        "type": "section_title"
+      },
+      {
+        "line": 105,
+        "text": "Edit",
+        "context": "Edit menu item",
+        "type": "menu_item"
+      },
+      {
+        "line": 108,
+        "text": "Delete",
+        "context": "Delete menu item",
+        "type": "menu_item"
+      },
+      {
+        "line": 118,
+        "text": "Recent Purchases",
+        "context": "Section title",
+        "type": "section_title"
+      },
+      {
+        "line": 171,
+        "text": "Add New Bundle",
+        "context": "Dialog title",
+        "type": "dialog_title"
+      },
+      {
+        "line": 189,
+        "text": "Cancel",
+        "context": "Cancel button",
+        "type": "button_label"
+      },
+      {
+        "line": 195,
+        "text": "Bundle added!",
+        "context": "Addition confirmation",
+        "type": "snackbar_message"
+      },
+      {
+        "line": 199,
+        "text": "Add",
+        "context": "Add button",
+        "type": "button_label"
+      }
+    ],
+    "lib/admin/mediator_management_screen.dart": [
+      {
+        "line": 36,
+        "text": "Mediator Management",
+        "context": "Screen title",
+        "type": "screen_title"
+      },
+      {
+        "line": 42,
+        "text": "Add Mediator",
+        "context": "Add mediator button chip",
+        "type": "button_label"
+      },
+      {
+        "line": 145,
+        "text": "Edit",
+        "context": "Edit menu item",
+        "type": "menu_item"
+      },
+      {
+        "line": 148,
+        "text": "Toggle Status",
+        "context": "Toggle status menu item",
+        "type": "menu_item"
+      },
+      {
+        "line": 151,
+        "text": "Delete",
+        "context": "Delete menu item",
+        "type": "menu_item"
+      },
+      {
+        "line": 223,
+        "text": "Add New Mediator",
+        "context": "Dialog title",
+        "type": "dialog_title"
+      },
+      {
+        "line": 239,
+        "text": "Cancel",
+        "context": "Cancel button",
+        "type": "button_label"
+      },
+      {
+        "line": 245,
+        "text": "Mediator added!",
+        "context": "Addition confirmation",
+        "type": "snackbar_message"
+      },
+      {
+        "line": 249,
+        "text": "Add",
+        "context": "Add button",
+        "type": "button_label"
+      }
+    ],
+    "lib/admin/notification_broadcast_screen.dart": [
+      {
+        "line": 25,
+        "text": "Notification Broadcast",
+        "context": "Screen title",
+        "type": "screen_title"
+      },
+      {
+        "line": 36,
+        "text": "Compose Notification",
+        "context": "Section title",
+        "type": "section_title"
+      },
+      {
+        "line": 53,
+        "text": "Target Audience",
+        "context": "Section title",
+        "type": "section_title"
+      },
+      {
+        "line": 60,
+        "text": "All Users",
+        "context": "Audience filter chip",
+        "type": "chip_label"
+      },
+      {
+        "line": 66,
+        "text": "Premium",
+        "context": "Audience filter chip",
+        "type": "chip_label"
+      },
+      {
+        "line": 72,
+        "text": "Free Users",
+        "context": "Audience filter chip",
+        "type": "chip_label"
+      },
+      {
+        "line": 78,
+        "text": "Mediators",
+        "context": "Audience filter chip",
+        "type": "chip_label"
+      },
+      {
+        "line": 88,
+        "text": "Notification Type",
+        "context": "Section title",
+        "type": "section_title"
+      },
+      {
+        "line": 95,
+        "text": "Push",
+        "context": "Notification type chip",
+        "type": "chip_label"
+      },
+      {
+        "line": 101,
+        "text": "In-App",
+        "context": "Notification type chip",
+        "type": "chip_label"
+      },
+      {
+        "line": 107,
+        "text": "Email",
+        "context": "Notification type chip",
+        "type": "chip_label"
+      },
+      {
+        "line": 113,
+        "text": "SMS",
+        "context": "Notification type chip",
+        "type": "chip_label"
+      },
+      {
+        "line": 129,
+        "text": "Scheduled for later",
+        "context": "Schedule confirmation",
+        "type": "snackbar_message"
+      },
+      {
+        "line": 132,
+        "text": "Schedule",
+        "context": "Schedule button",
+        "type": "button_label"
+      },
+      {
+        "line": 142,
+        "text": "Notification sent to all users!",
+        "context": "Send confirmation",
+        "type": "snackbar_message"
+      },
+      {
+        "line": 147,
+        "text": "Send Now",
+        "context": "Send button",
+        "type": "button_label"
+      },
+      {
+        "line": 159,
+        "text": "Recent Broadcasts",
+        "context": "Section title",
+        "type": "section_title"
+      },
+      {
+        "line": 194,
+        "text": "Sent",
+        "context": "Sent status badge",
+        "type": "badge_label"
+      }
+    ],
+    "lib/admin/horoscope_settings_screen.dart": [
+      {
+        "line": 26,
+        "text": "Horoscope Settings",
+        "context": "Screen title",
+        "type": "screen_title"
+      },
+      {
+        "line": 37,
+        "text": "Feature Configuration",
+        "context": "Section title",
+        "type": "section_title"
+      },
+      {
+        "line": 42,
+        "text": "Enable Horoscope Matching",
+        "context": "Switch label",
+        "type": "form_label"
+      },
+      {
+        "line": 43,
+        "text": "Allow users to check horoscope compatibility",
+        "context": "Switch subtitle",
+        "type": "description_text"
+      },
+      {
+        "line": 51,
+        "text": "Auto Horoscope Matching",
+        "context": "Switch label",
+        "type": "form_label"
+      },
+      {
+        "line": 52,
+        "text": "Automatically calculate compatibility scores",
+        "context": "Switch subtitle",
+        "type": "description_text"
+      },
+      {
+        "line": 60,
+        "text": "Show Dosham Warning",
+        "context": "Switch label",
+        "type": "form_label"
+      },
+      {
+        "line": 62,
+        "text": "Display dosham status on profiles",
+        "context": "Switch subtitle",
+        "type": "description_text"
+      },
+      {
+        "line": 81,
+        "text": "Minimum Porutham Score",
+        "context": "Slider label",
+        "type": "form_label"
+      },
+      {
+        "line": 85,
+        "text": "Minimum score required for good match",
+        "context": "Slider description",
+        "type": "description_text"
+      },
+      {
+        "line": 122,
+        "text": "Compatibility Labels",
+        "context": "Section title",
+        "type": "section_title"
+      },
+      {
+        "line": 143,
+        "text": "10 Porutham Configuration",
+        "context": "Section title",
+        "type": "section_title"
+      },
+      {
+        "line": 160,
+        "text": "Horoscope settings saved!",
+        "context": "Save confirmation",
+        "type": "snackbar_message"
+      },
+      {
+        "line": 165,
+        "text": "Save Settings",
+        "context": "Save button",
+        "type": "button_label"
+      }
+    ],
+    "lib/admin/commission_settings_screen.dart": [
+      {
+        "line": 25,
+        "text": "Commission Settings",
+        "context": "Screen title",
+        "type": "screen_title"
+      },
+      {
+        "line": 35,
+        "text": "Default Commission Rate",
+        "context": "Section title",
+        "type": "section_title"
+      },
+      {
+        "line": 38,
+        "text": "Applied to all standard mediator accounts",
+        "context": "Description text",
+        "type": "description_text"
+      },
+      {
+        "line": 72,
+        "text": "Premium Mediator Rate",
+        "context": "Section title",
+        "type": "section_title"
+      },
+      {
+        "line": 75,
+        "text": "Higher rate for top-performing mediators",
+        "context": "Description text",
+        "type": "description_text"
+      },
+      {
+        "line": 109,
+        "text": "Minimum Payout Amount",
+        "context": "Section title",
+        "type": "section_title"
+      },
+      {
+        "line": 142,
+        "text": "Commission Structure",
+        "context": "Section title",
+        "type": "section_title"
+      },
+      {
+        "line": 161,
+        "text": "Settings saved!",
+        "context": "Save confirmation",
+        "type": "snackbar_message"
+      },
+      {
+        "line": 166,
+        "text": "Save Settings",
+        "context": "Save button",
+        "type": "button_label"
+      }
+    ],
+    "lib/admin/cms_screen.dart": [
+      {
+        "line": 38,
+        "text": "Content Management",
+        "context": "Screen title",
+        "type": "screen_title"
+      },
+      {
+        "line": 44,
+        "text": "Add Page",
+        "context": "Add page button chip",
+        "type": "button_label"
+      },
+      {
+        "line": 274,
+        "text": "Add New Page",
+        "context": "Dialog title",
+        "type": "dialog_title"
+      },
+      {
+        "line": 289,
+        "text": "Cancel",
+        "context": "Cancel button",
+        "type": "button_label"
+      },
+      {
+        "line": 295,
+        "text": "Page created!",
+        "context": "Creation confirmation",
+        "type": "snackbar_message"
+      },
+      {
+        "line": 299,
+        "text": "Create",
+        "context": "Create button",
+        "type": "button_label"
+      }
+    ],
+    "lib/admin/banner_management_screen.dart": [
+      {
+        "line": 18,
+        "text": "Banner Management",
+        "context": "Screen title",
+        "type": "screen_title"
+      },
+      {
+        "line": 24,
+        "text": "Add Banner",
+        "context": "Add banner button chip",
+        "type": "button_label"
+      },
+      {
+        "line": 109,
+        "text": "Add New Banner",
+        "context": "Dialog title",
+        "type": "dialog_title"
+      },
+      {
+        "line": 131,
+        "text": "Upload Image",
+        "context": "Upload button chip",
+        "type": "button_label"
+      },
+      {
+        "line": 138,
+        "text": "Cancel",
+        "context": "Cancel button",
+        "type": "button_label"
+      },
+      {
+        "line": 144,
+        "text": "Banner added!",
+        "context": "Addition confirmation",
+        "type": "snackbar_message"
+      },
+      {
+        "line": 148,
+        "text": "Add",
+        "context": "Add button",
+        "type": "button_label"
+      }
+    ],
+    "lib/admin/admin_dashboard.dart": [
+      {
+        "line": 20,
+        "text": "Dashboard",
+        "context": "Screen title",
+        "type": "screen_title"
+      },
+      {
+        "line": 25,
+        "text": "Welcome back, Admin",
+        "context": "Welcome message",
+        "type": "greeting_text"
+      },
+      {
+        "line": 89,
+        "text": "Revenue Overview",
+        "context": "Chart title",
+        "type": "section_title"
+      },
+      {
+        "line": 145,
+        "text": "Success Stories",
+        "context": "Section title",
+        "type": "section_title"
+      },
+      {
+        "line": 149,
+        "text": "Recent wedding celebrations",
+        "context": "Section subtitle",
+        "type": "section_subtitle"
+      }
+    ],
+    "lib/mediator/wallet_screen.dart": [
+      {
+        "line": 32,
+        "text": "Wallet",
+        "context": "AppBar title",
+        "type": "screen_title"
+      },
+      {
+        "line": 54,
+        "text": "Wallet Balance",
+        "context": "Balance card title",
+        "type": "label"
+      },
+      {
+        "line": 57,
+        "text": "Available for withdrawal",
+        "context": "Balance card subtitle",
+        "type": "label"
+      },
+      {
+        "line": 73,
+        "text": "Withdraw",
+        "context": "Withdraw button chip",
+        "type": "button_label"
+      },
+      {
+        "line": 86,
+        "text": "History",
+        "context": "History button chip",
+        "type": "button_label"
+      },
+      {
+        "line": 113,
+        "text": "Recent Transactions",
+        "context": "Section title",
+        "type": "section_title"
+      },
+      {
+        "line": 197,
+        "text": "Withdraw Funds",
+        "context": "Dialog title",
+        "type": "dialog_title"
+      },
+      {
+        "line": 201,
+        "text": "Available: ₹8,500",
+        "context": "Available balance label",
+        "type": "label"
+      },
+      {
+        "line": 228,
+        "text": "Cancel",
+        "context": "Cancel button",
+        "type": "button_label"
+      },
+      {
+        "line": 235,
+        "text": "Withdrawal request submitted successfully!",
+        "context": "Withdrawal confirmation",
+        "type": "snackbar_message"
+      },
+      {
+        "line": 241,
+        "text": "Withdraw",
+        "context": "Withdraw button",
+        "type": "button_label"
+      }
+    ],
+    "lib/mediator/mediator_dashboard.dart": [
+      {
+        "line": 38,
+        "text": "Mediator Dashboard",
+        "context": "AppBar title",
+        "type": "screen_title"
+      },
+      {
+        "line": 124,
+        "text": "Performance Overview",
+        "context": "Section title",
+        "type": "section_title"
+      },
+      {
+        "line": 146,
+        "text": "Recent Profiles",
+        "context": "Section title",
+        "type": "section_title"
+      },
+      {
+        "line": 151,
+        "text": "View All",
+        "context": "View all button",
+        "type": "button_label"
+      },
+      {
+        "line": 200,
+        "text": "Recent Successful Matches",
+        "context": "Section title",
+        "type": "section_title"
+      }
+    ],
+    "lib/mediator/create_profile_screen.dart": [
+      {
+        "line": 51,
+        "text": "Create Client Profile",
+        "context": "AppBar title",
+        "type": "screen_title"
+      },
+      {
+        "line": 59,
+        "text": "Draft saved",
+        "context": "Draft save confirmation",
+        "type": "snackbar_message"
+      },
+      {
+        "line": 63,
+        "text": "Save Draft",
+        "context": "Save draft button",
+        "type": "button_label"
+      },
+      {
+        "line": 168,
+        "text": "Previous",
+        "context": "Previous button",
+        "type": "button_label"
+      },
+      {
+        "line": 180,
+        "text": "Profile submitted for approval!",
+        "context": "Submit confirmation",
+        "type": "snackbar_message"
+      },
+      {
+        "line": 188,
+        "text": "Next",
+        "context": "Next button",
+        "type": "button_label"
+      },
+      {
+        "line": 188,
+        "text": "Submit",
+        "context": "Submit button (final step)",
+        "type": "button_label"
+      },
+      {
+        "line": 232,
+        "text": "Male",
+        "context": "Gender radio option",
+        "type": "option_label"
+      },
+      {
+        "line": 239,
+        "text": "Female",
+        "context": "Gender radio option",
+        "type": "option_label"
+      },
+      {
+        "line": 404,
+        "text": "Client Photos",
+        "context": "Photos step title",
+        "type": "step_title"
+      },
+      {
+        "line": 425,
+        "text": "Contact Details",
+        "context": "Contact step title",
+        "type": "step_title"
+      }
+    ],
+    "lib/mediator/commission_history_screen.dart": [
+      {
+        "line": 50,
+        "text": "Commission History",
+        "context": "AppBar title",
+        "type": "screen_title"
+      },
+      {
+        "line": 125,
+        "text": "No records found",
+        "context": "Empty state message",
+        "type": "empty_state_message"
+      }
+    ],
+    "lib/widgets/verified_badge.dart": [
+      {
+        "line": 34,
+        "text": "Verified",
+        "context": "Verified badge text (standard)",
+        "type": "badge_label"
+      },
+      {
+        "line": 59,
+        "text": "ID Verified",
+        "context": "Verified badge text (with icon)",
+        "type": "badge_label"
+      }
+    ],
+    "lib/widgets/profile_card.dart": [
+      {
+        "line": 66,
+        "text": "Photo Verified",
+        "context": "Photo verification badge",
+        "type": "badge_label"
+      },
+      {
+        "line": 189,
+        "text": "Don't Show",
+        "context": "Ignore profile button chip",
+        "type": "button_label"
+      },
+      {
+        "line": 201,
+        "text": "Send Interest",
+        "context": "Send interest button chip",
+        "type": "button_label"
+      }
+    ],
+    "lib/widgets/premium_banner.dart": [
+      {
+        "line": 41,
+        "text": "Upgrade to Premium",
+        "context": "Premium banner title",
+        "type": "banner_title"
+      },
+      {
+        "line": 52,
+        "text": "Unlock unlimited messaging, advanced filters, and priority support",
+        "context": "Premium banner description",
+        "type": "banner_description"
+      },
+      {
+        "line": 71,
+        "text": "View Plans",
+        "context": "View plans button",
+        "type": "button_label"
+      }
+    ],
+    "lib/widgets/plan_card.dart": [
+      {
+        "line": 59,
+        "text": "MOST POPULAR",
+        "context": "Popular plan badge",
+        "type": "badge_label"
+      },
+      {
+        "line": 150,
+        "text": "Active",
+        "context": "Active plan label",
+        "type": "badge_label"
+      },
+      {
+        "line": 165,
+        "text": "Subscribe",
+        "context": "Subscribe button",
+        "type": "button_label"
+      }
+    ],
+    "lib/widgets/filter_bottom_sheet.dart": [
+      {
+        "line": 47,
+        "text": "Advanced Filters",
+        "context": "Bottom sheet title",
+        "type": "sheet_title"
+      },
+      {
+        "line": 66,
+        "text": "Reset",
+        "context": "Reset filters button",
+        "type": "button_label"
+      },
+      {
+        "line": 77,
+        "text": "Age Range",
+        "context": "Filter section label",
+        "type": "form_label"
+      },
+      {
+        "line": 141,
+        "text": "Apply Filters",
+        "context": "Apply button",
+        "type": "button_label"
+      }
+    ]
+  },
+  "summary": {
+    "total_strings_by_type": {
+      "button_label": 98,
+      "screen_title": 42,
+      "section_title": 51,
+      "form_label": 38,
+      "badge_label": 27,
+      "snackbar_message": 45,
+      "dialog_title": 12,
+      "message_text": 18,
+      "navigation_text": 8,
+      "link_label": 6,
+      "option_label": 14,
+      "validation_message": 3,
+      "empty_state_message": 15,
+      "demo_data": 8,
+      "app_name": 3,
+      "tagline": 2,
+      "marketing_text": 2,
+      "role_label": 5,
+      "stat_label": 4,
+      "description_text": 12,
+      "other": 38
+    },
+    "priority_areas": [
+      "lib/auth/ - All authentication screens have numerous hardcoded texts",
+      "lib/user/ - User-facing screens with form labels, button texts, messages",
+      "lib/admin/ - Admin panel with section titles, action labels, confirmations",
+      "lib/mediator/ - Mediator portal with dashboard labels and form texts",
+      "lib/widgets/ - Reusable components with hardcoded labels",
+      "lib/core/constants.dart - App-wide constants that should be localized"
+    ],
+    "notes": [
+      "All Text widgets displaying user-visible content need localization",
+      "Button labels, navigation texts, and action labels are critical for UX",
+      "Validation messages, error messages, and success confirmations need translation",
+      "Empty state messages and placeholder texts should be localized",
+      "Section titles, screen headers, and dialog titles are user-facing",
+      "Badge labels and status indicators need translation support",
+      "Demo credentials and mock data strings can remain hardcoded or be made configurable",
+      "Asset paths and technical keys should NOT be localized"
+    ]
+  }
+}

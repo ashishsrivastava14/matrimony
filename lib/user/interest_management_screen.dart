@@ -4,6 +4,7 @@ import '../core/theme.dart';
 import '../providers/app_state.dart';
 import '../services/mock_data.dart';
 import '../widgets/user_bottom_navigation.dart';
+import '../l10n/app_localizations.dart';
 
 class InterestManagementScreen extends StatefulWidget {
   const InterestManagementScreen({super.key});
@@ -31,6 +32,7 @@ class _InterestManagementScreenState extends State<InterestManagementScreen>
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     final appState = context.watch<AppState>();
     final profiles = MockDataService.getMockProfiles();
 
@@ -55,7 +57,7 @@ class _InterestManagementScreenState extends State<InterestManagementScreen>
           children: [
             Image.asset('assets/icon/app_icon.png', height: 24, width: 24),
             const SizedBox(width: 10),
-            const Text('Interest Management'),
+            Text(l10n.interestManagement),
           ],
         ),
         bottom: TabBar(
@@ -64,14 +66,14 @@ class _InterestManagementScreenState extends State<InterestManagementScreen>
           tabs: [
             Tab(
                 text:
-                    'Received (${appState.interestsReceived.length})'),
-            Tab(text: 'Sent (${appState.interestsSent.length})'),
+                    '${l10n.interestReceived} (${appState.interestsReceived.length})'),
+            Tab(text: '${l10n.interestSent} (${appState.interestsSent.length})'),
             Tab(
                 text:
-                    'Accepted (${appState.interestsAccepted.length})'),
+                    '${l10n.interestAccepted} (${appState.interestsAccepted.length})'),
             Tab(
                 text:
-                    'Declined (${appState.interestsDeclined.length})'),
+                    '${l10n.rejected} (${appState.interestsDeclined.length})'),
           ],
         ),
       ),
@@ -117,6 +119,7 @@ class _InterestManagementScreenState extends State<InterestManagementScreen>
     required String type,
     required AppState appState,
   }) {
+    final l10n = AppLocalizations.of(context)!;
     if (profileIds.isEmpty) {
       return Center(
         child: Column(
@@ -125,7 +128,7 @@ class _InterestManagementScreenState extends State<InterestManagementScreen>
             Icon(_emptyIcon(type), size: 64, color: AppColors.divider),
             const SizedBox(height: 12),
             Text(
-              _emptyMessage(type),
+              _emptyMessage(type, l10n),
               style: const TextStyle(color: AppColors.textSecondary),
             ),
           ],
@@ -210,7 +213,7 @@ class _InterestManagementScreenState extends State<InterestManagementScreen>
                         },
                         icon: const Icon(Icons.check_circle,
                             color: AppColors.success),
-                        tooltip: 'Accept',
+                        tooltip: l10n.acceptInterest,
                       ),
                       IconButton(
                         onPressed: () {
@@ -218,7 +221,7 @@ class _InterestManagementScreenState extends State<InterestManagementScreen>
                         },
                         icon: const Icon(Icons.cancel,
                             color: Colors.red),
-                        tooltip: 'Decline',
+                        tooltip: l10n.declineInterest,
                       ),
                     ],
                   ),
@@ -230,9 +233,9 @@ class _InterestManagementScreenState extends State<InterestManagementScreen>
                       color: AppColors.accent.withValues(alpha: 0.1),
                       borderRadius: BorderRadius.circular(12),
                     ),
-                    child: const Text(
-                      'Pending',
-                      style: TextStyle(
+                    child: Text(
+                      l10n.pending,
+                      style: const TextStyle(
                           color: AppColors.accent,
                           fontSize: 12,
                           fontWeight: FontWeight.w500),
@@ -244,7 +247,7 @@ class _InterestManagementScreenState extends State<InterestManagementScreen>
                       Navigator.pushNamed(context, '/chat');
                     },
                     icon: const Icon(Icons.chat, size: 16),
-                    label: const Text('Chat'),
+                    label: Text(l10n.chat),
                     style: ElevatedButton.styleFrom(
                       padding: const EdgeInsets.symmetric(
                           horizontal: 12, vertical: 8),
@@ -259,9 +262,9 @@ class _InterestManagementScreenState extends State<InterestManagementScreen>
                       color: Colors.red.withValues(alpha: 0.1),
                       borderRadius: BorderRadius.circular(12),
                     ),
-                    child: const Text(
-                      'Declined',
-                      style: TextStyle(
+                    child: Text(
+                      l10n.rejected,
+                      style: const TextStyle(
                           color: Colors.red,
                           fontSize: 12,
                           fontWeight: FontWeight.w500),
@@ -291,18 +294,18 @@ class _InterestManagementScreenState extends State<InterestManagementScreen>
     }
   }
 
-  String _emptyMessage(String type) {
+  String _emptyMessage(String type, dynamic l10n) {
     switch (type) {
       case 'received':
-        return 'No interests received yet';
+        return l10n.noInterestsFound;
       case 'sent':
-        return 'No interests sent yet';
+        return l10n.noInterestsFound;
       case 'accepted':
-        return 'No accepted interests';
+        return l10n.noInterestsFound;
       case 'declined':
-        return 'No declined interests';
+        return l10n.noInterestsFound;
       default:
-        return 'No data';
+        return l10n.noResults;
     }
   }
 }

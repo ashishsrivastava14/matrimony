@@ -14,6 +14,7 @@ import 'reports_screen.dart';
 import 'notification_broadcast_screen.dart';
 import 'horoscope_settings_screen.dart';
 import 'pay_per_profile_screen.dart';
+import '../l10n/app_localizations.dart';
 
 class AdminShell extends StatefulWidget {
   const AdminShell({super.key});
@@ -76,18 +77,21 @@ class _AdminShellState extends State<AdminShell> {
           Container(
             width: 260,
             color: const Color(0xFF1A1A2E),
-            child: Column(
+            child: Builder(
+              builder: (context) {
+              final l10n = AppLocalizations.of(context)!;
+            return Column(
               children: [
                 // Logo
                 Container(
                   padding: const EdgeInsets.all(20),
-                  child: const Row(
+                  child: Row(
                     children: [
-                      Icon(Icons.favorite, color: AppColors.accent, size: 28),
-                      SizedBox(width: 10),
+                      const Icon(Icons.favorite, color: AppColors.accent, size: 28),
+                      const SizedBox(width: 10),
                       Text(
-                        'Matrimony Admin',
-                        style: TextStyle(
+                        l10n.matrimonyAdmin,
+                        style: const TextStyle(
                           color: Colors.white,
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
@@ -147,8 +151,8 @@ class _AdminShellState extends State<AdminShell> {
                 const Divider(color: Colors.white12, height: 1),
                 ListTile(
                   leading: const Icon(Icons.logout, color: Colors.white54),
-                  title: const Text('Logout',
-                      style: TextStyle(color: Colors.white70, fontSize: 13)),
+                  title: Text(l10n.logout,
+                      style: const TextStyle(color: Colors.white70, fontSize: 13)),
                   onTap: () {
                     Navigator.pushNamedAndRemoveUntil(
                         context, '/role-selection', (_) => false);
@@ -156,7 +160,8 @@ class _AdminShellState extends State<AdminShell> {
                 ),
                 const SizedBox(height: 8),
               ],
-            ),
+            );
+            }),
           ),
 
           // Content
@@ -205,18 +210,21 @@ class _AdminShellState extends State<AdminShell> {
           child: SafeArea(
             child: Column(
               children: [
-                const Padding(
-                  padding: EdgeInsets.all(16),
-                  child: Row(
-                    children: [
-                      Icon(Icons.favorite, color: AppColors.accent),
-                      SizedBox(width: 8),
-                      Text('Matrimony Admin',
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold)),
-                    ],
-                  ),
+                Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: Builder(builder: (ctx) {
+                    final l10n = AppLocalizations.of(ctx)!;
+                    return Row(
+                      children: [
+                        const Icon(Icons.favorite, color: AppColors.accent),
+                        const SizedBox(width: 8),
+                        Text(l10n.matrimonyAdmin,
+                            style: const TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold)),
+                      ],
+                    );
+                  }),
                 ),
                 const Divider(color: Colors.white12),
                 Expanded(
@@ -251,8 +259,11 @@ class _AdminShellState extends State<AdminShell> {
                 ListTile(
                   leading:
                       const Icon(Icons.logout, color: Colors.white54),
-                  title: const Text('Logout',
-                      style: TextStyle(color: Colors.white70)),
+                  title: Builder(builder: (ctx) {
+                    final l10n = AppLocalizations.of(ctx)!;
+                    return Text(l10n.logout,
+                        style: const TextStyle(color: Colors.white70));
+                  }),
                   onTap: () {
                     Navigator.pushNamedAndRemoveUntil(
                         context, '/role-selection', (_) => false);

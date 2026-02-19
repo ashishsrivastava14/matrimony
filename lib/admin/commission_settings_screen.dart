@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../core/theme.dart';
+import '../l10n/app_localizations.dart';
 
 class CommissionSettingsScreen extends StatefulWidget {
   const CommissionSettingsScreen({super.key});
@@ -16,14 +17,15 @@ class _CommissionSettingsScreenState extends State<CommissionSettingsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Scaffold(
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text('Commission Settings',
-                style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
+            Text(l10n.commissionSettings,
+                style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
             const SizedBox(height: 16),
 
             Card(
@@ -32,10 +34,10 @@ class _CommissionSettingsScreenState extends State<CommissionSettingsScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text('Default Commission Rate',
-                        style: TextStyle(fontWeight: FontWeight.bold)),
+                    Text(l10n.defaultCommissionRate,
+                        style: const TextStyle(fontWeight: FontWeight.bold)),
                     const SizedBox(height: 4),
-                    Text('Applied to all standard mediator accounts',
+                    Text(l10n.appliedToAllMediators,
                         style: TextStyle(
                             color: Colors.grey.shade600, fontSize: 13)),
                     const SizedBox(height: 12),
@@ -69,10 +71,10 @@ class _CommissionSettingsScreenState extends State<CommissionSettingsScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text('Premium Mediator Rate',
-                        style: TextStyle(fontWeight: FontWeight.bold)),
+                    Text(l10n.premiumMediatorRate,
+                        style: const TextStyle(fontWeight: FontWeight.bold)),
                     const SizedBox(height: 4),
-                    Text('Higher rate for top-performing mediators',
+                    Text(l10n.higherRateForTopMediators,
                         style: TextStyle(
                             color: Colors.grey.shade600, fontSize: 13)),
                     const SizedBox(height: 12),
@@ -106,8 +108,8 @@ class _CommissionSettingsScreenState extends State<CommissionSettingsScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text('Minimum Payout Amount',
-                        style: TextStyle(fontWeight: FontWeight.bold)),
+                    Text(l10n.minimumPayoutAmount,
+                        style: const TextStyle(fontWeight: FontWeight.bold)),
                     const SizedBox(height: 12),
                     Row(
                       children: [
@@ -139,13 +141,13 @@ class _CommissionSettingsScreenState extends State<CommissionSettingsScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text('Commission Structure',
-                        style: TextStyle(fontWeight: FontWeight.bold)),
+                    Text(l10n.commissionStructure,
+                        style: const TextStyle(fontWeight: FontWeight.bold)),
                     const SizedBox(height: 12),
-                    _structureRow('Per Successful Match', '₹2,000'),
-                    _structureRow('Per Profile Registration', '₹200'),
-                    _structureRow('Subscription Referral', '10%'),
-                    _structureRow('Bonus (10+ matches/month)', '₹5,000'),
+                    _structureRow(l10n.perSuccessfulMatch, '₹2,000'),
+                    _structureRow(l10n.perProfileRegistration, '₹200'),
+                    _structureRow(l10n.subscriptionReferral, '10%'),
+                    _structureRow(l10n.bonusMatchesPerMonth, '₹5,000'),
                   ],
                 ),
               ),
@@ -157,13 +159,13 @@ class _CommissionSettingsScreenState extends State<CommissionSettingsScreen> {
               child: ElevatedButton(
                 onPressed: () {
                   ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                      content: Text('Settings saved!'),
+                    SnackBar(
+                      content: Text(l10n.settingsSaved),
                       backgroundColor: AppColors.success,
                     ),
                   );
                 },
-                child: const Text('Save Settings'),
+                child: Text(l10n.saveSettings),
               ),
             ),
           ],

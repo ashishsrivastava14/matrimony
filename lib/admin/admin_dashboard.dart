@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import '../core/theme.dart';
 import '../widgets/stat_card.dart';
 import '../services/mock_data.dart';
+import '../l10n/app_localizations.dart';
 
 class AdminDashboard extends StatelessWidget {
   const AdminDashboard({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     final profiles = MockDataService.getMockProfiles();
     final stories = MockDataService.getSuccessStories();
 
@@ -17,13 +19,13 @@ class AdminDashboard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
-              'Admin Dashboard',
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            Text(
+              l10n.adminDashboard,
+              style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 4),
             Text(
-              'Welcome back! Here\'s what\'s happening today.',
+              l10n.welcomeBackMessage,
               style: TextStyle(color: Colors.grey.shade600),
             ),
             const SizedBox(height: 20),
@@ -42,30 +44,30 @@ class AdminDashboard extends StatelessWidget {
                 crossAxisSpacing: 12,
                 mainAxisSpacing: 12,
                 childAspectRatio: 2.2,
-                children: const [
+                children: [
                   StatCard(
-                    title: 'Total Users',
+                    title: l10n.totalUsers,
                     value: '12,845',
                     icon: Icons.people,
                     color: AppColors.primary,
                     trend: '+12%',
                   ),
                   StatCard(
-                    title: 'Active Profiles',
+                    title: l10n.activeProfiles,
                     value: '8,432',
                     icon: Icons.person,
                     color: Colors.blue,
                     trend: '+8%',
                   ),
                   StatCard(
-                    title: 'Revenue',
+                    title: l10n.revenue,
                     value: '₹4.5L',
                     icon: Icons.currency_rupee,
                     color: AppColors.success,
                     trend: '+15%',
                   ),
                   StatCard(
-                    title: 'Mediators',
+                    title: l10n.mediators,
                     value: '156',
                     icon: Icons.support_agent,
                     color: Colors.purple,
@@ -86,13 +88,13 @@ class AdminDashboard extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        const Text('Revenue Overview',
-                            style: TextStyle(
+                        Text(l10n.revenueOverview,
+                            style: const TextStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.bold)),
                         DropdownButton<String>(
-                          value: 'This Month',
-                          items: ['This Week', 'This Month', 'This Year']
+                          value: l10n.thisMonth,
+                          items: [l10n.thisWeek, l10n.thisMonth, l10n.thisYear]
                               .map((e) =>
                                   DropdownMenuItem(value: e, child: Text(e)))
                               .toList(),
@@ -119,17 +121,17 @@ class AdminDashboard extends StatelessWidget {
                 return Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Expanded(child: _recentRegistrations(profiles)),
+                    Expanded(child: _recentRegistrations(context, profiles)),
                     const SizedBox(width: 16),
-                    Expanded(child: _recentActivity()),
+                    Expanded(child: _recentActivity(context)),
                   ],
                 );
               }
               return Column(
                 children: [
-                  _recentRegistrations(profiles),
+                  _recentRegistrations(context, profiles),
                   const SizedBox(height: 16),
-                  _recentActivity(),
+                  _recentActivity(context),
                 ],
               );
             }),
@@ -142,8 +144,8 @@ class AdminDashboard extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text('Success Stories',
-                        style: TextStyle(
+                    Text(l10n.successStories,
+                        style: const TextStyle(
                             fontSize: 16, fontWeight: FontWeight.bold)),
                     const SizedBox(height: 12),
                     Text(
@@ -173,7 +175,8 @@ class AdminDashboard extends StatelessWidget {
     );
   }
 
-  Widget _recentRegistrations(List profiles) {
+  Widget _recentRegistrations(BuildContext context, List profiles) {
+    final l10n = AppLocalizations.of(context)!;
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(16),
@@ -183,11 +186,11 @@ class AdminDashboard extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text('Recent Registrations',
-                    style: TextStyle(
+                Text(l10n.recentRegistrations,
+                    style: const TextStyle(
                         fontSize: 16, fontWeight: FontWeight.bold)),
                 TextButton(
-                    onPressed: () {}, child: const Text('View All')),
+                    onPressed: () {}, child: Text(l10n.viewAll)),
               ],
             ),
             const SizedBox(height: 8),
@@ -206,7 +209,7 @@ class AdminDashboard extends StatelessWidget {
                   subtitle: Text('${p.age} yrs · ${p.city}',
                       style: const TextStyle(fontSize: 12)),
                   trailing: Text(
-                    p.isVerified ? 'Verified' : 'Pending',
+                    p.isVerified ? l10n.verified : l10n.pending,
                     style: TextStyle(
                       fontSize: 12,
                       color: p.isVerified
@@ -222,7 +225,8 @@ class AdminDashboard extends StatelessWidget {
     );
   }
 
-  Widget _recentActivity() {
+  Widget _recentActivity(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     final activities = [
       ('New registration: Priya S.', '2 min ago', Icons.person_add),
       ('Payment: Gold Plan - ₹3,999', '15 min ago', Icons.payment),
@@ -238,8 +242,8 @@ class AdminDashboard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text('Recent Activity',
-                style: TextStyle(
+            Text(l10n.recentActivity,
+                style: const TextStyle(
                     fontSize: 16, fontWeight: FontWeight.bold)),
             const SizedBox(height: 8),
             ...activities.map((a) => ListTile(

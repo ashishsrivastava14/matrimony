@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import '../core/theme.dart';
 import '../providers/app_state.dart';
 import '../widgets/profile_card.dart';
+import '../l10n/app_localizations.dart';
 
 /// Matches screen with tabs: All, Newly Joined, filters
 class MatchesScreen extends StatefulWidget {
@@ -31,6 +32,7 @@ class _MatchesScreenState extends State<MatchesScreen>
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Consumer<AppState>(
       builder: (context, state, _) {
         final profiles = state.profiles;
@@ -79,11 +81,11 @@ class _MatchesScreenState extends State<MatchesScreen>
                     color: Colors.white.withValues(alpha: 0.3),
                     borderRadius: BorderRadius.circular(20),
                   ),
-                  child: const Row(
+                  child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Text('PRIME',
-                          style: TextStyle(
+                      Text(l10n.prime,
+                          style: const TextStyle(
                               color: Colors.white,
                               fontSize: 12,
                               fontWeight: FontWeight.bold)),
@@ -106,9 +108,9 @@ class _MatchesScreenState extends State<MatchesScreen>
               unselectedLabelColor: Colors.white70,
               indicatorColor: Colors.white,
               tabs: [
-                const Tab(text: 'All Matches'),
-                Tab(text: 'Newly Joined (${profiles.length})'),
-                const Tab(text: 'More'),
+                Tab(text: l10n.matches),
+                Tab(text: l10n.recentlyJoined),
+                Tab(text: l10n.filter),
               ],
             ),
           ),
@@ -122,14 +124,14 @@ class _MatchesScreenState extends State<MatchesScreen>
                 child: Row(
                   children: [
                     Text(
-                      '${profiles.length} Matches based on your ',
+                      '${profiles.length} ${l10n.matches} ',
                       style: const TextStyle(fontSize: 13),
                     ),
                     GestureDetector(
                       onTap: () {},
-                      child: const Text(
-                        'Partner Preferences',
-                        style: TextStyle(
+                      child: Text(
+                        l10n.partnerPreferences,
+                        style: const TextStyle(
                           fontSize: 13,
                           color: AppColors.primary,
                           fontWeight: FontWeight.w600,
@@ -149,12 +151,12 @@ class _MatchesScreenState extends State<MatchesScreen>
                     children: [
                       _FilterChip(
                         icon: Icons.filter_alt_outlined,
-                        label: 'Filter',
+                        label: l10n.filter,
                         onTap: () {},
                       ),
                       const SizedBox(width: 8),
                       _FilterChip(
-                        label: 'Sort by',
+                        label: l10n.sort,
                         icon: Icons.sort,
                         onTap: () {
                           showModalBottomSheet(
@@ -170,9 +172,9 @@ class _MatchesScreenState extends State<MatchesScreen>
                         },
                       ),
                       const SizedBox(width: 8),
-                      _FilterChip(label: 'Newly Joined', onTap: () {}),
+                      _FilterChip(label: l10n.recentlyJoined, onTap: () {}),
                       const SizedBox(width: 8),
-                      _FilterChip(label: 'Not Seen', onTap: () {}),
+                      _FilterChip(label: l10n.noResults, onTap: () {}),
                     ],
                   ),
                 ),
@@ -226,7 +228,7 @@ class _MatchList extends StatelessWidget {
             state.sendInterest(p.id);
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
-                content: Text('Interest sent to ${p.name}'),
+                content: Text(AppLocalizations.of(context)!.interestSentTo(p.name)),
                 backgroundColor: AppColors.success,
               ),
             );
@@ -285,12 +287,13 @@ class _SortSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     final options = [
-      'Relevance',
-      'Newest First',
-      'Last Active',
-      'Age: Low to High',
-      'Age: High to Low'
+      l10n.search,
+      l10n.recentlyJoined,
+      l10n.lastSeen,
+      l10n.age,
+      l10n.age,
     ];
     return Padding(
       padding: const EdgeInsets.all(16),
@@ -298,8 +301,8 @@ class _SortSheet extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text('Sort By',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+          Text(l10n.sortBy,
+              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
           const SizedBox(height: 12),
           ...options.map((o) => ListTile(
                 title: Text(o),

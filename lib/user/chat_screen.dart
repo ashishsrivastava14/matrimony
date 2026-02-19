@@ -5,6 +5,7 @@ import '../providers/chat_provider.dart';
 import '../models/chat_message.dart';
 import 'package:intl/intl.dart';
 import '../widgets/user_bottom_navigation.dart';
+import '../l10n/app_localizations.dart';
 
 /// Individual chat conversation screen — matches screenshot reference
 class ChatScreen extends StatefulWidget {
@@ -43,6 +44,7 @@ class _ChatScreenState extends State<ChatScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     final conversation =
         ModalRoute.of(context)!.settings.arguments as ChatConversation;
 
@@ -112,13 +114,13 @@ class _ChatScreenState extends State<ChatScreen> {
                 color: Colors.white24,
                 borderRadius: BorderRadius.circular(6),
               ),
-              child: const Row(
+              child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Icon(Icons.verified, size: 12, color: Colors.greenAccent),
-                  SizedBox(width: 3),
-                  Text('ID verified',
-                      style: TextStyle(fontSize: 10, color: Colors.white)),
+                  const Icon(Icons.verified, size: 12, color: Colors.greenAccent),
+                  const SizedBox(width: 3),
+                  Text(l10n.idVerified,
+                      style: const TextStyle(fontSize: 10, color: Colors.white)),
                 ],
               ),
             ),
@@ -130,14 +132,14 @@ class _ChatScreenState extends State<ChatScreen> {
                 color: Colors.white24,
                 borderRadius: BorderRadius.circular(6),
               ),
-              child: const Row(
+              child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Icon(Icons.workspace_premium,
+                  const Icon(Icons.workspace_premium,
                       size: 12, color: Colors.orangeAccent),
-                  SizedBox(width: 3),
-                  Text('Paid Member',
-                      style: TextStyle(fontSize: 10, color: Colors.white)),
+                  const SizedBox(width: 3),
+                  Text(l10n.paidMember,
+                      style: const TextStyle(fontSize: 10, color: Colors.white)),
                 ],
               ),
             ),

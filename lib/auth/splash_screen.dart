@@ -2,6 +2,7 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ap_matrimony/core/theme.dart';
+import '../l10n/app_localizations.dart';
 
 /// Splash screen with rich gradient, floating hearts, and staggered text.
 class SplashScreen extends StatefulWidget {
@@ -125,6 +126,7 @@ class _SplashScreenState extends State<SplashScreen>
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final l10n = AppLocalizations.of(context)!;
 
     return Scaffold(
       body: Stack(
@@ -238,7 +240,7 @@ class _SplashScreenState extends State<SplashScreen>
                     FadeTransition(
                       opacity: _logoFade,
                       child: Text(
-                        'AP Matrimony',
+                        l10n.appName,
                         style: GoogleFonts.playfairDisplay(
                           fontSize: 38,
                           fontWeight: FontWeight.w800,
@@ -262,7 +264,7 @@ class _SplashScreenState extends State<SplashScreen>
                       child: FadeTransition(
                         opacity: _taglineFade,
                         child: Text(
-                          'Biggest Matrimony Service for AP',
+                          l10n.tagline,
                           textAlign: TextAlign.center,
                           style: GoogleFonts.poppins(
                             fontSize: 14,
@@ -303,7 +305,7 @@ class _SplashScreenState extends State<SplashScreen>
                         child: Column(
                           children: [
                             Text(
-                              '"Find Someone Who',
+                              l10n.splashHeadlinePart1,
                               textAlign: TextAlign.center,
                               style: GoogleFonts.poppins(
                                 fontSize: 20,
@@ -321,7 +323,7 @@ class _SplashScreenState extends State<SplashScreen>
                                 ],
                               ).createShader(bounds),
                               child: Text(
-                                'TRULY',
+                                l10n.splashHeadlineHighlight,
                                 textAlign: TextAlign.center,
                                 style: GoogleFonts.playfairDisplay(
                                   fontSize: 52,
@@ -333,7 +335,7 @@ class _SplashScreenState extends State<SplashScreen>
                               ),
                             ),
                             Text(
-                              'Gets You"',
+                              l10n.splashHeadlinePart2,
                               textAlign: TextAlign.center,
                               style: GoogleFonts.dancingScript(
                                 fontSize: 38,
@@ -373,7 +375,7 @@ class _SplashScreenState extends State<SplashScreen>
                             ),
                             const SizedBox(width: 8),
                             Text(
-                              '1 Crore+ Happy Customers',
+                              l10n.oneCrorePlusHappyCustomers,
                               style: GoogleFonts.poppins(
                                 fontSize: 13,
                                 fontWeight: FontWeight.w500,

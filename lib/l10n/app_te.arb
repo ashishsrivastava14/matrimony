@@ -1,0 +1,969 @@
+{
+  "@@locale": "te",
+  "appTitle": "ఏపీ మ్యాట్రిమోనీ",
+  "poweredBy": "QuickPrepAI ద్వారా శక్తివంతం",
+  "welcomeBack": "తిరిగి స్వాగతం! 👋",
+  "loginAs": "{role}గా లాగిన్ అవ్వండి",
+  "signInToContinue": "కొనసాగించడానికి సైన్ ఇన్ చేయండి",
+  "selectLanguage": "భాషను ఎంచుకోండి",
+  "language": "భాష",
+  "email": "ఇమెయిల్",
+  "mobile": "మొబైల్",
+  "emailAddress": "ఇమెయిల్ చిరునామా",
+  "mobileNumber": "మొబైల్ నంబర్",
+  "enterEmail": "ఇమెయిల్ నమోదు చేయండి",
+  "enterMobile": "మొబైల్ నమోదు చేయండి",
+  "password": "పాస్‌వర్డ్",
+  "enterPassword": "పాస్‌వర్డ్ నమోదు చేయండి",
+  "forgotPassword": "పాస్‌వర్డ్ మర్చిపోయారా?",
+  "login": "లాగిన్",
+  "or": "లేదా",
+  "dontHaveAccount": "ఖాతా లేదా? ",
+  "register": "రిజిస్టర్ చేయండి",
+  "required": "అవసరం",
+  "user": "వినియోగదారు",
+  "mediator": "మధ్యవర్తి",
+  "admin": "నిర్వాహకుడు",
+  "home": "హోమ్",
+  "matches": "మ్యాచ్‌లు",
+  "shortlisted": "షార్ట్‌లిస్ట్",
+  "interests": "ఆసక్తులు",
+  "profile": "ప్రొఫైల్",
+  "search": "వెతకండి",
+  "notifications": "నోటిఫికేషన్‌లు",
+  "settings": "సెట్టింగ్‌లు",
+  "logout": "లాగౌట్",
+  "save": "సేవ్ చేయండి",
+  "cancel": "రద్దు చేయండి",
+  "edit": "సవరించండి",
+  "delete": "తొలగించండి",
+  "confirm": "నిర్ధారించండి",
+  "yes": "అవును",
+  "no": "కాదు",
+  "submit": "సబ్మిట్ చేయండి",
+  "next": "తర్వాత",
+  "back": "వెనక్కి",
+  "skip": "దాటవేయండి",
+  "done": "పూర్తయింది",
+  "close": "మూసివేయండి",
+  "ok": "సరే",
+  "apply": "దరఖాస్తు చేయండి",
+  "filter": "ఫిల్టర్",
+  "sort": "క్రమబద్ధీకరించు",
+  "clear": "క్లియర్ చేయండి",
+  "viewAll": "అన్నీ చూడండి",
+  "viewDetails": "వివరాలు చూడండి",
+  "send": "పంపండి",
+  "accept": "అంగీకరించండి",
+  "reject": "తిరస్కరించండి",
+  "pending": "పెండింగ్‌లో",
+  "approved": "ఆమోదించబడింది",
+  "rejected": "తిరస్కరించబడింది",
+  "active": "క్రియాశీలం",
+  "inactive": "నిష్క్రియం",
+  "male": "పురుషుడు",
+  "female": "స్త్రీ",
+  "age": "వయస్సు",
+  "height": "ఎత్తు",
+  "weight": "బరువు",
+  "religion": "మతం",
+  "caste": "కులం",
+  "education": "విద్య",
+  "occupation": "వృత్తి",
+  "income": "ఆదాయం",
+  "location": "స్థానం",
+  "city": "నగరం",
+  "state": "రాష్ట్రం",
+  "country": "దేశం",
+  "name": "పేరు",
+  "phoneNumber": "ఫోన్ నంబర్",
+  "dateOfBirth": "పుట్టిన తేది",
+  "maritalStatus": "వైవాహిక స్థితి",
+  "motherTongue": "మాతృభాష",
+  "aboutMe": "నా గురించి",
+  "partnerPreferences": "భాగస్వామి ప్రాధాన్యతలు",
+  "familyDetails": "కుటుంబ వివరాలు",
+  "horoscope": "జాతకం",
+  "photos": "ఫోటోలు",
+  "chat": "చాట్",
+  "chats": "చాట్‌లు",
+  "sendInterest": "ఆసక్తిని పంపండి",
+  "interestSent": "ఆసక్తి పంపబడింది",
+  "interestReceived": "ఆసక్తి అందుకుంది",
+  "interestAccepted": "ఆసక్తి అంగీకరించబడింది",
+  "shortlist": "షార్ట్‌లిస్ట్",
+  "removeShortlist": "షార్ట్‌లిస్ట్ నుండి తొలగించు",
+  "blockUser": "వినియోగదారుని బ్లాక్ చేయండి",
+  "reportUser": "వినియోగదారుని నివేదించండి",
+  "matchPercentage": "మ్యాచ్ శాతం",
+  "premium": "ప్రీమియం",
+  "subscription": "సబ్‌స్క్రిప్షన్",
+  "subscriptions": "సబ్‌స్క్రిప్షన్‌లు",
+  "subscribeTo": "{plan} కు సబ్‌స్క్రయిబ్ చేయండి",
+  "dashboard": "డాష్‌బోర్డ్",
+  "users": "వినియోగదారులు",
+  "mediators": "మధ్యవర్తులు",
+  "reports": "నివేదికలు",
+  "revenue": "ఆదాయం",
+  "statistics": "గణాంకాలు",
+  "management": "నిర్వహణ",
+  "userManagement": "వినియోగదారు నిర్వహణ",
+  "mediatorManagement": "మధ్యవర్తి నిర్వహణ",
+  "subscriptionManagement": "సబ్‌స్క్రిప్షన్ నిర్వహణ",
+  "profileApprovals": "ప్రొఫైల్ ఆమోదాలు",
+  "bannerManagement": "బ్యానర్ నిర్వహణ",
+  "cmsManagement": "CMS నిర్వహణ",
+  "commissionSettings": "కమిషన్ సెట్టింగ్‌లు",
+  "horoscopeSettings": "జాతక సెట్టింగ్‌లు",
+  "walletManagement": "వాలెట్ నిర్వహణ",
+  "notificationBroadcast": "నోటిఫికేషన్ ప్రసారం",
+  "payPerProfile": "ప్రొఫైల్‌కు చెల్లించండి",
+  "wallet": "వాలెట్",
+  "balance": "బ్యాలెన్స్",
+  "commission": "కమిషన్",
+  "commissionHistory": "కమిషన్ చరిత్ర",
+  "earning": "సంపాదన",
+  "earnings": "సంపాదనలు",
+  "withdraw": "ఉపసంహరించుకోండి",
+  "deposit": "డిపాజిట్",
+  "transaction": "లావాదేవీ",
+  "transactions": "లావాదేవీలు",
+  "createProfile": "ప్రొఫైల్ సృష్టించండి",
+  "editProfile": "ప్రొఫైల్‌ను సవరించండి",
+  "viewProfile": "ప్రొఫైల్ చూడండి",
+  "myProfile": "నా ప్రొఫైల్",
+  "myMatches": "నా మ్యాచ్‌లు",
+  "myInterests": "నా ఆసక్తులు",
+  "mySubscription": "నా సబ్‌స్క్రిప్షన్",
+  "upgradeNow": "ఇప్పుడే అప్‌గ్రేడ్ చేయండి",
+  "contactDetails": "సంప్రదింపు వివరాలు",
+  "unlockContact": "సంప్రదింపును అన్‌లాక్ చేయండి",
+  "unlocked": "అన్‌లాక్ చేయబడింది",
+  "verified": "ధృవీకరించబడింది",
+  "notVerified": "ధృవీకరించబడలేదు",
+  "online": "ఆన్‌లైన్",
+  "offline": "ఆఫ్‌లైన్",
+  "lastSeen": "చివరిగా చూసింది",
+  "typing": "టైప్ చేస్తోంది...",
+  "noMessages": "ఇంకా సందేశాలు లేవు",
+  "noNotifications": "నోటిఫికేషన్‌లు లేవు",
+  "noMatches": "మ్యాచ్‌లు కనుగొనబడలేదు",
+  "noResults": "ఫలితాలు కనుగొనబడలేదు",
+  "loading": "లోడ్ అవుతోంది...",
+  "error": "లోపం",
+  "success": "విజయం",
+  "warning": "హెచ్చరిక",
+  "info": "సమాచారం",
+  "selectRole": "మీ పాత్రను ఎంచుకోండి",
+  "continueAs": "{role}గా కొనసాగించండి",
+  "enterOtp": "OTP నమోదు చేయండి",
+  "otpSentTo": "{contact} కు OTP పంపబడింది",
+  "resendOtp": "OTP మళ్లీ పంపండి",
+  "verify": "ధృవీకరించండి",
+  "resetPassword": "పాస్‌వర్డ్‌ను రీసెట్ చేయండి",
+  "newPassword": "కొత్త పాస్‌వర్డ్",
+  "confirmPassword": "పాస్‌వర్డ్‌ను నిర్ధారించండి",
+  "passwordMismatch": "పాస్‌వర్డ్‌లు సరిపోలలేదు",
+  "invalidEmail": "చెల్లని ఇమెయిల్ చిరునామా",
+  "invalidPhone": "చెల్లని ఫోన్ నంబర్",
+  "@appTitle": {
+    "description": "Application title"
+  },
+  "appName": "AP Matrimony",
+  "@appName": {
+    "description": "App name"
+  },
+  "tagline": "Biggest Matrimony Service for AP",
+  "@tagline": {
+    "description": "App tagline"
+  },
+  "yearsOfService": "10 Years of Successful Matchmaking",
+  "@yearsOfService": {
+    "description": "Years of service text"
+  },
+  "customersServed": "1 Crore+ Customers Served",
+  "@customersServed": {
+    "description": "Customers count text"
+  },
+  "@poweredBy": {
+    "description": "Powered by text"
+  },
+  "@welcomeBack": {
+    "description": "Welcome message on login screen"
+  },
+  "@loginAs": {
+    "description": "Login as specific role",
+    "placeholders": {
+      "role": {
+        "type": "String"
+      }
+    }
+  },
+  "@signInToContinue": {
+    "description": "Sign in subtitle"
+  },
+  "@selectLanguage": {
+    "description": "Language selection label"
+  },
+  "@language": {
+    "description": "Language label"
+  },
+  "@email": {
+    "description": "Email label"
+  },
+  "@mobile": {
+    "description": "Mobile label"
+  },
+  "@emailAddress": {
+    "description": "Email address label"
+  },
+  "@mobileNumber": {
+    "description": "Mobile number label"
+  },
+  "@enterEmail": {
+    "description": "Email hint text"
+  },
+  "@enterMobile": {
+    "description": "Mobile hint text"
+  },
+  "@password": {
+    "description": "Password label"
+  },
+  "@enterPassword": {
+    "description": "Password hint text"
+  },
+  "@forgotPassword": {
+    "description": "Forgot password text"
+  },
+  "@login": {
+    "description": "Login button text"
+  },
+  "@or": {
+    "description": "OR divider text"
+  },
+  "@dontHaveAccount": {
+    "description": "Don't have account text"
+  },
+  "@register": {
+    "description": "Register button text"
+  },
+  "@required": {
+    "description": "Required field validation"
+  },
+  "@user": {
+    "description": "User role"
+  },
+  "@mediator": {
+    "description": "Mediator role"
+  },
+  "@admin": {
+    "description": "Admin role"
+  },
+  "@home": {
+    "description": "Home navigation"
+  },
+  "@matches": {
+    "description": "Matches navigation"
+  },
+  "@shortlisted": {
+    "description": "Shortlisted navigation"
+  },
+  "@interests": {
+    "description": "Interests navigation"
+  },
+  "@profile": {
+    "description": "Profile navigation"
+  },
+  "@subscribeTo": {
+    "placeholders": {
+      "plan": {
+        "type": "String"
+      }
+    }
+  },
+  "@continueAs": {
+    "placeholders": {
+      "role": {
+        "type": "String"
+      }
+    }
+  },
+  "@otpSentTo": {
+    "placeholders": {
+      "contact": {
+        "type": "String"
+      }
+    }
+  },
+  "guest": "Guest",
+  "registeredUser": "Registered User",
+  "paidMember": "Paid Member",
+  "mediatorBroker": "Mediator / Broker",
+  "getStarted": "Get Started",
+  "browseAsGuest": "Browse as Guest",
+  "otherRoles": "Other roles",
+  "manageAndEarn": "Manage & earn",
+  "platformAccess": "Platform access",
+  "tenYears": "10 Years",
+  "successfulMatchmaking": "Successful Matchmaking",
+  "oneCrorePlus": "1 Crore+",
+  "checkYourEmail": "Check Your Email",
+  "forgotPasswordTitle": "Forgot Password?",
+  "passwordResetSent": "We have sent a password reset link to your email address.",
+  "passwordResetInstructions": "Enter your email address and we'll send you a link to reset your password.",
+  "sendResetLink": "Send Reset Link",
+  "backToLogin": "Back to Login",
+  "createAccount": "Create Account",
+  "joinAppMatrimony": "Join AP Matrimony",
+  "createProfileFindMatch": "Create your profile and find your perfect match",
+  "lookingFor": "I am looking for a",
+  "bride": "Bride",
+  "groom": "Groom",
+  "fullName": "Full Name",
+  "phonePlus91": "+91 ",
+  "datePlaceholder": "DD/MM/YYYY",
+  "gender": "Gender",
+  "registrationSuccess": "Registration successful! Redirecting to OTP...",
+  "alreadyHaveAccount": "Already have an account? ",
+  "verificationCode": "Verification Code",
+  "enterOtpInstructions": "Enter the 4-digit code sent to your\nregistered mobile number",
+  "useOtp": "Use OTP: 1234",
+  "invalidOtpMessage": "Invalid OTP. Use 1234",
+  "verifyOtp": "Verify OTP",
+  "didntReceiveCode": "Didn't receive code? ",
+  "otpResent": "OTP Resent: 1234",
+  "resend": "Resend",
+  "demoCredentials": "Demo credentials",
+  "userPaidMember": "User / Paid Member",
+  "closeDemoCredentials": "Close",
+  "viewDemoCredentials": "View Demo Credentials",
+  "yourProfileIs": "Your profile is",
+  "complete": "complete",
+  "completeButton": "Complete",
+  "recentlyJoined": "Recently Joined",
+  "newProfilesOnPlatform": "New profiles on the platform",
+  "noMatchesYet": "No matches yet",
+  "photoVerified": "Photo Verified",
+  "idVerified": "ID verified",
+  "typeYourMessage": "Type your message...",
+  "you": "You",
+  "today": "Today",
+  "yesterday": "Yesterday",
+  "nearbyProfiles": "Nearby Profiles",
+  "matchesNearYourLocation": "Matches near your location",
+  "advancedFilters": "Advanced Filters",
+  "noProfilesFoundFilters": "No profiles found matching your filters",
+  "viewMore": "View More",
+  "basicFilters": "Basic Filters",
+  "ageRange": "Age Range",
+  "searching": "Searching...",
+  "religionCasteLocation": "Religion, Caste, Location, etc.",
+  "subscriptionPlans": "Subscription Plans",
+  "currentPlan": "Current Plan",
+  "freePlanMessage": "You are currently on the Free plan. Upgrade to unlock premium features!",
+  "availableUnlocks": "Available Unlocks",
+  "unlockIndividualProfiles": "Unlock individual profiles without a subscription",
+  "buy": "Buy",
+  "featureComparison": "Feature Comparison",
+  "feature": "Feature",
+  "silver": "Silver",
+  "gold": "Gold",
+  "diamond": "Diamond",
+  "selectPaymentMethod": "Select Payment Method:",
+  "payNow": "Pay Now",
+  "subscribedSuccess": "Subscribed to {plan} successfully!",
+  "@subscribedSuccess": {
+    "placeholders": {
+      "plan": {
+        "type": "String"
+      }
+    }
+  },
+  "buyUnlocks": "Buy {count} Unlocks",
+  "@buyUnlocks": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      }
+    }
+  },
+  "payForUnlocks": "Pay ₹{price} to get {count} profile unlocks.",
+  "@payForUnlocks": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      },
+      "count": {
+        "type": "String"
+      }
+    }
+  },
+  "unlocksPurchased": "{count} unlocks purchased!",
+  "@unlocksPurchased": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      }
+    }
+  },
+  "stepIndicator": "Step {current}: {title}",
+  "@stepIndicator": {
+    "placeholders": {
+      "current": {
+        "type": "String"
+      },
+      "title": {
+        "type": "String"
+      }
+    }
+  },
+  "previous": "Previous",
+  "profileSavedSuccess": "Profile saved successfully!",
+  "finish": "Finish",
+  "basicDetails": "Basic Details",
+  "tellUsAboutYourself": "Tell us about yourself",
+  "photoPickerMock": "Photo picker (mock)",
+  "addPhoto": "Add Photo",
+  "educationCareer": "Education & Career",
+  "premiumMember": "Premium Member",
+  "freeMember": "Free Member",
+  "upgradeToPremium": "Upgrade to Premium",
+  "markAllRead": "Mark all read",
+  "noNotificationsYet": "No notifications yet",
+  "yourDailyMatches": "Your Daily Matches",
+  "prime": "PRIME",
+  "newBadge": "NEW",
+  "viewAllMatches": "View All Matches",
+  "interestSentTo": "Interest sent to {name}",
+  "@interestSentTo": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "noMatchesAvailable": "No matches available at the moment",
+  "sortBy": "Sort By",
+  "viewHoroscope": "View Horoscope",
+  "dontShow": "Don't Show",
+  "interestSentSuccessfully": "Interest sent successfully!",
+  "contactUnlocked": "Contact unlocked!",
+  "checkHoroscopeCompatibility": "Check Horoscope Compatibility",
+  "profileReported": "Profile reported.",
+  "reportThisProfile": "Report this Profile",
+  "upgradeToView": "Upgrade to View",
+  "unlockOne": "Unlock (1)",
+  "interestManagement": "Interest Management",
+  "noInterestsFound": "No interests found",
+  "acceptInterest": "Accept",
+  "declineInterest": "Decline",
+  "noConversationsYet": "No Conversations Yet",
+  "startChattingMatches": "Start chatting with your matches",
+  "horoscopeMatching": "Horoscope Matching",
+  "checkCompatibility": "Check Compatibility",
+  "compatibilityScore": "Compatibility Score",
+  "excellentMatch": "Excellent Match!",
+  "tenPoruthamDetails": "10 Porutham Details",
+  "summary": "Summary",
+  "checkAnother": "Check Another",
+  "reportDownloaded": "Report downloaded (mock)",
+  "download": "Download",
+  "logoutMenuItem": "Logout",
+  "matrimonyAdmin": "Matrimony Admin",
+  "pendingWithdrawalRequests": "Pending Withdrawal Requests",
+  "requestApproved": "Request approved for {name}",
+  "@requestApproved": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "requestRejected": "Request rejected",
+  "recentPayouts": "Recent Payouts",
+  "usersFound": "{count} users found",
+  "@usersFound": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      }
+    }
+  },
+  "activePlans": "Active Plans",
+  "popular": "Popular",
+  "usersCount": "{count} users",
+  "@usersCount": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      }
+    }
+  },
+  "recentSubscriptions": "Recent Subscriptions",
+  "editPlan": "Edit {plan} Plan",
+  "@editPlan": {
+    "placeholders": {
+      "plan": {
+        "type": "String"
+      }
+    }
+  },
+  "planUpdated": "{plan} plan updated!",
+  "@planUpdated": {
+    "placeholders": {
+      "plan": {
+        "type": "String"
+      }
+    }
+  },
+  "reportsAnalytics": "Reports & Analytics",
+  "userRegistrations": "User Registrations",
+  "topLocations": "Top Locations",
+  "downloadReports": "Download Reports",
+  "genderDistribution": "Gender Distribution",
+  "ageDistribution": "Age Distribution",
+  "reviewApproveProfiles": "Review and approve new profiles",
+  "noRejectedProfiles": "No rejected profiles",
+  "profileRejected": "{name} rejected",
+  "@profileRejected": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "rejectButton": "Reject",
+  "profileApproved": "{name} approved!",
+  "@profileApproved": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "approveButton": "Approve",
+  "payPerProfileSettings": "Pay Per Profile Settings",
+  "addBundle": "Add Bundle",
+  "activeBundles": "Active Bundles",
+  "editMenuItem": "Edit",
+  "deleteMenuItem": "Delete",
+  "recentPurchases": "Recent Purchases",
+  "addNewBundle": "Add New Bundle",
+  "bundleAdded": "Bundle added!",
+  "addButton": "Add",
+  "addMediator": "Add Mediator",
+  "toggleStatus": "Toggle Status",
+  "addNewMediator": "Add New Mediator",
+  "mediatorAdded": "Mediator added!",
+  "composeNotification": "Compose Notification",
+  "targetAudience": "Target Audience",
+  "allUsers": "All Users",
+  "premiumUsers": "Premium",
+  "freeUsers": "Free Users",
+  "mediatorsAudience": "Mediators",
+  "notificationType": "Notification Type",
+  "push": "Push",
+  "inApp": "In-App",
+  "emailType": "Email",
+  "sms": "SMS",
+  "scheduledForLater": "Scheduled for later",
+  "schedule": "Schedule",
+  "notificationSent": "Notification sent to all users!",
+  "sendNow": "Send Now",
+  "recentBroadcasts": "Recent Broadcasts",
+  "sent": "Sent",
+  "featureConfiguration": "Feature Configuration",
+  "enableHoroscopeMatching": "Enable Horoscope Matching",
+  "allowHoroscopeCompatibility": "Allow users to check horoscope compatibility",
+  "autoHoroscopeMatching": "Auto Horoscope Matching",
+  "autoCalculateScores": "Automatically calculate compatibility scores",
+  "showDosham": "Show Dosham Warning",
+  "displayDoshamStatus": "Display dosham status on profiles",
+  "minimumPoruthamScore": "Minimum Porutham Score",
+  "minimumScoreRequired": "Minimum score required for good match",
+  "compatibilityLabels": "Compatibility Labels",
+  "poruthamConfiguration": "10 Porutham Configuration",
+  "horoscopeSettingsSaved": "Horoscope settings saved!",
+  "saveSettings": "Save Settings",
+  "defaultCommissionRate": "Default Commission Rate",
+  "appliedToAllStandard": "Applied to all standard mediator accounts",
+  "premiumMediatorRate": "Premium Mediator Rate",
+  "higherRateTopPerforming": "Higher rate for top-performing mediators",
+  "minimumPayoutAmount": "Minimum Payout Amount",
+  "commissionStructure": "Commission Structure",
+  "settingsSaved": "Settings saved!",
+  "contentManagement": "Content Management",
+  "addPage": "Add Page",
+  "addNewPage": "Add New Page",
+  "pageCreated": "Page created!",
+  "create": "Create",
+  "addBanner": "Add Banner",
+  "addNewBanner": "Add New Banner",
+  "uploadImage": "Upload Image",
+  "bannerAdded": "Banner added!",
+  "dashboardTitle": "Dashboard",
+  "welcomeBackAdmin": "Welcome back, Admin",
+  "revenueOverview": "Revenue Overview",
+  "successStories": "Success Stories",
+  "recentWeddingCelebrations": "Recent wedding celebrations",
+  "walletTitle": "Wallet",
+  "walletBalance": "Wallet Balance",
+  "availableForWithdrawal": "Available for withdrawal",
+  "history": "History",
+  "recentTransactions": "Recent Transactions",
+  "withdrawFunds": "Withdraw Funds",
+  "availableBalance": "Available: ₹8,500",
+  "withdrawalSubmitted": "Withdrawal request submitted successfully!",
+  "mediatorDashboard": "Mediator Dashboard",
+  "performanceOverview": "Performance Overview",
+  "recentProfiles": "Recent Profiles",
+  "recentSuccessfulMatches": "Recent Successful Matches",
+  "createClientProfile": "Create Client Profile",
+  "draftSaved": "Draft saved",
+  "saveDraft": "Save Draft",
+  "profileSubmittedApproval": "Profile submitted for approval!",
+  "clientPhotos": "Client Photos",
+  "contactDetailsTitle": "Contact Details",
+  "noRecordsFound": "No records found",
+  "upgradeToPremiumBanner": "Upgrade to Premium",
+  "unlimitedMessagingDescription": "Unlock unlimited messaging, advanced filters, and priority support",
+  "viewPlans": "View Plans",
+  "mostPopular": "MOST POPULAR",
+  "subscribePlan": "Subscribe",
+  "aboutProfile": "About {name}",
+  "@aboutProfile": {
+    "description": "About this person section title",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "noDescriptionProvided": "No description provided.",
+  "educationAndCareer": "Education & Career",
+  "familyDetailsTitle": "Family Details",
+  "locationTitle": "Location",
+  "horoscopeTitle": "Horoscope",
+  "partnerPreferencesTitle": "Partner Preferences",
+  "ageYears": "{age} years",
+  "@ageYears": {
+    "placeholders": {
+      "age": {
+        "type": "String"
+      }
+    }
+  },
+  "suggestedMatches": "Suggested Matches",
+  "matchesBasedOnPreferences": "{count} matches based on your preferences",
+  "@matchesBasedOnPreferences": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      }
+    }
+  },
+  "regular": "Regular",
+  "totalMatchesCount": "{count} Matches based on your",
+  "@totalMatchesCount": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      }
+    }
+  },
+  "star": "Star",
+  "rasi": "Rasi",
+  "dosham": "Dosham",
+  "familyType": "Family Type",
+  "familyStatus": "Family Status",
+  "brothers": "Brothers",
+  "sisters": "Sisters",
+  "annualIncome": "Annual Income",
+  "employedIn": "Employed In",
+  "diet": "Diet",
+  "applyFilters": "Apply Filters",
+  "splashHeadlinePart1": "\"Find Someone Who",
+  "splashHeadlineHighlight": "TRULY",
+  "splashHeadlinePart2": "Gets You\"",
+  "oneCrorePlusHappyCustomers": "1 Crore+ Happy Customers",
+  "choosePlan": "Choose Your Plan",
+  "upgradeToUnlockFeatures": "Upgrade to unlock more features",
+  "buyProfileUnlocks": "Buy Profile Unlocks",
+  "viewContactDetailsDescription": "View contact details of profiles you are interested in",
+  "profileUnlocksCountLabel": "{count} Profile Unlocks",
+  "@profileUnlocksCountLabel": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      }
+    }
+  },
+  "pricePerProfile": "₹{price} per profile",
+  "@pricePerProfile": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "planActiveDetails": "{contactViews} contact views remaining · {durationMonths} month duration",
+  "@planActiveDetails": {
+    "placeholders": {
+      "contactViews": {
+        "type": "String"
+      },
+      "durationMonths": {
+        "type": "String"
+      }
+    }
+  },
+  "viewContactDetails": "View Contact Details",
+  "chatWithMatches": "Chat with Matches",
+  "profileHighlight": "Profile Highlight",
+  "prioritySupport": "Priority Support",
+  "profileBoost": "Profile Boost",
+  "planPriceDescription": "₹{price} for {months} months",
+  "@planPriceDescription": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      },
+      "months": {
+        "type": "String"
+      }
+    }
+  },
+  "upi": "UPI",
+  "creditDebitCard": "Credit / Debit Card",
+  "netBanking": "Net Banking",
+  "byCriteria": "By Criteria",
+  "byProfileId": "By Profile ID",
+  "savedSearch": "Saved Search",
+  "searchByProfileId": "Search by Profile ID",
+  "enterMemberIdHint": "Enter the member ID to find a specific profile",
+  "profileId": "Profile ID",
+  "profileIdHint": "e.g., M1234567",
+  "noSavedSearches": "No Saved Searches",
+  "saveSearchHint": "Save your search criteria for quick access",
+  "activeNow": "Active now",
+  "activeTwoHoursAgo": "Active 2h ago",
+  "contactDetailsMasked": "Contact details are masked. Upgrade to Premium to view.",
+  "messageHint": "Message",
+  "enterProfileDetailsHint": "Enter both profiles' details to get matching score",
+  "yourDetails": "Your Details",
+  "partnersDetails": "Partner's Details",
+  "timeOfBirth": "Time of Birth",
+  "placeOfBirth": "Place of Birth",
+  "starNakshatram": "Star (Nakshatram)",
+  "horoscopeSummaryText": "This is an excellent match with 7.5 out of 10 poruthams matching. The couple is highly compatible for marriage based on horoscope analysis. Both nakshatras complement each other well.",
+  "matchLabel": "Match",
+  "noMatchLabel": "No Match",
+  "poruthamDina": "Dina Porutham",
+  "poruthamDinaDesc": "Star compatibility",
+  "poruthamGana": "Gana Porutham",
+  "poruthamGanaDesc": "Temperament matching",
+  "poruthamMahendra": "Mahendra Porutham",
+  "poruthamMahendraDesc": "Prosperity & well-being",
+  "poruthamStreeDeergha": "Stree Deergha",
+  "poruthamStreeDeerghaDesc": "Long married life",
+  "poruthamYoni": "Yoni Porutham",
+  "poruthamYoniDesc": "Physical compatibility",
+  "poruthamRasi": "Rasi Porutham",
+  "poruthamRasiDesc": "Emotional compatibility",
+  "poruthamRasiyathipathi": "Rasiyathipathi",
+  "poruthamRasiyathipathiDesc": "Ruling planet harmony",
+  "poruthamVasya": "Vasya Porutham",
+  "poruthamVasyaDesc": "Mutual attraction",
+  "poruthamRajju": "Rajju Porutham",
+  "poruthamRajjuDesc": "Longevity of spouse",
+  "poruthamVedha": "Vedha Porutham",
+  "poruthamVedhaDesc": "Obstacle analysis",
+  "stepBasicInfo": "Basic Info",
+  "stepReligionCaste": "Religion / Caste",
+  "stepEducationOccupation": "Education / Occupation",
+  "stepFamilyDetails": "Family Details",
+  "stepHoroscopeDetails": "Horoscope Details",
+  "stepLifestyle": "Lifestyle",
+  "stepPartnerPreferences": "Partner Preferences",
+  "stepPhotoUpload": "Photo Upload",
+  "stepPrivacySettings": "Privacy Settings",
+  "subCaste": "Sub Caste",
+  "highestEducation": "Highest Education",
+  "fathersName": "Father's Name",
+  "fathersOccupation": "Father's Occupation",
+  "mothersName": "Mother's Name",
+  "mothersOccupation": "Mother's Occupation",
+  "smoking": "Smoking",
+  "drinking": "Drinking",
+  "heightRange": "Height Range",
+  "preferredEducation": "Preferred Education",
+  "preferredOccupation": "Preferred Occupation",
+  "preferredLocation": "Preferred Location",
+  "preferredReligion": "Preferred Religion",
+  "uploadPhotos": "Upload Photos",
+  "addPhotosDescription": "Add up to 10 photos to your profile. Clear, recent photos get more responses.",
+  "showProfileToAll": "Show profile to all members",
+  "profileVisibleToAll": "Your profile will be visible to everyone",
+  "showPhotosToPremiumOnly": "Show photos to premium members only",
+  "paidMembersCanSeePhotos": "Only paid members can see your photos",
+  "showHoroscopeDetails": "Show horoscope details",
+  "displayHoroscopeOnProfile": "Display horoscope information on profile",
+  "allowContactMessages": "Allow contact messages",
+  "receiveMessagesFromInterested": "Receive messages from interested profiles",
+  "hidePhoneNumber": "Hide phone number",
+  "phoneNumberHiddenDefault": "Phone number will not be shown by default",
+  "hiName": "Hi {name}!",
+  "@hiName": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "completeProfileForMatches": "Complete your profile to get more matches",
+  "profileLookingGreat": "Your profile is looking great!",
+  "adminDashboard": "Admin Dashboard",
+  "welcomeBackMessage": "Welcome back! Here's what's happening today.",
+  "totalUsers": "Total Users",
+  "activeProfiles": "Active Profiles",
+  "thisWeek": "This Week",
+  "thisMonth": "This Month",
+  "thisYear": "This Year",
+  "recentRegistrations": "Recent Registrations",
+  "recentActivity": "Recent Activity",
+  "banners": "Banners",
+  "broadcast": "Broadcast",
+  "cms": "CMS",
+  "bannerTitle": "Banner Title",
+  "position": "Position",
+  "linkUrl": "Link URL",
+  "pages": "Pages",
+  "faqs": "FAQs",
+  "testimonials": "Testimonials",
+  "pageTitle": "Page Title",
+  "appliedToAllMediators": "Applied to all standard mediator accounts",
+  "higherRateForTopMediators": "Higher rate for top-performing mediators",
+  "perSuccessfulMatch": "Per Successful Match",
+  "perProfileRegistration": "Per Profile Registration",
+  "subscriptionReferral": "Subscription Referral",
+  "bonusMatchesPerMonth": "Bonus (10+ matches/month)",
+  "allowUsersHoroscopeCheck": "Allow users to check horoscope compatibility",
+  "autoShowCompatibility": "Automatically show compatibility on profile view",
+  "minimumPoruthamDesc": "Minimum poruthams needed for \"Good Match\" label",
+  "tenPoruthamConfiguration": "10 Porutham Configuration",
+  "excellent": "Excellent",
+  "good": "Good",
+  "average": "Average",
+  "poor": "Poor",
+  "searchMediators": "Search mediators...",
+  "totalLabel": "Total",
+  "avgCommission": "Avg Commission",
+  "profiles": "Profiles",
+  "commissionRate": "Commission Rate (%)",
+  "district": "District",
+  "phoneLabel": "Phone",
+  "nameLabel": "Name",
+  "add": "Add",
+  "editItem": "Edit",
+  "deleteItem": "Delete",
+  "notificationSentSuccess": "Notification sent to all users!",
+  "sentStatus": "Sent",
+  "approve": "Approve",
+  "searchUsersHint": "Search users...",
+  "popularLabel": "Popular",
+  "activeStatus": "Active",
+  "totalPlatformRevenue": "Total Platform Revenue",
+  "pendingPayouts": "Pending Payouts",
+  "completedPayouts": "Completed Payouts",
+  "approveWithdrawal": "Approved {name}'s withdrawal",
+  "@approveWithdrawal": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "rejectWithdrawal": "Rejected {name}'s withdrawal",
+  "@rejectWithdrawal": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "newUsersToday": "New Users (Today)",
+  "activeSessions": "Active Sessions",
+  "revenueToday": "Revenue (Today)",
+  "interestsSent": "Interests Sent",
+  "last7Days": "Last 7 Days",
+  "last30Days": "Last 30 Days",
+  "approvedLabel": "Approved ({count})",
+  "@approvedLabel": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "pendingLabel": "Pending ({count})",
+  "@pendingLabel": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "rejectedLabel": "Rejected (0)",
+  "approvedName": "{name} approved!",
+  "@approvedName": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "rejectedName": "{name} rejected",
+  "@rejectedName": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "totalUnlocksSold": "Total Unlocks Sold",
+  "avgPerUser": "Avg Per User",
+  "activeBundlesTitle": "Active Bundles",
+  "perProfile": "per profile",
+  "message": "Message",
+  "title": "Title",
+  "addProfile": "Add Profile",
+  "allTab": "All",
+  "earnedTab": "Earned",
+  "pendingTab": "Pending",
+  "totalEarned": "Total Earned",
+  "transactionHistory": "Transaction History",
+  "noTransactions": "No transactions yet",
+  "welcomeMediator": "Welcome, {name}!",
+  "@welcomeMediator": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "totalProfiles": "Total Profiles",
+  "activeMatches": "Active Matches",
+  "successfulMatches": "Successful Matches",
+  "pendingReviews": "Pending Reviews",
+  "completed": "Completed",
+  "processing": "Processing",
+  "totalIn": "Total In",
+  "totalOut": "Total Out",
+  "available": "Available",
+  "amount": "Amount",
+  "withdrawTo": "Withdraw To",
+  "bankTransfer": "Bank Transfer",
+  "withdrawalSubmittedMsg": "Withdrawal request submitted successfully!",
+  "contentLabel": "Content",
+  "content": "Content"
+}

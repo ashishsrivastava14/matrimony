@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../core/theme.dart';
 import '../core/constants.dart';
+import '../l10n/app_localizations.dart';
 import '../providers/app_state.dart';
 
 /// OTP verification screen — mock validation with "1234"
@@ -69,8 +70,8 @@ class _OtpScreenState extends State<OtpScreen> {
           _isLoading = false;
         });
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('Invalid OTP. Use 1234'),
+          SnackBar(
+            content: Text(AppLocalizations.of(context)!.invalidOtpMessage),
             backgroundColor: AppColors.error,
           ),
         );
@@ -80,6 +81,7 @@ class _OtpScreenState extends State<OtpScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -119,19 +121,19 @@ class _OtpScreenState extends State<OtpScreen> {
                   ),
                 ),
                 const SizedBox(height: 24),
-                const Text(
-                  'Verification Code',
-                  style: TextStyle(
+                Text(
+                  l10n.verificationCode,
+                  style: const TextStyle(
                     fontSize: 26,
                     fontWeight: FontWeight.bold,
                     color: AppColors.textPrimary,
                   ),
                 ),
                 const SizedBox(height: 8),
-                const Text(
-                  'Enter the 4-digit code sent to your\nregistered mobile number',
+                Text(
+                  l10n.enterOtpInstructions,
                   textAlign: TextAlign.center,
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: AppColors.textSecondary,
                     fontSize: 14,
                     height: 1.5,
@@ -139,7 +141,7 @@ class _OtpScreenState extends State<OtpScreen> {
                 ),
                 const SizedBox(height: 10),
                 Text(
-                  'Use OTP: 1234',
+                  l10n.useOtp,
                   style: TextStyle(
                     color: AppColors.accent,
                     fontSize: 13,
@@ -212,8 +214,8 @@ class _OtpScreenState extends State<OtpScreen> {
                               color: Colors.white,
                             ),
                           )
-                        : const Text('Verify OTP',
-                            style: TextStyle(fontSize: 16)),
+                        : Text(l10n.verifyOtp,
+                            style: const TextStyle(fontSize: 16)),
                   ),
                 ),
                 const SizedBox(height: 20),
@@ -221,17 +223,17 @@ class _OtpScreenState extends State<OtpScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Text(
-                      "Didn't receive code? ",
-                      style: TextStyle(color: AppColors.textSecondary),
+                    Text(
+                      l10n.didntReceiveCode,
+                      style: const TextStyle(color: AppColors.textSecondary),
                     ),
                     TextButton(
                       onPressed: () {
                         ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(content: Text('OTP Resent: 1234')),
+                          SnackBar(content: Text(l10n.otpResent)),
                         );
                       },
-                      child: const Text('Resend'),
+                      child: Text(l10n.resend),
                     ),
                   ],
                 ),

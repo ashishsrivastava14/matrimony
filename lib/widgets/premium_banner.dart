@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../core/theme.dart';
+import '../l10n/app_localizations.dart';
 
 /// Gradient premium banner widget
 class PremiumBanner extends StatelessWidget {
@@ -9,6 +10,7 @@ class PremiumBanner extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       padding: const EdgeInsets.all(20),
@@ -33,14 +35,13 @@ class PremiumBanner extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Row(
+                Row(
                   children: [
-                    Icon(Icons.workspace_premium,
-                        color: Colors.white, size: 22),
-                    SizedBox(width: 6),
+                    const Icon(Icons.workspace_premium, color: Colors.white, size: 22),
+                    const SizedBox(width: 6),
                     Text(
-                      'Upgrade to Premium',
-                      style: TextStyle(
+                      l10n.upgradeToPremiumBanner,
+                      style: const TextStyle(
                         color: Colors.white,
                         fontSize: 17,
                         fontWeight: FontWeight.bold,
@@ -50,7 +51,7 @@ class PremiumBanner extends StatelessWidget {
                 ),
                 const SizedBox(height: 6),
                 Text(
-                  'Get unlimited access to contacts, chat & advanced features',
+                  l10n.unlimitedMessagingDescription,
                   style: TextStyle(
                     color: Colors.white.withValues(alpha: 0.9),
                     fontSize: 12,
@@ -68,8 +69,8 @@ class PremiumBanner extends StatelessWidget {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8)),
                   ),
-                  child: const Text('View Plans',
-                      style: TextStyle(fontWeight: FontWeight.bold)),
+                  child: Text(l10n.viewPlans,
+                      style: const TextStyle(fontWeight: FontWeight.bold)),
                 ),
               ],
             ),

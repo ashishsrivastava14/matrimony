@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../core/theme.dart';
+import '../l10n/app_localizations.dart';
 
 class CmsScreen extends StatefulWidget {
   const CmsScreen({super.key});
@@ -26,6 +27,7 @@ class _CmsScreenState extends State<CmsScreen>
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Scaffold(
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -35,24 +37,24 @@ class _CmsScreenState extends State<CmsScreen>
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text('Content Management',
-                    style: TextStyle(
+                Text(l10n.contentManagement,
+                    style: const TextStyle(
                         fontSize: 22, fontWeight: FontWeight.bold)),
                 ElevatedButton.icon(
                   onPressed: () => _showAddContentDialog(),
                   icon: const Icon(Icons.add, size: 18),
-                  label: const Text('Add Page'),
+                  label: Text(l10n.addPage),
                 ),
               ],
             ),
           ),
           TabBar(
             controller: _tabController,
-            tabs: const [
-              Tab(text: 'Pages'),
-              Tab(text: 'FAQs'),
-              Tab(text: 'Success Stories'),
-              Tab(text: 'Testimonials'),
+            tabs: [
+              Tab(text: l10n.pages),
+              Tab(text: l10n.faqs),
+              Tab(text: l10n.successStories),
+              Tab(text: l10n.testimonials),
             ],
           ),
           Expanded(
@@ -268,17 +270,18 @@ class _CmsScreenState extends State<CmsScreen>
   }
 
   void _showAddContentDialog() {
+    final l10n = AppLocalizations.of(context)!;
     showDialog(
       context: context,
       builder: (ctx) => AlertDialog(
-        title: const Text('Add New Page'),
+        title: Text(l10n.addNewPage),
         content: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            TextFormField(decoration: const InputDecoration(labelText: 'Page Title')),
+            TextFormField(decoration: InputDecoration(labelText: l10n.pageTitle)),
             const SizedBox(height: 12),
             TextFormField(
-              decoration: const InputDecoration(labelText: 'Content'),
+              decoration: InputDecoration(labelText: l10n.content),
               maxLines: 5,
             ),
           ],
@@ -286,17 +289,17 @@ class _CmsScreenState extends State<CmsScreen>
         actions: [
           TextButton(
               onPressed: () => Navigator.pop(ctx),
-              child: const Text('Cancel')),
+              child: Text(l10n.cancel)),
           ElevatedButton(
             onPressed: () {
               Navigator.pop(ctx);
               ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(
-                    content: Text('Page created!'),
+                SnackBar(
+                    content: Text(l10n.pageCreated),
                     backgroundColor: AppColors.success),
               );
             },
-            child: const Text('Create'),
+            child: Text(l10n.create),
           ),
         ],
       ),

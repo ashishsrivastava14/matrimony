@@ -4,6 +4,7 @@ import '../core/theme.dart';
 import '../providers/app_state.dart';
 import '../models/profile_model.dart';
 import '../widgets/filter_bottom_sheet.dart';
+import '../l10n/app_localizations.dart';
 
 /// Search screen with quick search, filters, and results
 class SearchScreen extends StatefulWidget {
@@ -34,6 +35,7 @@ class _SearchScreenState extends State<SearchScreen>
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -54,7 +56,7 @@ class _SearchScreenState extends State<SearchScreen>
           children: [
             Image.asset('assets/icon/app_icon.png', height: 24, width: 24),
             const SizedBox(width: 10),
-            const Text('Search'),
+            Text(l10n.search),
           ],
         ),
         bottom: TabBar(
@@ -94,6 +96,7 @@ class _ByCriteriaTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     final profiles = context.watch<AppState>().profiles;
 
     return ListView(
@@ -103,8 +106,8 @@ class _ByCriteriaTab extends StatelessWidget {
         Card(
           child: ListTile(
             leading: const Icon(Icons.location_on, color: AppColors.primary),
-            title: const Text('Nearby Profiles'),
-            subtitle: const Text('Matches near your location'),
+            title: Text(l10n.nearbyProfiles),
+            subtitle: Text(l10n.matchesNearYourLocation),
             trailing: Switch(
               value: nearbyEnabled,
               onChanged: onNearbyToggle,
@@ -120,7 +123,7 @@ class _ByCriteriaTab extends StatelessWidget {
           child: OutlinedButton.icon(
             onPressed: () => FilterBottomSheet.show(context),
             icon: const Icon(Icons.tune),
-            label: const Text('Advanced Filters'),
+            label: Text(l10n.advancedFilters),
           ),
         ),
         const SizedBox(height: 16),
@@ -143,7 +146,7 @@ class _ByCriteriaTab extends StatelessWidget {
           width: double.infinity,
           child: ElevatedButton(
             onPressed: () {},
-            child: const Text('View More'),
+            child: Text(l10n.viewMore),
           ),
         ),
       ],
@@ -273,6 +276,7 @@ class _ByProfileIdTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Padding(
       padding: const EdgeInsets.all(24),
       child: Column(
@@ -309,10 +313,10 @@ class _ByProfileIdTab extends StatelessWidget {
             child: ElevatedButton(
               onPressed: () {
                 ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('Searching...')),
+                  SnackBar(content: Text(l10n.searching)),
                 );
               },
-              child: const Text('Search'),
+              child: Text(l10n.search),
             ),
           ),
         ],

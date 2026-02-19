@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../core/theme.dart';
+import '../l10n/app_localizations.dart';
 
 /// Registration screen — mock form
 class RegisterScreen extends StatefulWidget {
@@ -16,6 +17,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -36,7 +38,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
           children: [
             Image.asset('assets/icon/app_icon.png', height: 24, width: 24),
             const SizedBox(width: 10),
-            const Text('Create Account'),
+            Text(l10n.createAccount),
           ],
         ),
       ),
@@ -50,8 +52,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  const Text(
-                    'Join AP Matrimony',
+                  Text(
+                    l10n.joinAppMatrimony,
                     style: TextStyle(
                       fontSize: 24,
                       fontWeight: FontWeight.bold,
@@ -59,15 +61,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     ),
                   ),
                   const SizedBox(height: 4),
-                  const Text(
-                    'Create your profile and find your perfect match',
+                  Text(
+                    l10n.createProfileFindMatch,
                     style: TextStyle(color: AppColors.textSecondary, fontSize: 14),
                   ),
                   const SizedBox(height: 28),
 
                   // Looking for
-                  const Text('I am looking for a',
-                      style: TextStyle(fontWeight: FontWeight.w600)),
+                  Text(l10n.lookingFor,
+                      style: const TextStyle(fontWeight: FontWeight.w600)),
                   const SizedBox(height: 8),
                   Row(
                     children: ['Bride', 'Groom'].map((opt) {
@@ -105,7 +107,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 ),
                                 const SizedBox(width: 8),
                                 Text(
-                                  opt,
+                                  opt == 'Bride' ? l10n.bride : l10n.groom,
                                   style: TextStyle(
                                     color: selected
                                         ? Colors.white
@@ -123,65 +125,66 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   const SizedBox(height: 20),
 
                   TextFormField(
-                    decoration: const InputDecoration(
-                      labelText: 'Full Name',
-                      prefixIcon: Icon(Icons.person_outline),
+                    decoration: InputDecoration(
+                      labelText: l10n.fullName,
+                      prefixIcon: const Icon(Icons.person_outline),
                     ),
-                    validator: (v) => v?.isEmpty == true ? 'Required' : null,
+                    validator: (v) => v?.isEmpty == true ? l10n.required : null,
                   ),
                   const SizedBox(height: 14),
 
                   TextFormField(
-                    decoration: const InputDecoration(
-                      labelText: 'Email Address',
-                      prefixIcon: Icon(Icons.email_outlined),
+                    decoration: InputDecoration(
+                      labelText: l10n.emailAddress,
+                      prefixIcon: const Icon(Icons.email_outlined),
                     ),
                     keyboardType: TextInputType.emailAddress,
-                    validator: (v) => v?.isEmpty == true ? 'Required' : null,
+                    validator: (v) => v?.isEmpty == true ? l10n.required : null,
                   ),
                   const SizedBox(height: 14),
 
                   TextFormField(
-                    decoration: const InputDecoration(
-                      labelText: 'Mobile Number',
-                      prefixIcon: Icon(Icons.phone_outlined),
-                      prefixText: '+91 ',
+                    decoration: InputDecoration(
+                      labelText: l10n.mobileNumber,
+                      prefixIcon: const Icon(Icons.phone_outlined),
+                      prefixText: l10n.phonePlus91,
                     ),
                     keyboardType: TextInputType.phone,
-                    validator: (v) => v?.isEmpty == true ? 'Required' : null,
+                    validator: (v) => v?.isEmpty == true ? l10n.required : null,
                   ),
                   const SizedBox(height: 14),
 
                   TextFormField(
-                    decoration: const InputDecoration(
-                      labelText: 'Date of Birth',
-                      prefixIcon: Icon(Icons.cake_outlined),
-                      hintText: 'DD/MM/YYYY',
+                    decoration: InputDecoration(
+                      labelText: l10n.dateOfBirth,
+                      prefixIcon: const Icon(Icons.cake_outlined),
+                      hintText: l10n.datePlaceholder,
                     ),
-                    validator: (v) => v?.isEmpty == true ? 'Required' : null,
+                    validator: (v) => v?.isEmpty == true ? l10n.required : null,
                   ),
                   const SizedBox(height: 14),
 
                   DropdownButtonFormField<String>(
-                    initialValue: _gender,
-                    decoration: const InputDecoration(
-                      labelText: 'Gender',
-                      prefixIcon: Icon(Icons.wc),
+                    value: _gender,
+                    decoration: InputDecoration(
+                      labelText: l10n.gender,
+                      prefixIcon: const Icon(Icons.wc),
                     ),
-                    items: ['Male', 'Female']
-                        .map((g) => DropdownMenuItem(value: g, child: Text(g)))
-                        .toList(),
+                    items: [
+                      DropdownMenuItem(value: 'Male', child: Text(l10n.male)),
+                      DropdownMenuItem(value: 'Female', child: Text(l10n.female)),
+                    ],
                     onChanged: (v) => setState(() => _gender = v ?? 'Male'),
                   ),
                   const SizedBox(height: 14),
 
                   TextFormField(
                     obscureText: true,
-                    decoration: const InputDecoration(
-                      labelText: 'Password',
-                      prefixIcon: Icon(Icons.lock_outline),
+                    decoration: InputDecoration(
+                      labelText: l10n.password,
+                      prefixIcon: const Icon(Icons.lock_outline),
                     ),
-                    validator: (v) => v?.isEmpty == true ? 'Required' : null,
+                    validator: (v) => v?.isEmpty == true ? l10n.required : null,
                   ),
                   const SizedBox(height: 24),
 
@@ -191,17 +194,17 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
                           ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
+                            SnackBar(
                               content: Text(
-                                  'Registration successful! Redirecting to OTP...'),
+                                  l10n.registrationSuccess),
                               backgroundColor: AppColors.success,
                             ),
                           );
                           Navigator.of(context).pushNamed('/otp');
                         }
                       },
-                      child: const Text('Register',
-                          style: TextStyle(fontSize: 16)),
+                      child: Text(l10n.register,
+                          style: const TextStyle(fontSize: 16)),
                     ),
                   ),
                   const SizedBox(height: 16),
@@ -209,11 +212,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Text('Already have an account? ',
-                          style: TextStyle(color: AppColors.textSecondary)),
+                      Text(l10n.alreadyHaveAccount,
+                          style: const TextStyle(color: AppColors.textSecondary)),
                       TextButton(
                         onPressed: () => Navigator.of(context).pop(),
-                        child: const Text('Login'),
+                        child: Text(l10n.login),
                       ),
                     ],
                   ),

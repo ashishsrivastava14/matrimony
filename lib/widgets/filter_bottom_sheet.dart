@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../core/theme.dart';
+import '../l10n/app_localizations.dart';
 
 /// Filter bottom sheet with search filters
 class FilterBottomSheet extends StatefulWidget {
@@ -31,6 +32,7 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return DraggableScrollableSheet(
       initialChildSize: 0.85,
       maxChildSize: 0.95,
@@ -44,12 +46,11 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
             // Header
             Row(
               children: [
-                const Text(
-                  'Filters',
-                  style: TextStyle(
-                    fontSize: 22,
+                Text(
+                  l10n.filter,
+                  style: const TextStyle(
+                    fontSize: 18,
                     fontWeight: FontWeight.bold,
-                    color: AppColors.textPrimary,
                   ),
                 ),
                 const Spacer(),
@@ -63,7 +64,7 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
                     _income = 'Any';
                     _maritalStatus = 'Any';
                   }),
-                  child: const Text('Reset'),
+                  child: Text(l10n.clear),
                 ),
                 IconButton(
                   icon: const Icon(Icons.close),
@@ -74,8 +75,8 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
             const SizedBox(height: 16),
 
             // Age range
-            const Text('Age Range',
-                style: TextStyle(fontWeight: FontWeight.w600)),
+            Text(l10n.ageRange,
+                style: const TextStyle(fontWeight: FontWeight.w600)),
             RangeSlider(
               values: _ageRange,
               min: 18,
@@ -93,31 +94,31 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
             ),
             const SizedBox(height: 20),
 
-            _buildDropdown('Religion', _religion, [
+            _buildDropdown(l10n.religion, _religion, [
               'Any', 'Hindu', 'Muslim', 'Christian', 'Jain', 'Sikh'
             ], (v) => setState(() => _religion = v!)),
 
-            _buildDropdown('Caste', _caste, [
+            _buildDropdown(l10n.caste, _caste, [
               'Any', 'Vanniyar', 'Nadar', 'Gounder', 'Mudaliar', 'Pillai',
               'Chettiar', 'Brahmin', 'Thevar'
             ], (v) => setState(() => _caste = v!)),
 
-            _buildDropdown('Education', _education, [
+            _buildDropdown(l10n.education, _education, [
               'Any', 'B.E./B.Tech', 'M.E./M.Tech', 'MBA', 'B.Sc./M.Sc.',
               'MBBS/MD', 'CA', 'Ph.D'
             ], (v) => setState(() => _education = v!)),
 
-            _buildDropdown('Location', _location, [
+            _buildDropdown(l10n.locationTitle, _location, [
               'Any', 'Chennai', 'Coimbatore', 'Madurai', 'Trichy',
               'Salem', 'Bangalore', 'Mumbai', 'Hyderabad'
             ], (v) => setState(() => _location = v!)),
 
-            _buildDropdown('Annual Income', _income, [
+            _buildDropdown(l10n.annualIncome, _income, [
               'Any', 'Up to 3 Lakhs', '3-5 Lakhs', '5-8 Lakhs',
               '8-10 Lakhs', '10-15 Lakhs', '15+ Lakhs'
             ], (v) => setState(() => _income = v!)),
 
-            _buildDropdown('Marital Status', _maritalStatus, [
+            _buildDropdown(l10n.maritalStatus, _maritalStatus, [
               'Any', 'Never Married', 'Divorced', 'Widowed'
             ], (v) => setState(() => _maritalStatus = v!)),
 
@@ -138,8 +139,8 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
                     'maritalStatus': _maritalStatus,
                   });
                 },
-                child: const Text('Apply Filters',
-                    style: TextStyle(fontSize: 16)),
+                child: Text(l10n.applyFilters,
+                    style: const TextStyle(fontSize: 16)),
               ),
             ),
           ],

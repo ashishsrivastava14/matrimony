@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import '../core/theme.dart';
 import '../services/mock_data.dart';
+import '../l10n/app_localizations.dart';
 
 class WalletScreen extends StatelessWidget {
   const WalletScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     final transactions = MockDataService.getMockTransactions();
 
     return Scaffold(
@@ -29,7 +31,7 @@ class WalletScreen extends StatelessWidget {
           children: [
             Image.asset('assets/icon/app_icon.png', height: 24, width: 24),
             const SizedBox(width: 10),
-            const Text('Wallet'),
+            Text(l10n.wallet),
           ],
         ),
       ),
@@ -51,8 +53,8 @@ class WalletScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text('Wallet Balance',
-                      style: TextStyle(color: Colors.white70, fontSize: 14)),
+                  Text(l10n.walletBalance,
+                      style: const TextStyle(color: Colors.white70, fontSize: 14)),
                   const SizedBox(height: 4),
                   const Text(
                     '₹8,500',
@@ -70,7 +72,7 @@ class WalletScreen extends StatelessWidget {
                               _showWithdrawDialog(context),
                           icon: const Icon(Icons.arrow_downward,
                               size: 18),
-                          label: const Text('Withdraw'),
+                          label: Text(l10n.withdraw),
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.white,
                             foregroundColor: const Color(0xFF7B1FA2),
@@ -83,8 +85,7 @@ class WalletScreen extends StatelessWidget {
                           onPressed: () {},
                           icon: const Icon(Icons.history,
                               size: 18, color: Colors.white),
-                          label: const Text('History',
-                              style: TextStyle(color: Colors.white)),
+                          label: Text(l10n.history),
                           style: OutlinedButton.styleFrom(
                             side: const BorderSide(color: Colors.white54),
                           ),
@@ -100,19 +101,19 @@ class WalletScreen extends StatelessWidget {
             // Quick stats
             Row(
               children: [
-                _quickStat('Total In', '₹15,000', AppColors.success,
+                _quickStat(l10n.totalIn, '₹15,000', AppColors.success,
                     Icons.arrow_downward),
                 const SizedBox(width: 12),
-                _quickStat('Total Out', '₹6,500', Colors.red,
+                _quickStat(l10n.totalOut, '₹6,500', Colors.red,
                     Icons.arrow_upward),
               ],
             ),
             const SizedBox(height: 24),
 
             // Transactions
-            const Text('Recent Transactions',
+            Text(l10n.recentTransactions,
                 style:
-                    TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                    const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
             const SizedBox(height: 12),
             ...transactions.map((t) => Card(
                   margin: const EdgeInsets.only(bottom: 8),
@@ -193,54 +194,58 @@ class WalletScreen extends StatelessWidget {
   void _showWithdrawDialog(BuildContext context) {
     showDialog(
       context: context,
-      builder: (ctx) => AlertDialog(
-        title: const Text('Withdraw Funds'),
-        content: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            const Text('Available: ₹8,500',
-                style: TextStyle(
-                    fontWeight: FontWeight.bold, fontSize: 16)),
-            const SizedBox(height: 16),
-            TextFormField(
-              decoration: const InputDecoration(
-                labelText: 'Amount',
-                prefixText: '₹',
-              ),
-              keyboardType: TextInputType.number,
-            ),
-            const SizedBox(height: 14),
-            DropdownButtonFormField<String>(
-              initialValue: 'Bank Transfer',
-              decoration:
-                  const InputDecoration(labelText: 'Withdraw To'),
-              items: ['Bank Transfer', 'UPI']
-                  .map((e) =>
-                      DropdownMenuItem(value: e, child: Text(e)))
-                  .toList(),
-              onChanged: (_) {},
-            ),
-          ],
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(ctx),
-            child: const Text('Cancel'),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              Navigator.pop(ctx);
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(
-                  content: Text(
-                      'Withdrawal request submitted successfully!'),
-                  backgroundColor: AppColors.success,
+      builder: (ctx) => Builder(
+        builder: (ctx2) {
+          final l10n = AppLocalizations.of(ctx2)!;
+          return AlertDialog(
+            title: Text(l10n.withdrawFunds),
+            content: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(l10n.availableForWithdrawal,
+                    style: const TextStyle(
+                        fontWeight: FontWeight.bold, fontSize: 16)),
+                const SizedBox(height: 16),
+                TextFormField(
+                  decoration: InputDecoration(
+                    labelText: l10n.amount,
+                    prefixText: '₹',
+                  ),
+                  keyboardType: TextInputType.number,
                 ),
-              );
-            },
-            child: const Text('Withdraw'),
-          ),
-        ],
+                const SizedBox(height: 14),
+                DropdownButtonFormField<String>(
+                  initialValue: l10n.bankTransfer,
+                  decoration:
+                      InputDecoration(labelText: l10n.withdrawTo),
+                  items: [l10n.bankTransfer, l10n.upi]
+                      .map((e) =>
+                          DropdownMenuItem(value: e, child: Text(e)))
+                      .toList(),
+                  onChanged: (_) {},
+                ),
+              ],
+            ),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(ctx),
+                child: Text(l10n.cancel),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.pop(ctx);
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text(l10n.withdrawalSubmittedMsg),
+                      backgroundColor: AppColors.success,
+                    ),
+                  );
+                },
+                child: Text(l10n.withdraw),
+              ),
+            ],
+          );
+        },
       ),
     );
   }

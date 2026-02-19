@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../l10n/app_localizations.dart';
 import '../core/theme.dart';
 import '../providers/app_state.dart';
 
@@ -9,6 +10,7 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Consumer<AppState>(
       builder: (context, state, _) {
         final user = state.currentUser;
@@ -33,7 +35,7 @@ class ProfileScreen extends StatelessWidget {
               children: [
                 Image.asset('assets/icon/app_icon.png', height: 24, width: 24),
                 const SizedBox(width: 10),
-                const Text('My Profile'),
+                Text(l10n.myProfile),
               ],
             ),
             actions: [
@@ -105,7 +107,7 @@ class ProfileScreen extends StatelessWidget {
                             onPressed: () => Navigator.of(context)
                                 .pushNamed('/subscription'),
                             icon: const Icon(Icons.star, size: 18),
-                            label: const Text('Upgrade to Premium'),
+                            label: Text(l10n.upgradeToPremium),
                             style: ElevatedButton.styleFrom(
                               backgroundColor: AppColors.accent,
                             ),

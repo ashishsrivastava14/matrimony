@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../core/theme.dart';
+import '../l10n/app_localizations.dart';
 
 /// Verified / Premium badge widget
 class VerifiedBadge extends StatelessWidget {
@@ -16,6 +17,7 @@ class VerifiedBadge extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -32,7 +34,7 @@ class VerifiedBadge extends StatelessWidget {
                 Icon(Icons.verified, size: size, color: AppColors.verified),
                 const SizedBox(width: 3),
                 Text(
-                  'ID Verified',
+                  l10n.idVerified,
                   style: TextStyle(
                     fontSize: size - 4,
                     color: AppColors.verified,
@@ -57,7 +59,7 @@ class VerifiedBadge extends StatelessWidget {
                     size: size, color: AppColors.accent),
                 const SizedBox(width: 3),
                 Text(
-                  'Premium',
+                  l10n.premium,
                   style: TextStyle(
                     fontSize: size - 4,
                     color: AppColors.accent,

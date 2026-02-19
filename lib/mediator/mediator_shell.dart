@@ -3,6 +3,7 @@ import 'mediator_dashboard.dart';
 import 'create_profile_screen.dart';
 import 'commission_history_screen.dart';
 import 'wallet_screen.dart';
+import '../l10n/app_localizations.dart';
 
 class MediatorShell extends StatefulWidget {
   const MediatorShell({super.key});
@@ -23,6 +24,7 @@ class _MediatorShellState extends State<MediatorShell> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Scaffold(
       body: IndexedStack(
         index: _currentIndex,
@@ -31,26 +33,26 @@ class _MediatorShellState extends State<MediatorShell> {
       bottomNavigationBar: NavigationBar(
         selectedIndex: _currentIndex,
         onDestinationSelected: (i) => setState(() => _currentIndex = i),
-        destinations: const [
+        destinations: [
           NavigationDestination(
-            icon: Icon(Icons.dashboard_outlined),
-            selectedIcon: Icon(Icons.dashboard),
-            label: 'Dashboard',
+            icon: const Icon(Icons.dashboard_outlined),
+            selectedIcon: const Icon(Icons.dashboard),
+            label: l10n.dashboard,
           ),
           NavigationDestination(
-            icon: Icon(Icons.person_add_outlined),
-            selectedIcon: Icon(Icons.person_add),
-            label: 'Add Profile',
+            icon: const Icon(Icons.person_add_outlined),
+            selectedIcon: const Icon(Icons.person_add),
+            label: l10n.addProfile,
           ),
           NavigationDestination(
-            icon: Icon(Icons.receipt_long_outlined),
-            selectedIcon: Icon(Icons.receipt_long),
-            label: 'Commission',
+            icon: const Icon(Icons.receipt_long_outlined),
+            selectedIcon: const Icon(Icons.receipt_long),
+            label: l10n.commission,
           ),
           NavigationDestination(
-            icon: Icon(Icons.account_balance_wallet_outlined),
-            selectedIcon: Icon(Icons.account_balance_wallet),
-            label: 'Wallet',
+            icon: const Icon(Icons.account_balance_wallet_outlined),
+            selectedIcon: const Icon(Icons.account_balance_wallet),
+            label: l10n.wallet,
           ),
         ],
       ),

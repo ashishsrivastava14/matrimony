@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../core/theme.dart';
 import '../services/mock_data.dart';
+import '../l10n/app_localizations.dart';
 
 class MediatorManagementScreen extends StatefulWidget {
   const MediatorManagementScreen({super.key});
@@ -15,6 +16,7 @@ class _MediatorManagementScreenState extends State<MediatorManagementScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     final mediators = MockDataService.getMockMediators();
     final filtered = mediators.where((m) {
       if (_search.isNotEmpty &&
@@ -33,22 +35,22 @@ class _MediatorManagementScreenState extends State<MediatorManagementScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text('Mediator Management',
-                    style: TextStyle(
+                Text(l10n.mediatorManagement,
+                    style: const TextStyle(
                         fontSize: 22, fontWeight: FontWeight.bold)),
                 ElevatedButton.icon(
                   onPressed: () => _showAddMediatorDialog(),
                   icon: const Icon(Icons.add, size: 18),
-                  label: const Text('Add Mediator'),
+                  label: Text(l10n.addMediator),
                 ),
               ],
             ),
             const SizedBox(height: 16),
 
             TextField(
-              decoration: const InputDecoration(
-                hintText: 'Search mediators...',
-                prefixIcon: Icon(Icons.search),
+              decoration: InputDecoration(
+                hintText: l10n.searchMediators,
+                prefixIcon: const Icon(Icons.search),
                 isDense: true,
               ),
               onChanged: (v) => setState(() => _search = v),
@@ -58,11 +60,11 @@ class _MediatorManagementScreenState extends State<MediatorManagementScreen> {
             // Summary cards
             Row(
               children: [
-                _summaryCard('Total', '${filtered.length}', AppColors.primary),
+                _summaryCard(l10n.totalLabel, '${filtered.length}', AppColors.primary),
                 const SizedBox(width: 12),
-                _summaryCard('Active', '${filtered.where((m) => m.isActive).length}', AppColors.success),
+                _summaryCard(l10n.active, '${filtered.where((m) => m.isActive).length}', AppColors.success),
                 const SizedBox(width: 12),
-                _summaryCard('Avg Commission', '₹12,000', AppColors.accent),
+                _summaryCard(l10n.avgCommission, '₹12,000', AppColors.accent),
               ],
             ),
             const SizedBox(height: 16),
@@ -116,8 +118,8 @@ class _MediatorManagementScreenState extends State<MediatorManagementScreen> {
                                           ),
                                           child: Text(
                                             m.isActive
-                                                ? 'Active'
-                                                : 'Inactive',
+                                                ? l10n.active
+                                                : l10n.inactive,
                                             style: TextStyle(
                                               fontSize: 10,
                                               color: m.isActive
@@ -139,16 +141,16 @@ class _MediatorManagementScreenState extends State<MediatorManagementScreen> {
                               ),
                               PopupMenuButton<String>(
                                 onSelected: (v) {},
-                                itemBuilder: (_) => const [
+                                itemBuilder: (_) => [
                                   PopupMenuItem(
                                       value: 'edit',
-                                      child: Text('Edit')),
+                                      child: Text(l10n.editItem)),
                                   PopupMenuItem(
                                       value: 'toggle',
-                                      child: Text('Toggle Status')),
+                                      child: Text(l10n.toggleStatus)),
                                   PopupMenuItem(
                                       value: 'delete',
-                                      child: Text('Delete')),
+                                      child: Text(l10n.deleteItem)),
                                 ],
                               ),
                             ],
@@ -158,13 +160,13 @@ class _MediatorManagementScreenState extends State<MediatorManagementScreen> {
                             mainAxisAlignment:
                                 MainAxisAlignment.spaceAround,
                             children: [
-                              _statItem('Profiles',
+                              _statItem(l10n.profiles,
                                   '${m.totalProfiles}'),
-                              _statItem('Matches',
+                              _statItem(l10n.matches,
                                   '${m.activeMatches}'),
-                              _statItem('Commission',
+                              _statItem(l10n.commission,
                                   '₹${m.commissionEarned.toStringAsFixed(0)}'),
-                              _statItem('Wallet',
+                              _statItem(l10n.wallet,
                                   '₹${m.walletBalance.toStringAsFixed(0)}'),
                             ],
                           ),
@@ -217,36 +219,37 @@ class _MediatorManagementScreenState extends State<MediatorManagementScreen> {
   }
 
   void _showAddMediatorDialog() {
+    final l10n = AppLocalizations.of(context)!;
     showDialog(
       context: context,
       builder: (ctx) => AlertDialog(
-        title: const Text('Add New Mediator'),
+        title: Text(l10n.addNewMediator),
         content: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            TextFormField(decoration: const InputDecoration(labelText: 'Name')),
+            TextFormField(decoration: InputDecoration(labelText: l10n.nameLabel)),
             const SizedBox(height: 10),
-            TextFormField(decoration: const InputDecoration(labelText: 'Phone')),
+            TextFormField(decoration: InputDecoration(labelText: l10n.phoneLabel)),
             const SizedBox(height: 10),
-            TextFormField(decoration: const InputDecoration(labelText: 'District')),
+            TextFormField(decoration: InputDecoration(labelText: l10n.district)),
             const SizedBox(height: 10),
-            TextFormField(decoration: const InputDecoration(labelText: 'Commission Rate (%)')),
+            TextFormField(decoration: InputDecoration(labelText: l10n.commissionRate)),
           ],
         ),
         actions: [
           TextButton(
               onPressed: () => Navigator.pop(ctx),
-              child: const Text('Cancel')),
+              child: Text(l10n.cancel)),
           ElevatedButton(
             onPressed: () {
               Navigator.pop(ctx);
               ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(
-                    content: Text('Mediator added!'),
+                SnackBar(
+                    content: Text(l10n.mediatorAdded),
                     backgroundColor: AppColors.success),
               );
             },
-            child: const Text('Add'),
+            child: Text(l10n.add),
           ),
         ],
       ),
