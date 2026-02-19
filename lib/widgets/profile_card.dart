@@ -188,10 +188,22 @@ class ProfileCard extends StatelessWidget {
                           child: OutlinedButton.icon(
                             onPressed: onDontShow,
                             icon: const Icon(Icons.close, size: 16),
-                            label: Text(l10n.dontShow,
-                                style: const TextStyle(fontSize: 12)),
+                            label: Text(
+                              l10n.dontShow,
+                              style: const TextStyle(
+                                fontSize: 12,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
                             style: OutlinedButton.styleFrom(
-                              padding: const EdgeInsets.symmetric(vertical: 10),
+                              foregroundColor: AppColors.error,
+                              side: const BorderSide(
+                                  color: AppColors.error, width: 1.5),
+                              padding:
+                                  const EdgeInsets.symmetric(vertical: 11),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(30),
+                              ),
                             ),
                           ),
                         ),
@@ -199,12 +211,25 @@ class ProfileCard extends StatelessWidget {
                         Expanded(
                           child: ElevatedButton.icon(
                             onPressed: onSendInterest,
-                            icon: const Icon(Icons.favorite_border, size: 16),
-                            label: Text(l10n.sendInterest,
-                                style: const TextStyle(fontSize: 12)),
+                            icon: const Icon(Icons.favorite, size: 16),
+                            label: Text(
+                              l10n.sendInterest,
+                              style: const TextStyle(
+                                fontSize: 12,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
                             style: ElevatedButton.styleFrom(
                               backgroundColor: AppColors.accent,
-                              padding: const EdgeInsets.symmetric(vertical: 10),
+                              foregroundColor: Colors.white,
+                              padding:
+                                  const EdgeInsets.symmetric(vertical: 11),
+                              elevation: 4,
+                              shadowColor:
+                                  AppColors.accent.withValues(alpha: 0.4),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(30),
+                              ),
                             ),
                           ),
                         ),

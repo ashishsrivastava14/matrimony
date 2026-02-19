@@ -192,7 +192,22 @@ class MatchDetailScreen extends StatelessWidget {
                             child: OutlinedButton.icon(
                               onPressed: () {},
                               icon: const Icon(Icons.close, size: 18),
-                              label: Text(l10n.dontShow),
+                              label: Text(
+                                l10n.dontShow,
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                              style: OutlinedButton.styleFrom(
+                                foregroundColor: AppColors.error,
+                                side: const BorderSide(
+                                    color: AppColors.error, width: 1.5),
+                                padding: const EdgeInsets.symmetric(
+                                    vertical: 14),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(30),
+                                ),
+                              ),
                             ),
                           ),
                           const SizedBox(width: 12),
@@ -209,9 +224,24 @@ class MatchDetailScreen extends StatelessWidget {
                                 );
                               },
                               icon: const Icon(Icons.favorite, size: 18),
-                              label: Text(l10n.sendInterest),
+                              label: Text(
+                                l10n.sendInterest,
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 15,
+                                ),
+                              ),
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: AppColors.accent,
+                                foregroundColor: Colors.white,
+                                padding: const EdgeInsets.symmetric(
+                                    vertical: 14),
+                                elevation: 6,
+                                shadowColor:
+                                    AppColors.accent.withValues(alpha: 0.5),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(30),
+                                ),
                               ),
                             ),
                           ),
