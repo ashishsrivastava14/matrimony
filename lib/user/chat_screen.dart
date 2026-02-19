@@ -18,6 +18,18 @@ class ChatScreen extends StatefulWidget {
 class _ChatScreenState extends State<ChatScreen> {
   final _messageController = TextEditingController();
   final _scrollController = ScrollController();
+  bool _hasText = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _messageController.addListener(() {
+      final hasText = _messageController.text.trim().isNotEmpty;
+      if (hasText != _hasText) {
+        setState(() => _hasText = hasText);
+      }
+    });
+  }
 
   @override
   void dispose() {
@@ -245,13 +257,27 @@ class _ChatScreenState extends State<ChatScreen> {
                       color: AppColors.primary,
                       shape: BoxShape.circle,
                     ),
-                    child: IconButton(
-                      icon: const Icon(Icons.mic, color: Colors.white),
-                      onPressed: () {
-                        final chat = context.read<ChatProvider>();
-                        _send(chat, conversation.id);
-                      },
-                    ),
+                    child: _hasText
+                        ? IconButton(
+                            icon: const Icon(Icons.send, color: Colors.white),
+                            onPressed: () {
+                              final chat = context.read<ChatProvider>();
+                              _send(chat, conversation.id);
+                            },
+                          )
+                        : IconButton(
+                            icon: const Icon(Icons.mic, color: Colors.white),
+                            onPressed: () {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                  content: Text(
+                                      'Hold to record a voice message'),
+                                  duration: Duration(seconds: 2),
+                                  behavior: SnackBarBehavior.floating,
+                                ),
+                              );
+                            },
+                          ),
                   ),
                 ],
               ),
