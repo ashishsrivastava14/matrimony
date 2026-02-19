@@ -83,7 +83,7 @@ class _SearchScreenState extends State<SearchScreen>
 }
 
 // 
-// By Criteria Tab — fully functional filtering
+// By Criteria Tab ï¿½ fully functional filtering
 // 
 
 class _ByCriteriaTab extends StatefulWidget {
@@ -154,7 +154,7 @@ class _ByCriteriaTabState extends State<_ByCriteriaTab> {
         return false;
       }
 
-      // Nearby — restrict to Tamil Nadu
+      // Nearby ï¿½ restrict to Tamil Nadu
       if (_nearbyEnabled && p.state != 'Tamil Nadu') return false;
 
       return true;
@@ -370,7 +370,7 @@ class _SearchResultCard extends StatelessWidget {
                       width: 80,
                       height: 80,
                       fit: BoxFit.cover,
-                      errorBuilder: (_, __, ___) => Container(
+                      errorBuilder: (_, _a, _b) => Container(
                         width: 80,
                         height: 80,
                         color: Colors.grey.shade200,
@@ -466,7 +466,7 @@ class _SearchResultCard extends StatelessWidget {
 }
 
 // 
-// By Profile ID Tab — functional search
+// By Profile ID Tab ï¿½ functional search
 // 
 
 class _ByProfileIdTab extends StatefulWidget {
@@ -499,9 +499,10 @@ class _ByProfileIdTabState extends State<_ByProfileIdTab> {
       _results = [];
     });
 
-    await Future.delayed(const Duration(milliseconds: 400));
-
     final allProfiles = context.read<AppState>().profiles;
+
+    await Future.delayed(const Duration(milliseconds: 400));
+    if (!mounted) return;
     final lower = query.toLowerCase();
 
     final matches = allProfiles.where((p) {

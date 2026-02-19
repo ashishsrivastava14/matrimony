@@ -221,8 +221,10 @@ class _ChatScreenState extends State<ChatScreen> {
       ),
     );
 
+    final navigator = Navigator.of(context);
     Future.delayed(const Duration(milliseconds: 1200), () {
-      Navigator.pop(context); // close dialog
+      if (!mounted) return;
+      navigator.pop(); // close dialog
       const mockPhoto = 'assets/images/profiles/profile_68.jpg';
       chat.sendAttachment(
           convId, ChatMessageType.image, mockPhoto, '📷 Photo');
@@ -722,7 +724,7 @@ class _ImageBubble extends StatelessWidget {
             width: 200,
             height: 200,
             fit: BoxFit.cover,
-            errorBuilder: (_, __, ___) => Container(
+            errorBuilder: (_, _a, _b) => Container(
               width: 200,
               height: 200,
               color: Colors.grey.shade200,

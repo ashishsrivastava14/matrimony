@@ -267,7 +267,7 @@ class MatchDetailScreen extends StatelessWidget {
                       const Divider(height: 32),
 
                       // About
-                      _SectionTitle('${l10n.aboutProfile(profile.name)}'),
+                      _SectionTitle(l10n.aboutProfile(profile.name)),
                       const SizedBox(height: 8),
                       Text(
                         profile.aboutMe.isNotEmpty
@@ -285,7 +285,7 @@ class MatchDetailScreen extends StatelessWidget {
                       _SectionTitle(l10n.basicDetails),
                       const SizedBox(height: 8),
                       _DetailGrid(items: {
-                        l10n.age: '${l10n.ageYears(profile.age.toString())}',
+                        l10n.age: l10n.ageYears(profile.age.toString()),
                         l10n.height: profile.height,
                         l10n.maritalStatus: profile.maritalStatus,
                         l10n.motherTongue: profile.motherTongue,

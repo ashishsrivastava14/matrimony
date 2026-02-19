@@ -429,7 +429,7 @@ class _SplashScreenState extends State<SplashScreen>
       final heartSize = 12.0 + rng.nextDouble() * 14;
       return AnimatedBuilder(
         animation: _floatCtrl,
-        builder: (_, __) {
+        builder: (_, _a) {
           final t = ((_floatCtrl.value + delay) % 1.0);
           final y = size.height * (1.0 - t);
           final x = startX + math.sin(t * math.pi * 2 + i) * 30;
@@ -485,7 +485,7 @@ class _AnimatedLoadingDotsState extends State<_AnimatedLoadingDots>
   Widget build(BuildContext context) {
     return AnimatedBuilder(
       animation: _ctrl,
-      builder: (_, __) {
+      builder: (_, _a) {
         return Row(
           mainAxisSize: MainAxisSize.min,
           children: List.generate(3, (i) {

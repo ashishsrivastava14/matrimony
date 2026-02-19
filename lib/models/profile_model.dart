@@ -119,7 +119,6 @@ class ProfileModel {
     DateTime? lastActive,
   }) : lastActive = lastActive ?? DateTime.now();
 
-  // TODO: Replace with real API JSON parsing
   factory ProfileModel.fromJson(Map<String, dynamic> json) {
     return ProfileModel(
       id: json['id'] ?? '',
