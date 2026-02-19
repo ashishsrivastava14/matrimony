@@ -90,9 +90,10 @@ class AppState extends ChangeNotifier {
     _notifications = MockDataService.getMockNotifications();
     _allUsers = MockDataService.getMockUsers();
     _plans = MockDataService.getMockPlans();
-    _receivedInterests = ['P002', 'P008'];
-    _sentInterests = ['P003'];
-    _acceptedInterests = ['P002'];
+    _receivedInterests = ['P002', 'P008', 'P011', 'P014', 'P019', 'P021', 'P024', 'P027', 'P029', 'P032', 'P037'];
+    _sentInterests = ['P003', 'P012', 'P018', 'P030', 'P035'];
+    _acceptedInterests = ['P002', 'P011', 'P021'];
+    _declinedInterests = ['P008'];
     notifyListeners();
   }
 
