@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../providers/app_state.dart';
 import '../providers/chat_provider.dart';
 import '../widgets/user_bottom_navigation.dart';
 import 'home_screen.dart';
@@ -19,6 +20,7 @@ class UserShell extends StatefulWidget {
 class _UserShellState extends State<UserShell> {
   int _currentIndex = 0;
   bool _isInitialized = false;
+  int _prevShellIndex = 0;
 
   final List<Widget> _screens = const [
     HomeScreen(),
@@ -52,6 +54,15 @@ class _UserShellState extends State<UserShell> {
 
   @override
   Widget build(BuildContext context) {
+    // React to AppState.shellIndex changes triggered from other screens
+    final shellIndex = context.watch<AppState>().shellIndex;
+    if (shellIndex != _prevShellIndex) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (mounted) setState(() => _currentIndex = shellIndex);
+      });
+      _prevShellIndex = shellIndex;
+    }
+
     return Scaffold(
       body: IndexedStack(
         index: _currentIndex,
@@ -59,7 +70,10 @@ class _UserShellState extends State<UserShell> {
       ),
       bottomNavigationBar: UserBottomNavigation(
         currentIndex: _currentIndex,
-        onTap: (index) => setState(() => _currentIndex = index),
+        onTap: (index) {
+          context.read<AppState>().setShellIndex(index);
+          setState(() => _currentIndex = index);
+        },
       ),
     );
   }

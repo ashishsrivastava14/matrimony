@@ -130,7 +130,7 @@ class HomeScreen extends StatelessWidget {
                 _SectionHeader(
                   title: l10n.recentlyJoined,
                   subtitle: l10n.newProfilesOnPlatform,
-                  onViewAll: () {},
+                  onViewAll: () => state.setShellIndex(2),
                 ),
                 SizedBox(
                   height: 220,
@@ -154,7 +154,7 @@ class HomeScreen extends StatelessWidget {
                 _SectionHeader(
                   title: l10n.suggestedMatches,
                   subtitle: l10n.matchesBasedOnPreferences('${profiles.length}'),
-                  onViewAll: () {},
+                  onViewAll: () => state.setShellIndex(2),
                 ),
                 ...suggested.map((p) => Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 12),

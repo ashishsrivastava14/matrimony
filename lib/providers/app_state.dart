@@ -79,7 +79,14 @@ class AppState extends ChangeNotifier {
   // ── Subscription plans (admin) ─────────────────────────────────
   List<SubscriptionPlan> _plans = [];
   List<SubscriptionPlan> get plans => _plans;
-
+  // ── Bottom-nav shell index (shared between HomeScreen & UserShell) ──
+  int _shellIndex = 0;
+  int get shellIndex => _shellIndex;
+  void setShellIndex(int index) {
+    if (_shellIndex == index) return;
+    _shellIndex = index;
+    notifyListeners();
+  }
   // ── Profile completion ─────────────────────────────────────────
   int _profileCompletion = 65;
   int get profileCompletion => _profileCompletion;
