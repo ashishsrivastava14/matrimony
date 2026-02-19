@@ -183,54 +183,71 @@ class ProfileCard extends StatelessWidget {
                     const SizedBox(height: 12),
                     // Action buttons
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        Expanded(
-                          child: OutlinedButton.icon(
-                            onPressed: onDontShow,
-                            icon: const Icon(Icons.close, size: 16),
-                            label: Text(
-                              l10n.dontShow,
-                              style: const TextStyle(
-                                fontSize: 12,
-                                fontWeight: FontWeight.w600,
+                        // Don't Show
+                        GestureDetector(
+                          onTap: onDontShow,
+                          child: Column(
+                            children: [
+                              Container(
+                                width: 42,
+                                height: 42,
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  border: Border.all(
+                                      color: AppColors.error, width: 1.5),
+                                  color:
+                                      AppColors.error.withValues(alpha: 0.06),
+                                ),
+                                child: const Icon(Icons.close,
+                                    color: AppColors.error, size: 20),
                               ),
-                            ),
-                            style: OutlinedButton.styleFrom(
-                              foregroundColor: AppColors.error,
-                              side: const BorderSide(
-                                  color: AppColors.error, width: 1.5),
-                              padding:
-                                  const EdgeInsets.symmetric(vertical: 11),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(30),
+                              const SizedBox(height: 5),
+                              Text(
+                                l10n.dontShow,
+                                style: const TextStyle(
+                                  fontSize: 10,
+                                  fontWeight: FontWeight.w600,
+                                  color: AppColors.error,
+                                ),
                               ),
-                            ),
+                            ],
                           ),
                         ),
-                        const SizedBox(width: 12),
-                        Expanded(
-                          child: ElevatedButton.icon(
-                            onPressed: onSendInterest,
-                            icon: const Icon(Icons.favorite, size: 16),
-                            label: Text(
-                              l10n.sendInterest,
-                              style: const TextStyle(
-                                fontSize: 12,
-                                fontWeight: FontWeight.bold,
+                        // Send Interest
+                        GestureDetector(
+                          onTap: onSendInterest,
+                          child: Column(
+                            children: [
+                              Container(
+                                width: 48,
+                                height: 48,
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: AppColors.accent,
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: AppColors.accent
+                                          .withValues(alpha: 0.4),
+                                      blurRadius: 8,
+                                      offset: const Offset(0, 3),
+                                    ),
+                                  ],
+                                ),
+                                child: const Icon(Icons.favorite,
+                                    color: Colors.white, size: 22),
                               ),
-                            ),
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: AppColors.accent,
-                              foregroundColor: Colors.white,
-                              padding:
-                                  const EdgeInsets.symmetric(vertical: 11),
-                              elevation: 4,
-                              shadowColor:
-                                  AppColors.accent.withValues(alpha: 0.4),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(30),
+                              const SizedBox(height: 5),
+                              Text(
+                                l10n.sendInterest,
+                                style: const TextStyle(
+                                  fontSize: 10,
+                                  fontWeight: FontWeight.bold,
+                                  color: AppColors.accent,
+                                ),
                               ),
-                            ),
+                            ],
                           ),
                         ),
                       ],

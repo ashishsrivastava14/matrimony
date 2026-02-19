@@ -185,85 +185,72 @@ class MatchDetailScreen extends StatelessWidget {
 
                       const SizedBox(height: 16),
 
-                      // Action buttons
+                      // Action buttons — all in one row
                       Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          Expanded(
-                            child: OutlinedButton.icon(
-                              onPressed: () {},
-                              icon: const Icon(Icons.close, size: 18),
-                              label: Text(
-                                l10n.dontShow,
-                                style: const TextStyle(
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
-                              style: OutlinedButton.styleFrom(
-                                foregroundColor: AppColors.error,
-                                side: const BorderSide(
-                                    color: AppColors.error, width: 1.5),
-                                padding: const EdgeInsets.symmetric(
-                                    vertical: 14),
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(30),
-                                ),
-                              ),
-                            ),
+                          // Don't Show
+                          _ActionIcon(
+                            icon: Icons.close,
+                            label: l10n.dontShow,
+                            color: AppColors.error,
+                            filled: false,
+                            onTap: () {},
                           ),
-                          const SizedBox(width: 12),
-                          Expanded(
-                            child: ElevatedButton.icon(
-                              onPressed: () {
-                                state.sendInterest(profile.id);
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(
-                                    content: Text(
-                                        l10n.interestSentTo(profile.name)),
-                                    backgroundColor: AppColors.success,
-                                  ),
-                                );
+                          // Send Interest
+                          _ActionIcon(
+                            icon: Icons.favorite,
+                            label: l10n.sendInterest,
+                            color: AppColors.accent,
+                            filled: true,
+                            onTap: () {
+                              state.sendInterest(profile.id);
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text(
+                                      l10n.interestSentTo(profile.name)),
+                                  backgroundColor: AppColors.success,
+                                ),
+                              );
+                            },
+                          ),
+                          if (!canViewContact) ...[(
+                            // Upgrade to View
+                            _ActionIcon(
+                              icon: Icons.workspace_premium,
+                              label: 'Upgrade',
+                              color: AppColors.premiumGold,
+                              filled: true,
+                              onTap: () => Navigator.of(context)
+                                  .pushNamed('/subscription'),
+                            )
+                          ), (
+                            // Unlock
+                            _ActionIcon(
+                              icon: Icons.lock_open,
+                              label: 'Unlock (1)',
+                              color: AppColors.primary,
+                              filled: false,
+                              onTap: () {
+                                if (state.useUnlock()) {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                        content:
+                                            Text(l10n.contactUnlocked)),
+                                  );
+                                }
                               },
-                              icon: const Icon(Icons.favorite, size: 18),
-                              label: Text(
-                                l10n.sendInterest,
-                                style: const TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 15,
-                                ),
-                              ),
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: AppColors.accent,
-                                foregroundColor: Colors.white,
-                                padding: const EdgeInsets.symmetric(
-                                    vertical: 14),
-                                elevation: 6,
-                                shadowColor:
-                                    AppColors.accent.withValues(alpha: 0.5),
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(30),
-                                ),
-                              ),
-                            ),
-                          ),
+                            )
+                          )],
                         ],
                       ),
 
                       const SizedBox(height: 20),
 
-                      // Contact section
+                      // Contact section (phone display only)
                       _ContactSection(
                         canView: canViewContact,
                         phone: '+91 90*** *****X',
-                        onUpgrade: () =>
-                            Navigator.of(context).pushNamed('/subscription'),
-                        onUnlock: () {
-                          if (state.useUnlock()) {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
-                                  content: Text(l10n.contactUnlocked)),
-                            );
-                          }
-                        },
                       ),
 
                       const Divider(height: 32),
@@ -471,93 +458,100 @@ class _DetailGrid extends StatelessWidget {
 class _ContactSection extends StatelessWidget {
   final bool canView;
   final String phone;
-  final VoidCallback? onUpgrade;
-  final VoidCallback? onUnlock;
 
   const _ContactSection({
     required this.canView,
     required this.phone,
-    this.onUpgrade,
-    this.onUnlock,
   });
 
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: canView ? AppColors.success.withValues(alpha: 0.05) : Colors.grey.shade50,
+      color: canView
+          ? AppColors.success.withValues(alpha: 0.05)
+          : Colors.grey.shade50,
       child: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+        child: Row(
           children: [
-            Row(
-              children: [
-                Icon(Icons.phone,
-                    color: canView ? AppColors.success : AppColors.textSecondary),
-                const SizedBox(width: 12),
-                Expanded(
-                  child: Text(
-                    canView ? '+91 98765 43211' : phone,
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                      color: canView
-                          ? AppColors.success
-                          : AppColors.textSecondary,
-                    ),
-                  ),
+            Icon(Icons.phone,
+                color: canView ? AppColors.success : AppColors.textSecondary),
+            const SizedBox(width: 12),
+            Expanded(
+              child: Text(
+                canView ? '+91 98765 43211' : phone,
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w600,
+                  color: canView
+                      ? AppColors.success
+                      : AppColors.textSecondary,
                 ),
-              ],
+              ),
             ),
-            if (!canView) ...[
-              const SizedBox(height: 12),
-              SizedBox(
-                width: double.infinity,
-                child: ElevatedButton.icon(
-                  onPressed: onUpgrade,
-                  icon: const Icon(Icons.workspace_premium, size: 18),
-                  label: const Text(
-                    'Upgrade to View',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 14,
-                    ),
-                  ),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: AppColors.accent,
-                    foregroundColor: Colors.white,
-                    padding: const EdgeInsets.symmetric(vertical: 14),
-                    elevation: 6,
-                    shadowColor: AppColors.accent.withValues(alpha: 0.5),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30),
-                    ),
-                  ),
-                ),
-              ),
-              const SizedBox(height: 8),
-              SizedBox(
-                width: double.infinity,
-                child: OutlinedButton.icon(
-                  onPressed: onUnlock,
-                  icon: const Icon(Icons.lock_open, size: 18),
-                  label: const Text(
-                    'Unlock (1)',
-                    style: TextStyle(fontWeight: FontWeight.w600),
-                  ),
-                  style: OutlinedButton.styleFrom(
-                    foregroundColor: AppColors.primary,
-                    side: const BorderSide(
-                        color: AppColors.primary, width: 1.5),
-                    padding: const EdgeInsets.symmetric(vertical: 14),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30),
-                    ),
-                  ),
-                ),
-              ),
-            ],
           ],
         ),
+      ),
+    );
+  }
+}
+
+class _ActionIcon extends StatelessWidget {
+  final IconData icon;
+  final String label;
+  final Color color;
+  final bool filled;
+  final VoidCallback? onTap;
+
+  const _ActionIcon({
+    required this.icon,
+    required this.label,
+    required this.color,
+    required this.filled,
+    this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Container(
+            width: 52,
+            height: 52,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: filled ? color : color.withValues(alpha: 0.07),
+              border: filled ? null : Border.all(color: color, width: 1.8),
+              boxShadow: filled
+                  ? [
+                      BoxShadow(
+                        color: color.withValues(alpha: 0.38),
+                        blurRadius: 8,
+                        offset: const Offset(0, 3),
+                      ),
+                    ]
+                  : null,
+            ),
+            child: Icon(
+              icon,
+              color: filled ? Colors.white : color,
+              size: 24,
+            ),
+          ),
+          const SizedBox(height: 5),
+          Text(
+            label,
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: 10,
+              fontWeight: filled ? FontWeight.bold : FontWeight.w600,
+              color: color,
+            ),
+          ),
+        ],
       ),
     );
   }
