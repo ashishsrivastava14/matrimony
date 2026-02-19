@@ -201,13 +201,15 @@ class ProfileScreen extends StatelessWidget {
                     _MenuTile(
                       icon: Icons.privacy_tip_outlined,
                       title: 'Privacy Settings',
-                      onTap: () {},
+                      onTap: () =>
+                          Navigator.of(context).pushNamed('/privacy-settings'),
                     ),
                     const Divider(height: 1),
                     _MenuTile(
                       icon: Icons.help_outline,
                       title: 'Help & Support',
-                      onTap: () {},
+                      onTap: () =>
+                          Navigator.of(context).pushNamed('/help-support'),
                     ),
                   ],
                 ),

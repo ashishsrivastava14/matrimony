@@ -25,6 +25,8 @@ import 'user/subscription_screen.dart';
 import 'user/horoscope_screen.dart';
 import 'user/notifications_screen.dart';
 import 'user/interest_management_screen.dart';
+import 'user/privacy_settings_screen.dart';
+import 'user/help_support_screen.dart';
 
 // Mediator screens
 import 'mediator/mediator_shell.dart';
@@ -120,6 +122,12 @@ class MatrimonyApp extends StatelessWidget {
         break;
       case '/interests':
         page = const InterestManagementScreen();
+        break;
+      case '/privacy-settings':
+        page = const PrivacySettingsScreen();
+        break;
+      case '/help-support':
+        page = const HelpSupportScreen();
         break;
       case '/mediator':
         page = const MediatorShell();
