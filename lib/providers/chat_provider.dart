@@ -22,9 +22,7 @@ class ChatProvider extends ChangeNotifier {
   }
 
   void sendMessage(String conversationId, String message) {
-    if (!_messages.containsKey(conversationId)) {
-      _messages[conversationId] = MockDataService.getMockMessages(conversationId);
-    }
+    _ensureMessages(conversationId);
     _messages[conversationId]!.add(ChatMessage(
       id: 'MSG_${DateTime.now().millisecondsSinceEpoch}',
       senderId: 'U001',
@@ -32,8 +30,39 @@ class ChatProvider extends ChangeNotifier {
       message: message,
       isSentByMe: true,
     ));
+    _updateLastMessage(conversationId, message);
+    notifyListeners();
+    _simulateReply(conversationId);
+  }
 
-    // Update conversation last message
+  void sendAttachment(
+    String conversationId,
+    ChatMessageType type,
+    String attachmentData,
+    String displayMessage,
+  ) {
+    _ensureMessages(conversationId);
+    _messages[conversationId]!.add(ChatMessage(
+      id: 'MSG_${DateTime.now().millisecondsSinceEpoch}',
+      senderId: 'U001',
+      receiverId: 'other',
+      message: displayMessage,
+      isSentByMe: true,
+      type: type,
+      attachmentData: attachmentData,
+    ));
+    _updateLastMessage(conversationId, displayMessage);
+    notifyListeners();
+    _simulateReply(conversationId);
+  }
+
+  void _ensureMessages(String conversationId) {
+    if (!_messages.containsKey(conversationId)) {
+      _messages[conversationId] = MockDataService.getMockMessages(conversationId);
+    }
+  }
+
+  void _updateLastMessage(String conversationId, String message) {
     final idx = _conversations.indexWhere((c) => c.id == conversationId);
     if (idx != -1) {
       final c = _conversations[idx];
@@ -49,10 +78,9 @@ class ChatProvider extends ChangeNotifier {
         isPremium: c.isPremium,
       );
     }
+  }
 
-    notifyListeners();
-
-    // Simulate auto-reply after 2 seconds
+  void _simulateReply(String conversationId) {
     Future.delayed(const Duration(seconds: 2), () {
       _messages[conversationId]!.add(ChatMessage(
         id: 'MSG_REPLY_${DateTime.now().millisecondsSinceEpoch}',
