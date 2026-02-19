@@ -63,6 +63,12 @@ class _InterestManagementScreenState extends State<InterestManagementScreen>
         bottom: TabBar(
           controller: _tabController,
           isScrollable: true,
+          labelColor: Colors.white,
+          unselectedLabelColor: Colors.white60,
+          indicatorColor: Colors.white,
+          indicatorWeight: 3,
+          labelStyle: const TextStyle(fontWeight: FontWeight.w600, fontSize: 13),
+          unselectedLabelStyle: const TextStyle(fontWeight: FontWeight.w400, fontSize: 13),
           tabs: [
             Tab(
                 text:
