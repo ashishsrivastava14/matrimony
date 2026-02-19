@@ -30,6 +30,14 @@ class AppState extends ChangeNotifier {
       ? _plans.cast<SubscriptionPlan?>().firstWhere((p) => p!.id == _currentPlanId, orElse: () => null)
       : null;
 
+  /// True when the user's plan includes horoscope matching (Gold / Diamond).
+  bool get canAccessHoroscope {
+    if (!_isSubscribed) return false;
+    // Default paid user with no explicit plan gets full access
+    if (_currentPlanId.isEmpty) return true;
+    return _currentPlanId == 'PLAN_Q' || _currentPlanId == 'PLAN_Y';
+  }
+
   // ── Profile data ───────────────────────────────────────────────
   List<ProfileModel> _profiles = [];
   List<ProfileModel> _shortlisted = [];
@@ -128,6 +136,7 @@ class AppState extends ChangeNotifier {
           profileImage: 'https://i.pravatar.cc/300?img=68',
         );
         _isSubscribed = true;
+        _currentPlanId = 'PLAN_Q'; // Gold plan by default
         _unlockCount = 10;
         _profileCompletion = 90;
         break;

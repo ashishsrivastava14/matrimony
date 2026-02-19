@@ -12,26 +12,56 @@ class HoroscopeScreen extends StatefulWidget {
 
 class _HoroscopeScreenState extends State<HoroscopeScreen> {
   bool _showResult = false;
+  final _formKey = GlobalKey<FormState>();
 
-  final _myDetails = {
-    'name': 'Karthick',
-    'dob': '12/06/1991',
-    'tob': '06:10:00 AM',
-    'pob': 'Chennai',
-    'star': 'Rohini',
-    'rasi': 'Taurus',
-    'dosham': 'No',
-  };
+  // My detail controllers
+  late final TextEditingController _myName;
+  late final TextEditingController _myDob;
+  late final TextEditingController _myTob;
+  late final TextEditingController _myPob;
+  late final TextEditingController _myStar;
+  late final TextEditingController _myRasi;
+  late final TextEditingController _myDosham;
 
-  final _partnerDetails = {
-    'name': 'Priya Sharma',
-    'dob': '05/03/1995',
-    'tob': '10:30:00 AM',
-    'pob': 'Coimbatore',
-    'star': 'Uttara Phalguni',
-    'rasi': 'Virgo',
-    'dosham': 'No',
-  };
+  // Partner detail controllers
+  late final TextEditingController _pName;
+  late final TextEditingController _pDob;
+  late final TextEditingController _pTob;
+  late final TextEditingController _pPob;
+  late final TextEditingController _pStar;
+  late final TextEditingController _pRasi;
+  late final TextEditingController _pDosham;
+
+  @override
+  void initState() {
+    super.initState();
+    _myName   = TextEditingController(text: 'Karthick');
+    _myDob    = TextEditingController(text: '12/06/1991');
+    _myTob    = TextEditingController(text: '06:10 AM');
+    _myPob    = TextEditingController(text: 'Chennai');
+    _myStar   = TextEditingController(text: 'Rohini');
+    _myRasi   = TextEditingController(text: 'Taurus');
+    _myDosham = TextEditingController(text: 'No');
+
+    _pName   = TextEditingController(text: '');
+    _pDob    = TextEditingController(text: '');
+    _pTob    = TextEditingController(text: '');
+    _pPob    = TextEditingController(text: '');
+    _pStar   = TextEditingController(text: '');
+    _pRasi   = TextEditingController(text: '');
+    _pDosham = TextEditingController(text: 'No');
+  }
+
+  @override
+  void dispose() {
+    for (final c in [
+      _myName, _myDob, _myTob, _myPob, _myStar, _myRasi, _myDosham,
+      _pName, _pDob, _pTob, _pPob, _pStar, _pRasi, _pDosham,
+    ]) {
+      c.dispose();
+    }
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -69,58 +99,81 @@ class _HoroscopeScreenState extends State<HoroscopeScreen> {
   }
 
   Widget _buildForm(AppLocalizations l10n) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        // Illustration
-        Center(
-          child: Container(
-            padding: const EdgeInsets.all(24),
-            decoration: BoxDecoration(
-              color: AppColors.accent.withValues(alpha: 0.1),
-              shape: BoxShape.circle,
+    return Form(
+      key: _formKey,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // Illustration
+          Center(
+            child: Container(
+              padding: const EdgeInsets.all(24),
+              decoration: BoxDecoration(
+                color: AppColors.accent.withValues(alpha: 0.1),
+                shape: BoxShape.circle,
+              ),
+              child:
+                  const Icon(Icons.auto_awesome, color: AppColors.accent, size: 48),
             ),
-            child:
-                const Icon(Icons.auto_awesome, color: AppColors.accent, size: 48),
           ),
-        ),
-        const SizedBox(height: 16),
-        const Center(
-          child: Text(
-            'Check Horoscope Compatibility',
-            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          const SizedBox(height: 16),
+          Center(
+            child: Text(
+              l10n.checkHoroscopeCompatibility,
+              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            ),
           ),
-        ),
-        const SizedBox(height: 4),
-        const Center(
-          child: Text(
-            'Enter both profiles\' details to get matching score',
-            style: TextStyle(color: AppColors.textSecondary, fontSize: 13),
+          const SizedBox(height: 4),
+          Center(
+            child: Text(
+              l10n.enterProfileDetailsHint,
+              style: const TextStyle(color: AppColors.textSecondary, fontSize: 13),
+            ),
           ),
-        ),
-        const SizedBox(height: 24),
+          const SizedBox(height: 24),
 
-        // My details
-        _buildSectionHeader('Your Details', Icons.person),
-        const SizedBox(height: 12),
-        _buildDetailCard(_myDetails),
-        const SizedBox(height: 20),
+          // My details
+          _buildSectionHeader(l10n.yourDetails, Icons.person),
+          const SizedBox(height: 12),
+          _buildEditableCard([
+            _fieldRow(l10n.name,           _myName,   required: true),
+            _fieldRow(l10n.dateOfBirth,    _myDob,    hint: 'DD/MM/YYYY', required: true),
+            _fieldRow(l10n.timeOfBirth,    _myTob,    hint: 'HH:MM AM/PM'),
+            _fieldRow(l10n.placeOfBirth,   _myPob),
+            _fieldRow(l10n.starNakshatram, _myStar,   required: true),
+            _fieldRow(l10n.rasi,           _myRasi,   required: true),
+            _fieldRow(l10n.dosham,         _myDosham),
+          ]),
+          const SizedBox(height: 20),
 
-        // Partner details
-        _buildSectionHeader("Partner's Details", Icons.person_outline),
-        const SizedBox(height: 12),
-        _buildDetailCard(_partnerDetails),
-        const SizedBox(height: 24),
+          // Partner details
+          _buildSectionHeader(l10n.partnersDetails, Icons.person_outline),
+          const SizedBox(height: 12),
+          _buildEditableCard([
+            _fieldRow(l10n.name,           _pName,   required: true),
+            _fieldRow(l10n.dateOfBirth,    _pDob,    hint: 'DD/MM/YYYY', required: true),
+            _fieldRow(l10n.timeOfBirth,    _pTob,    hint: 'HH:MM AM/PM'),
+            _fieldRow(l10n.placeOfBirth,   _pPob),
+            _fieldRow(l10n.starNakshatram, _pStar,   required: true),
+            _fieldRow(l10n.rasi,           _pRasi,   required: true),
+            _fieldRow(l10n.dosham,         _pDosham),
+          ]),
+          const SizedBox(height: 24),
 
-        SizedBox(
-          width: double.infinity,
-          child: ElevatedButton.icon(
-            onPressed: () => setState(() => _showResult = true),
-            icon: const Icon(Icons.auto_awesome),
-            label: Text(l10n.checkCompatibility),
+          SizedBox(
+            width: double.infinity,
+            child: ElevatedButton.icon(
+              onPressed: () {
+                if (_formKey.currentState!.validate()) {
+                  setState(() => _showResult = true);
+                }
+              },
+              icon: const Icon(Icons.auto_awesome),
+              label: Text(l10n.checkCompatibility),
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 
@@ -135,49 +188,42 @@ class _HoroscopeScreenState extends State<HoroscopeScreen> {
     );
   }
 
-  Widget _buildDetailCard(Map<String, String> details) {
+  Widget _buildEditableCard(List<Widget> rows) {
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(16),
-        child: Column(
-          children: [
-            _detailRow('Name', details['name']!),
-            _detailRow('Date of Birth', details['dob']!),
-            _detailRow('Time of Birth', details['tob']!),
-            _detailRow('Place of Birth', details['pob']!),
-            _detailRow('Star (Nakshatram)', details['star']!),
-            _detailRow('Rasi', details['rasi']!),
-            _detailRow('Dosham', details['dosham']!),
-          ],
-        ),
+        child: Column(children: rows),
       ),
     );
   }
 
-  Widget _detailRow(String label, String value) {
+  Widget _fieldRow(
+    String label,
+    TextEditingController controller, {
+    String? hint,
+    bool required = false,
+  }) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 4),
-      child: Row(
-        children: [
-          Expanded(
-            flex: 2,
-            child: Text(label,
-                style: const TextStyle(
-                    color: AppColors.textSecondary, fontSize: 13)),
-          ),
-          Expanded(
-            flex: 3,
-            child: Text(value,
-                style: const TextStyle(fontWeight: FontWeight.w500)),
-          ),
-        ],
+      padding: const EdgeInsets.symmetric(vertical: 6),
+      child: TextFormField(
+        controller: controller,
+        decoration: InputDecoration(
+          labelText: label,
+          hintText: hint,
+          isDense: true,
+          border: const OutlineInputBorder(),
+          contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+        ),
+        validator: required
+            ? (v) => (v == null || v.trim().isEmpty) ? '$label is required' : null
+            : null,
       ),
     );
   }
 
   Widget _buildResult(AppLocalizations l10n) {
     const score = 7.5;
-    const maxScore = 10.0;
+    const maxScore = 10;
     const percentage = score / maxScore;
 
     return Column(
@@ -215,7 +261,7 @@ class _HoroscopeScreenState extends State<HoroscopeScreen> {
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           Text(
-                            '${score.toInt()}/$maxScore',
+                            '$score/$maxScore',
                             style: const TextStyle(
                                 fontSize: 32, fontWeight: FontWeight.bold),
                           ),
@@ -244,14 +290,14 @@ class _HoroscopeScreenState extends State<HoroscopeScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(_myDetails['name']!,
+                    Text(_myName.text,
                         style: const TextStyle(fontWeight: FontWeight.bold)),
                     const Padding(
                       padding: EdgeInsets.symmetric(horizontal: 8),
                       child: Icon(Icons.favorite,
                           color: AppColors.primary, size: 20),
                     ),
-                    Text(_partnerDetails['name']!,
+                    Text(_pName.text,
                         style: const TextStyle(fontWeight: FontWeight.bold)),
                   ],
                 ),
@@ -273,7 +319,7 @@ class _HoroscopeScreenState extends State<HoroscopeScreen> {
                   style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(height: 12),
-                ..._buildPoruthamItems(),
+                ..._buildPoruthamItems(l10n),
               ],
             ),
           ),
@@ -299,11 +345,9 @@ class _HoroscopeScreenState extends State<HoroscopeScreen> {
                   ],
                 ),
                 const SizedBox(height: 8),
-                const Text(
-                  'This is an excellent match with 7.5 out of 10 poruthams matching. '
-                  'The couple is highly compatible for marriage based on horoscope analysis. '
-                  'Both nakshatras complement each other well.',
-                  style: TextStyle(fontSize: 13, height: 1.5),
+                Text(
+                  l10n.horoscopeSummaryText,
+                  style: const TextStyle(fontSize: 13, height: 1.5),
                 ),
               ],
             ),
@@ -337,18 +381,18 @@ class _HoroscopeScreenState extends State<HoroscopeScreen> {
     );
   }
 
-  List<Widget> _buildPoruthamItems() {
+  List<Widget> _buildPoruthamItems(AppLocalizations l10n) {
     final poruthams = [
-      ('Dina Porutham', true, 'Star compatibility'),
-      ('Gana Porutham', true, 'Temperament matching'),
-      ('Mahendra Porutham', true, 'Prosperity & well-being'),
-      ('Stree Deergha', true, 'Long married life'),
-      ('Yoni Porutham', false, 'Physical compatibility'),
-      ('Rasi Porutham', true, 'Emotional compatibility'),
-      ('Rasiyathipathi', true, 'Ruling planet harmony'),
-      ('Vasya Porutham', false, 'Mutual attraction'),
-      ('Rajju Porutham', true, 'Longevity of spouse'),
-      ('Vedha Porutham', false, 'Obstacle analysis'),
+      (l10n.poruthamDina,          true,  l10n.poruthamDinaDesc),
+      (l10n.poruthamGana,          true,  l10n.poruthamGanaDesc),
+      (l10n.poruthamMahendra,      true,  l10n.poruthamMahendraDesc),
+      (l10n.poruthamStreeDeergha,  true,  l10n.poruthamStreeDeerghaDesc),
+      (l10n.poruthamYoni,          false, l10n.poruthamYoniDesc),
+      (l10n.poruthamRasi,          true,  l10n.poruthamRasiDesc),
+      (l10n.poruthamRasiyathipathi, true, l10n.poruthamRasiyathipathiDesc),
+      (l10n.poruthamVasya,         false, l10n.poruthamVasyaDesc),
+      (l10n.poruthamRajju,         true,  l10n.poruthamRajjuDesc),
+      (l10n.poruthamVedha,         false, l10n.poruthamVedhaDesc),
     ];
 
     return poruthams.map((p) {

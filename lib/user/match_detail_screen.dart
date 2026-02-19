@@ -344,8 +344,32 @@ class MatchDetailScreen extends StatelessWidget {
                         SizedBox(
                           width: double.infinity,
                           child: OutlinedButton.icon(
-                            onPressed: () => Navigator.of(context)
-                                .pushNamed('/horoscope'),
+                            onPressed: () {
+                              if (!state.canAccessHoroscope) {
+                                showDialog(
+                                  context: context,
+                                  builder: (_) => AlertDialog(
+                                    title: Text(l10n.horoscopeMatching),
+                                    content: Text(l10n.allowHoroscopeCompatibility),
+                                    actions: [
+                                      TextButton(
+                                        onPressed: () => Navigator.pop(context),
+                                        child: Text(l10n.cancel),
+                                      ),
+                                      ElevatedButton(
+                                        onPressed: () {
+                                          Navigator.pop(context);
+                                          Navigator.of(context).pushNamed('/subscription');
+                                        },
+                                        child: Text(l10n.subscriptionPlans),
+                                      ),
+                                    ],
+                                  ),
+                                );
+                                return;
+                              }
+                              Navigator.of(context).pushNamed('/horoscope');
+                            },
                             icon: const Icon(Icons.auto_graph),
                             label:
                                 Text(l10n.checkHoroscopeCompatibility),
