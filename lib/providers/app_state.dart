@@ -38,11 +38,14 @@ class AppState extends ChangeNotifier {
   List<String> _acceptedInterests = [];
   List<String> _declinedInterests = [];
   final Set<String> _hiddenProfiles = {};
+  final Set<String> _unlockedProfiles = {};
 
   List<ProfileModel> get profiles =>
       _profiles.where((p) => !_hiddenProfiles.contains(p.id)).toList();
   Set<String> get hiddenProfiles => _hiddenProfiles;
   bool isHidden(String profileId) => _hiddenProfiles.contains(profileId);
+  bool isProfileUnlocked(String profileId) =>
+      _isSubscribed || _unlockedProfiles.contains(profileId);
   List<ProfileModel> get shortlisted => _shortlisted;
   List<String> get sentInterests => _sentInterests;
   List<String> get receivedInterests => _receivedInterests;
@@ -164,6 +167,7 @@ class AppState extends ChangeNotifier {
     _acceptedInterests = [];
     _declinedInterests = [];
     _hiddenProfiles.clear();
+    _unlockedProfiles.clear();
     _notifications = [];
     notifyListeners();
   }
@@ -227,9 +231,15 @@ class AppState extends ChangeNotifier {
     notifyListeners();
   }
 
-  bool useUnlock() {
-    if (_isSubscribed || _unlockCount > 0) {
-      if (!_isSubscribed) _unlockCount--;
+  bool useUnlock([String? profileId]) {
+    if (_isSubscribed) {
+      if (profileId != null) _unlockedProfiles.add(profileId);
+      notifyListeners();
+      return true;
+    }
+    if (_unlockCount > 0) {
+      _unlockCount--;
+      if (profileId != null) _unlockedProfiles.add(profileId);
       notifyListeners();
       return true;
     }

@@ -20,7 +20,7 @@ class MatchDetailScreen extends StatelessWidget {
     return Consumer<AppState>(
       builder: (context, state, _) {
         final isShortlisted = state.isShortlisted(profile.id);
-        final canViewContact = state.isSubscribed || state.unlockCount > 0;
+        final canViewContact = state.isProfileUnlocked(profile.id);
 
         return Scaffold(
           bottomNavigationBar: const UserBottomNavigation(),
@@ -235,11 +235,19 @@ class MatchDetailScreen extends StatelessWidget {
                               color: AppColors.primary,
                               filled: false,
                               onTap: () {
-                                if (state.useUnlock()) {
+                                if (state.useUnlock(profile.id)) {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(
                                         content:
                                             Text(l10n.contactUnlocked)),
+                                  );
+                                } else {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    const SnackBar(
+                                      content: Text(
+                                          'No unlocks remaining. Please upgrade.'),
+                                      backgroundColor: AppColors.error,
+                                    ),
                                   );
                                 }
                               },
