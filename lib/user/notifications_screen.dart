@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../core/theme.dart';
 import '../providers/app_state.dart';
+import '../providers/chat_provider.dart';
 import '../models/notification_model.dart';
 import '../widgets/user_bottom_navigation.dart';
 import '../l10n/app_localizations.dart';
@@ -128,10 +129,53 @@ class _NotificationTile extends StatelessWidget {
               ),
             ),
       contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
-      onTap: () {
-        context.read<AppState>().markNotificationRead(notification.id);
-      },
+      onTap: () => _handleTap(context),
     );
+  }
+
+  void _handleTap(BuildContext context) {
+    context.read<AppState>().markNotificationRead(notification.id);
+
+    switch (notification.type) {
+      case 'interest':
+        Navigator.of(context).pushNamed('/interests');
+        break;
+      case 'match':
+        final profiles = context.read<AppState>().profiles;
+        if (notification.targetUserId != null && profiles.isNotEmpty) {
+          final profile = profiles.firstWhere(
+            (p) => p.id == notification.targetUserId,
+            orElse: () => profiles.first,
+          );
+          Navigator.of(context).pushNamed('/match-detail', arguments: profile);
+        } else if (profiles.isNotEmpty) {
+          Navigator.of(context).pushNamed('/match-detail', arguments: profiles.first);
+        } else {
+          context.read<AppState>().setShellIndex(2);
+          Navigator.of(context)
+              .pushNamedAndRemoveUntil('/user', (route) => false);
+        }
+        break;
+      case 'message':
+        final convs = context.read<ChatProvider>().conversations;
+        if (notification.targetUserId != null && convs.isNotEmpty) {
+          final conv = convs.firstWhere(
+            (c) => c.id == notification.targetUserId,
+            orElse: () => convs.first,
+          );
+          Navigator.of(context).pushNamed('/chat', arguments: conv);
+        } else if (convs.isNotEmpty) {
+          Navigator.of(context).pushNamed('/chat', arguments: convs.first);
+        } else {
+          context.read<AppState>().setShellIndex(3);
+          Navigator.of(context)
+              .pushNamedAndRemoveUntil('/user', (route) => false);
+        }
+        break;
+      default:
+        // system notifications — no navigation needed
+        break;
+    }
   }
 
   IconData _getIcon() {
