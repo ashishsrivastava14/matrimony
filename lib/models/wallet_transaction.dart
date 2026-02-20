@@ -18,6 +18,26 @@ class WalletTransaction {
     DateTime? date,
   }) : date = date ?? DateTime.now();
 
+  WalletTransaction copyWith({
+    String? id,
+    String? userId,
+    String? type,
+    double? amount,
+    String? description,
+    String? status,
+    DateTime? date,
+  }) {
+    return WalletTransaction(
+      id: id ?? this.id,
+      userId: userId ?? this.userId,
+      type: type ?? this.type,
+      amount: amount ?? this.amount,
+      description: description ?? this.description,
+      status: status ?? this.status,
+      date: date ?? this.date,
+    );
+  }
+
   factory WalletTransaction.fromJson(Map<String, dynamic> json) {
     return WalletTransaction(
       id: json['id'] ?? '',

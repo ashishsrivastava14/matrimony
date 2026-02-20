@@ -5,6 +5,7 @@ import '../models/profile_model.dart';
 import '../models/notification_model.dart';
 import '../models/subscription_plan.dart';
 import '../models/mediator_model.dart';
+import '../models/wallet_transaction.dart';
 import '../services/mock_data.dart';
 
 /// Global application state managed via Provider
@@ -112,12 +113,56 @@ class AppState extends ChangeNotifier {
   int get profileCompletion => _profileCompletion;
 
   // ── Initialize mock data ───────────────────────────────────────
+  // ── Wallet transactions ────────────────────────────────────────
+  List<WalletTransaction> _transactions = [];
+  List<WalletTransaction> get transactions => _transactions;
+  List<WalletTransaction> get pendingWithdrawals =>
+      _transactions.where((t) => t.type == 'withdrawal' && t.status == 'pending').toList();
+  List<WalletTransaction> get approvedTransactions =>
+      _transactions.where((t) => t.status == 'approved').toList();
+  List<WalletTransaction> get rejectedTransactions =>
+      _transactions.where((t) => t.status == 'rejected').toList();
+
+  double get totalPlatformRevenue =>
+      _transactions.where((t) => t.type == 'credit').fold(0.0, (s, t) => s + t.amount);
+  double get totalPendingPayouts =>
+      _transactions.where((t) => t.type == 'withdrawal' && t.status == 'pending').fold(0.0, (s, t) => s + t.amount);
+  double get totalCompletedPayouts =>
+      _transactions.where((t) => t.type == 'withdrawal' && t.status == 'approved').fold(0.0, (s, t) => s + t.amount);
+
+  void approveTransaction(String txnId) {
+    final idx = _transactions.indexWhere((t) => t.id == txnId);
+    if (idx != -1) {
+      _transactions[idx] = _transactions[idx].copyWith(status: 'approved');
+      notifyListeners();
+    }
+  }
+
+  void rejectTransaction(String txnId) {
+    final idx = _transactions.indexWhere((t) => t.id == txnId);
+    if (idx != -1) {
+      _transactions[idx] = _transactions[idx].copyWith(status: 'rejected');
+      notifyListeners();
+    }
+  }
+
+  void deleteTransaction(String txnId) {
+    _transactions.removeWhere((t) => t.id == txnId);
+    notifyListeners();
+  }
+
+  void addTransaction(WalletTransaction txn) {
+    _transactions.insert(0, txn);
+    notifyListeners();
+  }
+
   void loadMockData() {
     _profiles = MockDataService.getMockProfiles();
     _notifications = MockDataService.getMockNotifications();
     _allUsers = MockDataService.getMockUsers();
     _plans = MockDataService.getMockPlans();
     _mediators = MockDataService.getMockMediators();
+    _transactions = MockDataService.getMockTransactions();
     _receivedInterests = ['P002', 'P008', 'P011', 'P014', 'P019', 'P021', 'P024', 'P027', 'P029', 'P032', 'P037'];
     _sentInterests = ['P003', 'P012', 'P018', 'P030', 'P035'];
     _acceptedInterests = ['P002', 'P011', 'P021'];
