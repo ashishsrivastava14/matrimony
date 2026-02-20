@@ -114,7 +114,7 @@ class _ReportsScreenState extends State<ReportsScreen> {
                 physics: const NeverScrollableScrollPhysics(),
                 crossAxisSpacing: 12,
                 mainAxisSpacing: 12,
-                childAspectRatio: 2.0,
+                childAspectRatio: 1.6,
                 children: [
                   _metricCard(l10n.newUsersToday, m['newUsers']!, m['newTrend']!, AppColors.primary, Icons.person_add),
                   _metricCard(l10n.activeSessions, m['sessions']!, m['sessionTrend']!, Colors.blue, Icons.devices),
@@ -331,14 +331,14 @@ class _ReportsScreenState extends State<ReportsScreen> {
     final isPositive = trend.startsWith('+');
     return Card(
       child: Padding(
-        padding: const EdgeInsets.all(12),
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Row(
               children: [
-                Icon(icon, size: 16, color: color),
+                Icon(icon, size: 15, color: color),
                 const Spacer(),
                 Container(
                   padding:
@@ -356,12 +356,13 @@ class _ReportsScreenState extends State<ReportsScreen> {
                 ),
               ],
             ),
-            const SizedBox(height: 4),
+            const SizedBox(height: 2),
             Text(value,
                 style: TextStyle(
-                    fontSize: 18,
+                    fontSize: 17,
                     fontWeight: FontWeight.bold,
-                    color: color)),
+                    color: color),
+                overflow: TextOverflow.ellipsis),
             Text(label,
                 style: const TextStyle(
                     fontSize: 10, color: AppColors.textSecondary),
