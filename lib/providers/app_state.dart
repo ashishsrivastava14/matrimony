@@ -280,6 +280,24 @@ class AppState extends ChangeNotifier {
     }
   }
 
+  void addUser(UserModel user) {
+    _allUsers.add(user);
+    notifyListeners();
+  }
+
+  void updateUser(UserModel updated) {
+    final idx = _allUsers.indexWhere((u) => u.id == updated.id);
+    if (idx != -1) {
+      _allUsers[idx] = updated;
+      notifyListeners();
+    }
+  }
+
+  void deleteUser(String userId) {
+    _allUsers.removeWhere((u) => u.id == userId);
+    notifyListeners();
+  }
+
   void updateProfileCompletion(int value) {
     _profileCompletion = value;
     notifyListeners();
