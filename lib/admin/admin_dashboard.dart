@@ -43,7 +43,7 @@ class AdminDashboard extends StatelessWidget {
                 physics: const NeverScrollableScrollPhysics(),
                 crossAxisSpacing: 12,
                 mainAxisSpacing: 12,
-                childAspectRatio: 2.2,
+                childAspectRatio: 1.3,
                 children: [
                   StatCard(
                     title: l10n.totalUsers,
