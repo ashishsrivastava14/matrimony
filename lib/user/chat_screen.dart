@@ -724,7 +724,7 @@ class _ImageBubble extends StatelessWidget {
             width: 200,
             height: 200,
             fit: BoxFit.cover,
-            errorBuilder: (_, _a, _b) => Container(
+            errorBuilder: (_, _, _) => Container(
               width: 200,
               height: 200,
               color: Colors.grey.shade200,

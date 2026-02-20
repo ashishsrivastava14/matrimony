@@ -370,7 +370,7 @@ class _SearchResultCard extends StatelessWidget {
                       width: 80,
                       height: 80,
                       fit: BoxFit.cover,
-                      errorBuilder: (_, _a, _b) => Container(
+                      errorBuilder: (_, _, _) => Container(
                         width: 80,
                         height: 80,
                         color: Colors.grey.shade200,

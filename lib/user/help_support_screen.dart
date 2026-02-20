@@ -242,7 +242,7 @@ class _SupportFormState extends State<_SupportForm> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           DropdownButtonFormField<String>(
-            value: _subject,
+            initialValue: _subject,
             decoration: const InputDecoration(labelText: 'Subject'),
             items: _subjects
                 .map((s) => DropdownMenuItem(value: s, child: Text(s)))

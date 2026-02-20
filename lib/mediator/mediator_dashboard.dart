@@ -375,7 +375,7 @@ class MediatorDashboard extends StatelessWidget {
           ),
         ),
         const Spacer(),
-        if (trailing != null) trailing,
+        ?trailing,
       ],
     );
   }
@@ -469,7 +469,7 @@ class MediatorDashboard extends StatelessWidget {
                   ? p.photos.first
                   : 'assets/images/profiles/profile_68.jpg',
               fit: BoxFit.cover,
-              errorBuilder: (_, __, ___) => Container(
+              errorBuilder: (_, _, _) => Container(
                 color: AppColors.primary.withValues(alpha: 0.15),
                 child: const Icon(Icons.person, color: AppColors.primary),
               ),
