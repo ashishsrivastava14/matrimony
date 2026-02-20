@@ -27,7 +27,7 @@ class _ProfileCreationScreenState extends State<ProfileCreationScreen> {
   final List<String> _stepTitles = [
     'Basic Info',
     'Religion / Caste',
-    'Education / Occupation',
+    'Study / Job',
     'Family Details',
     'Horoscope Details',
     'Lifestyle',

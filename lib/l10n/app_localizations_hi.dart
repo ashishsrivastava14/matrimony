@@ -1564,7 +1564,7 @@ class AppLocalizationsHi extends AppLocalizations {
   String get stepReligionCaste => 'धर्म / जाति';
 
   @override
-  String get stepEducationOccupation => 'शिक्षा / व्यवसाय';
+  String get stepEducationOccupation => 'अध्ययन / नौकरी';
 
   @override
   String get stepFamilyDetails => 'पारिवारिक विवरण';

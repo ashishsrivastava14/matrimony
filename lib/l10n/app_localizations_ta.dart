@@ -1563,7 +1563,7 @@ class AppLocalizationsTa extends AppLocalizations {
   String get stepReligionCaste => 'Religion / Caste';
 
   @override
-  String get stepEducationOccupation => 'Education / Occupation';
+  String get stepEducationOccupation => 'Study / Job';
 
   @override
   String get stepFamilyDetails => 'Family Details';

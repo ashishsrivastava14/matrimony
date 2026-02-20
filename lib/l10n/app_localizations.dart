@@ -3075,7 +3075,7 @@ abstract class AppLocalizations {
   /// No description provided for @stepEducationOccupation.
   ///
   /// In en, this message translates to:
-  /// **'Education / Occupation'**
+  /// **'Study / Job'**
   String get stepEducationOccupation;
 
   /// No description provided for @stepFamilyDetails.
