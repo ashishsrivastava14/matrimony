@@ -302,6 +302,16 @@ class AppState extends ChangeNotifier {
     notifyListeners();
   }
 
+  void revokeApproval(String profileId) {
+    final idx = _profiles.indexWhere((p) => p.id == profileId);
+    if (idx != -1) {
+      // Move back to pending: clear verified flag but do NOT add to rejected set
+      _rejectedProfileIds.remove(profileId);
+      _profiles[idx] = _profiles[idx].copyWith(isVerified: false, isApproved: false);
+      notifyListeners();
+    }
+  }
+
   void toggleUserBlock(String userId) {
     final idx = _allUsers.indexWhere((u) => u.id == userId);
     if (idx != -1) {

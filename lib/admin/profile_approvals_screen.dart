@@ -198,7 +198,7 @@ class _ProfileApprovalsScreenState extends State<ProfileApprovalsScreen>
                 FilledButton.styleFrom(backgroundColor: Colors.orange),
             onPressed: () {
               Navigator.pop(ctx);
-              appState.rejectProfile(p.id);
+              appState.revokeApproval(p.id);
               ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                 content: Text('Approval revoked for ${p.name}'),
                 backgroundColor: Colors.orange,
