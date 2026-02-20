@@ -68,74 +68,188 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
         children: [
           // Step indicators
           Container(
-            padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
-            color: Colors.white,
-            child: Row(
-              children: List.generate(_steps.length, (i) {
-                final isActive = i == _currentStep;
-                final isDone = i < _currentStep;
-                return Expanded(
-                  child: Column(
+            decoration: BoxDecoration(
+              color: Colors.white,
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withValues(alpha: 0.07),
+                  blurRadius: 8,
+                  offset: const Offset(0, 3),
+                ),
+              ],
+            ),
+            child: Column(
+              children: [
+                // Current step banner
+                Container(
+                  width: double.infinity,
+                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 9),
+                  decoration: const BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: [Color(0xFF00897B), Color(0xFF26A69A)],
+                      begin: Alignment.centerLeft,
+                      end: Alignment.centerRight,
+                    ),
+                  ),
+                  child: Row(
                     children: [
-                      Row(
-                        children: [
-                          if (i > 0)
-                            Expanded(
-                              child: Divider(
-                                color: isDone
-                                    ? AppColors.primary
-                                    : AppColors.divider,
-                                thickness: 2,
-                              ),
-                            ),
-                          CircleAvatar(
-                            radius: 12,
-                            backgroundColor: isDone
-                                ? AppColors.primary
-                                : isActive
-                                    ? AppColors.accent
-                                    : AppColors.divider,
-                            child: isDone
-                                ? const Icon(Icons.check,
-                                    size: 14, color: Colors.white)
-                                : Text('${i + 1}',
-                                    style: TextStyle(
-                                      fontSize: 11,
-                                      color: isActive
-                                          ? Colors.white
-                                          : AppColors.textSecondary,
-                                    )),
-                          ),
-                          if (i < _steps.length - 1)
-                            Expanded(
-                              child: Divider(
-                                color: isDone
-                                    ? AppColors.primary
-                                    : AppColors.divider,
-                                thickness: 2,
-                              ),
-                            ),
-                        ],
-                      ),
-                      const SizedBox(height: 4),
-                      Text(
-                        _steps[i],
-                        style: TextStyle(
-                          fontSize: 9,
-                          fontWeight:
-                              isActive ? FontWeight.bold : FontWeight.normal,
-                          color: isActive
-                              ? AppColors.primary
-                              : AppColors.textSecondary,
+                      Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 3),
+                        decoration: BoxDecoration(
+                          color: Colors.white.withValues(alpha: 0.25),
+                          borderRadius: BorderRadius.circular(12),
                         ),
-                        textAlign: TextAlign.center,
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
+                        child: Text(
+                          'Step ${_currentStep + 1} / ${_steps.length}',
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 11,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
                       ),
+                      const SizedBox(width: 10),
+                      Expanded(
+                        child: Text(
+                          _steps[_currentStep],
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 13,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                      const Icon(Icons.arrow_forward_ios_rounded,
+                          color: Colors.white70, size: 14),
                     ],
                   ),
-                );
-              }),
+                ),
+                // Step circles row
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(8, 12, 8, 10),
+                  child: Row(
+                    children: List.generate(_steps.length, (i) {
+                      final isActive = i == _currentStep;
+                      final isDone = i < _currentStep;
+                      // Shortened label: first word only
+                      final words = _steps[i].split(' ');
+                      final label = words.first;
+                      return Expanded(
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Row(
+                              children: [
+                                if (i > 0)
+                                  Expanded(
+                                    child: Container(
+                                      height: 2,
+                                      decoration: BoxDecoration(
+                                        gradient: isDone
+                                            ? const LinearGradient(
+                                                colors: [Color(0xFF00897B), Color(0xFF26A69A)],
+                                              )
+                                            : null,
+                                        color: isDone ? null : AppColors.divider,
+                                        borderRadius: BorderRadius.circular(1),
+                                      ),
+                                    ),
+                                  ),
+                                AnimatedContainer(
+                                  duration: const Duration(milliseconds: 220),
+                                  curve: Curves.easeOut,
+                                  width: isActive ? 36 : 28,
+                                  height: isActive ? 36 : 28,
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    gradient: isActive
+                                        ? const LinearGradient(
+                                            colors: [Color(0xFFFF8F00), Color(0xFFFFB74D)],
+                                            begin: Alignment.topLeft,
+                                            end: Alignment.bottomRight,
+                                          )
+                                        : isDone
+                                            ? const LinearGradient(
+                                                colors: [Color(0xFF00897B), Color(0xFF26A69A)],
+                                                begin: Alignment.topLeft,
+                                                end: Alignment.bottomRight,
+                                              )
+                                            : null,
+                                    color: isDone || isActive ? null : AppColors.divider,
+                                    boxShadow: isActive
+                                        ? [
+                                            BoxShadow(
+                                              color: const Color(0xFFFF6F00).withValues(alpha: 0.40),
+                                              blurRadius: 10,
+                                              spreadRadius: 1,
+                                            )
+                                          ]
+                                        : isDone
+                                            ? [
+                                                BoxShadow(
+                                                  color: AppColors.primary.withValues(alpha: 0.22),
+                                                  blurRadius: 5,
+                                                )
+                                              ]
+                                            : null,
+                                  ),
+                                  child: Center(
+                                    child: isDone
+                                        ? const Icon(Icons.check_rounded,
+                                            size: 15, color: Colors.white)
+                                        : Text(
+                                            '${i + 1}',
+                                            style: TextStyle(
+                                              fontSize: isActive ? 13 : 11,
+                                              fontWeight: FontWeight.bold,
+                                              color: isActive || isDone
+                                                  ? Colors.white
+                                                  : AppColors.textSecondary,
+                                            ),
+                                          ),
+                                  ),
+                                ),
+                                if (i < _steps.length - 1)
+                                  Expanded(
+                                    child: Container(
+                                      height: 2,
+                                      decoration: BoxDecoration(
+                                        gradient: isDone
+                                            ? const LinearGradient(
+                                                colors: [Color(0xFF26A69A), Color(0xFF00897B)],
+                                              )
+                                            : null,
+                                        color: isDone ? null : AppColors.divider,
+                                        borderRadius: BorderRadius.circular(1),
+                                      ),
+                                    ),
+                                  ),
+                              ],
+                            ),
+                            const SizedBox(height: 5),
+                            Text(
+                              label,
+                              style: TextStyle(
+                                fontSize: 9,
+                                fontWeight:
+                                    isActive ? FontWeight.bold : FontWeight.normal,
+                                color: isActive
+                                    ? AppColors.accent
+                                    : isDone
+                                        ? AppColors.primary
+                                        : AppColors.textSecondary,
+                              ),
+                              textAlign: TextAlign.center,
+                              maxLines: 1,
+                            ),
+                          ],
+                        ),
+                      );
+                    }),
+                  ),
+                ),
+              ],
             ),
           ),
 
