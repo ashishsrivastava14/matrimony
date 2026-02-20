@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import '../core/theme.dart';
 import '../core/constants.dart';
 import '../l10n/app_localizations.dart';
+import '../widgets/quickprepai_branding.dart';
 
 /// Role-selection screen with couple-photo background, strong gradient overlay,
 /// and a clean, focused layout for end users.
@@ -76,6 +77,38 @@ class _RoleSelectionScreenState extends State<RoleSelectionScreen>
                   const Color(0xFF002E25).withValues(alpha: 0.96),
                 ],
                 stops: const [0.0, 0.3, 0.65, 1.0],
+              ),
+            ),
+          ),
+
+          // ── Powered by QuickPrepAI ───────────────────────────────
+          Positioned(
+            bottom: 0,
+            left: 0,
+            right: 0,
+            child: SafeArea(
+              child: FadeTransition(
+                opacity: _fade,
+                child: const Padding(
+                  padding: EdgeInsets.only(bottom: 20),
+                  child: Center(child: PoweredByQuickPrepAI()),
+                ),
+              ),
+            ),
+          ),
+
+          // ── Powered by QuickPrepAI ──────────────────────────────────
+          Positioned(
+            bottom: 0,
+            left: 0,
+            right: 0,
+            child: SafeArea(
+              child: FadeTransition(
+                opacity: _fade,
+                child: const Padding(
+                  padding: EdgeInsets.only(bottom: 20),
+                  child: Center(child: PoweredByQuickPrepAI()),
+                ),
               ),
             ),
           ),
@@ -309,7 +342,7 @@ class _RoleSelectionScreenState extends State<RoleSelectionScreen>
                           ),
                         ],
                       ),
-                      const SizedBox(height: 16),
+                      const SizedBox(height: 90),
                     ],
                   ),
                 ),

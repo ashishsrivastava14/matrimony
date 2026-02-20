@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ap_matrimony/core/theme.dart';
 import '../l10n/app_localizations.dart';
+import '../widgets/quickprepai_branding.dart';
 
 /// Splash screen with rich gradient, floating hearts, and staggered text.
 class SplashScreen extends StatefulWidget {
@@ -185,6 +186,22 @@ class _SplashScreenState extends State<SplashScreen>
 
           // ── floating hearts ──────────────────────────────────────────
           ..._buildFloatingHearts(size),
+
+          // ── powered by banner ─────────────────────────────────────
+          Positioned(
+            bottom: 0,
+            left: 0,
+            right: 0,
+            child: SafeArea(
+              child: FadeTransition(
+                opacity: _ctaFade,
+                child: const Padding(
+                  padding: EdgeInsets.only(bottom: 20),
+                  child: Center(child: PoweredByQuickPrepAI()),
+                ),
+              ),
+            ),
+          ),
 
           // ── main content ─────────────────────────────────────────────
           SafeArea(
@@ -451,6 +468,53 @@ class _SplashScreenState extends State<SplashScreen>
       );
     });
   }
+}
+
+// ─── QuickPrepAI icon painter ────────────────────────────────────────────
+class _QuickPrepAIIconPainter extends CustomPainter {
+  @override
+  void paint(Canvas canvas, Size size) {
+    final double s = size.width;
+    final cyColor = const Color(0xFF29D9F5);
+
+    // Cyan rounded square background
+    final bgPaint = Paint()..color = cyColor;
+    final bgRect = RRect.fromRectAndRadius(
+      Rect.fromLTWH(0, 0, s, s),
+      Radius.circular(s * 0.18),
+    );
+    canvas.drawRRect(bgRect, bgPaint);
+
+    // White diamond outline (rotated square)
+    final cx = s / 2;
+    final cy = s / 2;
+    final r = s * 0.36; // half-diagonal of diamond
+    final diamondPath = Path()
+      ..moveTo(cx, cy - r)
+      ..lineTo(cx + r, cy)
+      ..lineTo(cx, cy + r)
+      ..lineTo(cx - r, cy)
+      ..close();
+    final diamondPaint = Paint()
+      ..color = Colors.white
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = s * 0.065;
+    canvas.drawPath(diamondPath, diamondPaint);
+
+    // Small white filled square in the centre (rotated 45°)
+    canvas.save();
+    canvas.translate(cx, cy);
+    canvas.rotate(math.pi / 4);
+    final innerHalf = s * 0.10;
+    canvas.drawRect(
+      Rect.fromCenter(center: Offset.zero, width: innerHalf * 2, height: innerHalf * 2),
+      Paint()..color = Colors.white,
+    );
+    canvas.restore();
+  }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
 }
 
 // ─── Animated loading dots ─────────────────────────────────────────────
