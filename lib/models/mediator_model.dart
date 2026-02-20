@@ -43,4 +43,34 @@ class MediatorModel {
       state: json['state'] ?? 'Tamil Nadu',
     );
   }
+
+  MediatorModel copyWith({
+    String? id,
+    String? name,
+    String? phone,
+    String? email,
+    int? totalProfiles,
+    int? activeMatches,
+    double? commissionEarned,
+    double? walletBalance,
+    bool? isActive,
+    String? district,
+    String? state,
+    DateTime? joinedAt,
+  }) {
+    return MediatorModel(
+      id: id ?? this.id,
+      name: name ?? this.name,
+      phone: phone ?? this.phone,
+      email: email ?? this.email,
+      totalProfiles: totalProfiles ?? this.totalProfiles,
+      activeMatches: activeMatches ?? this.activeMatches,
+      commissionEarned: commissionEarned ?? this.commissionEarned,
+      walletBalance: walletBalance ?? this.walletBalance,
+      isActive: isActive ?? this.isActive,
+      district: district ?? this.district,
+      state: state ?? this.state,
+      joinedAt: joinedAt ?? this.joinedAt,
+    );
+  }
 }

@@ -4,6 +4,7 @@ import '../models/user_model.dart';
 import '../models/profile_model.dart';
 import '../models/notification_model.dart';
 import '../models/subscription_plan.dart';
+import '../models/mediator_model.dart';
 import '../services/mock_data.dart';
 
 /// Global application state managed via Provider
@@ -91,6 +92,10 @@ class AppState extends ChangeNotifier {
   List<ProfileModel> get rejectedProfiles =>
       _profiles.where((p) => _rejectedProfileIds.contains(p.id)).toList();
 
+  // ── Mediator management (admin) ───────────────────────────────
+  List<MediatorModel> _mediators = [];
+  List<MediatorModel> get mediators => _mediators;
+
   // ── Subscription plans (admin) ─────────────────────────────────
   List<SubscriptionPlan> _plans = [];
   List<SubscriptionPlan> get plans => _plans;
@@ -112,6 +117,7 @@ class AppState extends ChangeNotifier {
     _notifications = MockDataService.getMockNotifications();
     _allUsers = MockDataService.getMockUsers();
     _plans = MockDataService.getMockPlans();
+    _mediators = MockDataService.getMockMediators();
     _receivedInterests = ['P002', 'P008', 'P011', 'P014', 'P019', 'P021', 'P024', 'P027', 'P029', 'P032', 'P037'];
     _sentInterests = ['P003', 'P012', 'P018', 'P030', 'P035'];
     _acceptedInterests = ['P002', 'P011', 'P021'];
@@ -281,6 +287,33 @@ class AppState extends ChangeNotifier {
     final idx = _plans.indexWhere((p) => p.id == planId);
     if (idx != -1) {
       _plans[idx] = _plans[idx].copyWith(isEnabled: !_plans[idx].isEnabled);
+      notifyListeners();
+    }
+  }
+
+  // ── Mediator CRUD (admin) ──────────────────────────────────────
+  void addMediator(MediatorModel mediator) {
+    _mediators.add(mediator);
+    notifyListeners();
+  }
+
+  void updateMediator(MediatorModel updated) {
+    final idx = _mediators.indexWhere((m) => m.id == updated.id);
+    if (idx != -1) {
+      _mediators[idx] = updated;
+      notifyListeners();
+    }
+  }
+
+  void deleteMediator(String mediatorId) {
+    _mediators.removeWhere((m) => m.id == mediatorId);
+    notifyListeners();
+  }
+
+  void toggleMediatorActive(String mediatorId) {
+    final idx = _mediators.indexWhere((m) => m.id == mediatorId);
+    if (idx != -1) {
+      _mediators[idx] = _mediators[idx].copyWith(isActive: !_mediators[idx].isActive);
       notifyListeners();
     }
   }
