@@ -3663,8 +3663,8 @@ abstract class AppLocalizations {
   /// No description provided for @rejectedLabel.
   ///
   /// In en, this message translates to:
-  /// **'Rejected (0)'**
-  String get rejectedLabel;
+  /// **'Rejected ({count})'**
+  String rejectedLabel(int count);
 
   /// No description provided for @approvedName.
   ///

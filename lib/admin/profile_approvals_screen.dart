@@ -61,7 +61,7 @@ class _ProfileApprovalsScreenState extends State<ProfileApprovalsScreen>
             tabs: [
               Tab(text: l10n.pendingLabel(pending.length)),
               Tab(text: l10n.approvedLabel(approved.length)),
-              Tab(text: l10n.rejectedLabel),
+              Tab(text: l10n.rejectedLabel(rejected.length)),
             ],
           ),
           Expanded(

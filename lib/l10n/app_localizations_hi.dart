@@ -1878,7 +1878,9 @@ class AppLocalizationsHi extends AppLocalizations {
   }
 
   @override
-  String get rejectedLabel => 'अस्वीकृत (0)';
+  String rejectedLabel(int count) {
+    return 'अस्वीकृत ($count)';
+  }
 
   @override
   String approvedName(String name) {

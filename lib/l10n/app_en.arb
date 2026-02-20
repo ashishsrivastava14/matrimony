@@ -913,7 +913,14 @@
       }
     }
   },
-  "rejectedLabel": "Rejected (0)",
+  "rejectedLabel": "Rejected ({count})",
+  "@rejectedLabel": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "approvedName": "{name} approved!",
   "@approvedName": {
     "placeholders": {

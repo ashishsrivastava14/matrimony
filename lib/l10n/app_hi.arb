@@ -621,7 +621,14 @@
       }
     }
   },
-  "rejectedLabel": "अस्वीकृत (0)",
+  "rejectedLabel": "अस्वीकृत ({count})",
+  "@rejectedLabel": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "approvedName": "{name} अनुमोदित!",
   "@approvedName": {
     "placeholders": {
