@@ -318,6 +318,42 @@ class AppState extends ChangeNotifier {
     }
   }
 
+  // ── Commission settings ────────────────────────────────────────
+  double _commissionDefaultRate = 10;
+  double _commissionPremiumRate = 15;
+  double _commissionMinPayout = 500;
+  double _commissionPerMatch = 2000;
+  double _commissionPerProfile = 200;
+  double _commissionSubscriptionReferral = 10;
+  double _commissionBonusPerMonth = 5000;
+
+  double get commissionDefaultRate => _commissionDefaultRate;
+  double get commissionPremiumRate => _commissionPremiumRate;
+  double get commissionMinPayout => _commissionMinPayout;
+  double get commissionPerMatch => _commissionPerMatch;
+  double get commissionPerProfile => _commissionPerProfile;
+  double get commissionSubscriptionReferral => _commissionSubscriptionReferral;
+  double get commissionBonusPerMonth => _commissionBonusPerMonth;
+
+  void saveCommissionSettings({
+    required double defaultRate,
+    required double premiumRate,
+    required double minPayout,
+    required double perMatch,
+    required double perProfile,
+    required double subscriptionReferral,
+    required double bonusPerMonth,
+  }) {
+    _commissionDefaultRate = defaultRate;
+    _commissionPremiumRate = premiumRate;
+    _commissionMinPayout = minPayout;
+    _commissionPerMatch = perMatch;
+    _commissionPerProfile = perProfile;
+    _commissionSubscriptionReferral = subscriptionReferral;
+    _commissionBonusPerMonth = bonusPerMonth;
+    notifyListeners();
+  }
+
   void purchaseUnlockBundle(int count) {
     _unlockCount += count;
     notifyListeners();
