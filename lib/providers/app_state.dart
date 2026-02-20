@@ -76,6 +76,21 @@ class AppState extends ChangeNotifier {
   List<UserModel> get allUsers => _allUsers;
   Set<String> get blockedUsers => _allUsers.where((u) => u.isBlocked).map((u) => u.id).toSet();
 
+  // ── Profile approval (admin) ───────────────────────────────────
+  final Set<String> _rejectedProfileIds = {};
+  Set<String> get rejectedProfileIds => _rejectedProfileIds;
+
+  List<ProfileModel> get allProfiles => _profiles;
+
+  List<ProfileModel> get pendingProfiles =>
+      _profiles.where((p) => !p.isVerified && !_rejectedProfileIds.contains(p.id)).toList();
+
+  List<ProfileModel> get approvedProfiles =>
+      _profiles.where((p) => p.isVerified).toList();
+
+  List<ProfileModel> get rejectedProfiles =>
+      _profiles.where((p) => _rejectedProfileIds.contains(p.id)).toList();
+
   // ── Subscription plans (admin) ─────────────────────────────────
   List<SubscriptionPlan> _plans = [];
   List<SubscriptionPlan> get plans => _plans;
@@ -264,6 +279,29 @@ class AppState extends ChangeNotifier {
   }
 
   // ── Admin actions ──────────────────────────────────────────────
+  void approveProfile(String profileId) {
+    final idx = _profiles.indexWhere((p) => p.id == profileId);
+    if (idx != -1) {
+      _rejectedProfileIds.remove(profileId);
+      _profiles[idx] = _profiles[idx].copyWith(isVerified: true, isApproved: true);
+      notifyListeners();
+    }
+  }
+
+  void rejectProfile(String profileId) {
+    final idx = _profiles.indexWhere((p) => p.id == profileId);
+    if (idx != -1) {
+      _rejectedProfileIds.add(profileId);
+      _profiles[idx] = _profiles[idx].copyWith(isVerified: false, isApproved: false);
+      notifyListeners();
+    }
+  }
+
+  void undoRejectProfile(String profileId) {
+    _rejectedProfileIds.remove(profileId);
+    notifyListeners();
+  }
+
   void toggleUserBlock(String userId) {
     final idx = _allUsers.indexWhere((u) => u.id == userId);
     if (idx != -1) {
