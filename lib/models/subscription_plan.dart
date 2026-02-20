@@ -38,6 +38,32 @@ class SubscriptionPlan {
       contactViews: json['contactViews'] ?? 50,
     );
   }
+
+  SubscriptionPlan copyWith({
+    String? id,
+    String? name,
+    String? duration,
+    double? price,
+    double? originalPrice,
+    List<String>? features,
+    bool? isPopular,
+    bool? isEnabled,
+    int? durationMonths,
+    int? contactViews,
+  }) {
+    return SubscriptionPlan(
+      id: id ?? this.id,
+      name: name ?? this.name,
+      duration: duration ?? this.duration,
+      price: price ?? this.price,
+      originalPrice: originalPrice ?? this.originalPrice,
+      features: features ?? this.features,
+      isPopular: isPopular ?? this.isPopular,
+      isEnabled: isEnabled ?? this.isEnabled,
+      durationMonths: durationMonths ?? this.durationMonths,
+      contactViews: contactViews ?? this.contactViews,
+    );
+  }
 }
 
 /// Pay-per-profile unlock bundle

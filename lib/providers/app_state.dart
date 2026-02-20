@@ -258,6 +258,33 @@ class AppState extends ChangeNotifier {
     notifyListeners();
   }
 
+  // ── Subscription plan CRUD (admin) ─────────────────────────────
+  void addPlan(SubscriptionPlan plan) {
+    _plans.add(plan);
+    notifyListeners();
+  }
+
+  void updatePlan(SubscriptionPlan updated) {
+    final idx = _plans.indexWhere((p) => p.id == updated.id);
+    if (idx != -1) {
+      _plans[idx] = updated;
+      notifyListeners();
+    }
+  }
+
+  void deletePlan(String planId) {
+    _plans.removeWhere((p) => p.id == planId);
+    notifyListeners();
+  }
+
+  void togglePlanEnabled(String planId) {
+    final idx = _plans.indexWhere((p) => p.id == planId);
+    if (idx != -1) {
+      _plans[idx] = _plans[idx].copyWith(isEnabled: !_plans[idx].isEnabled);
+      notifyListeners();
+    }
+  }
+
   void purchaseUnlockBundle(int count) {
     _unlockCount += count;
     notifyListeners();
