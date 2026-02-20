@@ -81,4 +81,18 @@ class ProfileUnlockBundle {
     required this.price,
     this.isEnabled = true,
   });
+
+  ProfileUnlockBundle copyWith({
+    String? id,
+    int? profileCount,
+    double? price,
+    bool? isEnabled,
+  }) {
+    return ProfileUnlockBundle(
+      id: id ?? this.id,
+      profileCount: profileCount ?? this.profileCount,
+      price: price ?? this.price,
+      isEnabled: isEnabled ?? this.isEnabled,
+    );
+  }
 }

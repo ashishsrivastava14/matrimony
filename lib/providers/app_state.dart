@@ -163,6 +163,7 @@ class AppState extends ChangeNotifier {
     _plans = MockDataService.getMockPlans();
     _mediators = MockDataService.getMockMediators();
     _transactions = MockDataService.getMockTransactions();
+    _bundles = MockDataService.getMockBundles();
     _receivedInterests = ['P002', 'P008', 'P011', 'P014', 'P019', 'P021', 'P024', 'P027', 'P029', 'P032', 'P037'];
     _sentInterests = ['P003', 'P012', 'P018', 'P030', 'P035'];
     _acceptedInterests = ['P002', 'P011', 'P021'];
@@ -359,6 +360,33 @@ class AppState extends ChangeNotifier {
     final idx = _mediators.indexWhere((m) => m.id == mediatorId);
     if (idx != -1) {
       _mediators[idx] = _mediators[idx].copyWith(isActive: !_mediators[idx].isActive);
+      notifyListeners();
+    }
+  }
+
+  // ── Unlock bundles ─────────────────────────────────────────────
+  List<ProfileUnlockBundle> _bundles = [];
+  List<ProfileUnlockBundle> get bundles => _bundles;
+
+  void addBundle(ProfileUnlockBundle bundle) {
+    _bundles.add(bundle);
+    notifyListeners();
+  }
+
+  void updateBundle(ProfileUnlockBundle updated) {
+    final idx = _bundles.indexWhere((b) => b.id == updated.id);
+    if (idx != -1) { _bundles[idx] = updated; notifyListeners(); }
+  }
+
+  void deleteBundle(String bundleId) {
+    _bundles.removeWhere((b) => b.id == bundleId);
+    notifyListeners();
+  }
+
+  void toggleBundle(String bundleId) {
+    final idx = _bundles.indexWhere((b) => b.id == bundleId);
+    if (idx != -1) {
+      _bundles[idx] = _bundles[idx].copyWith(isEnabled: !_bundles[idx].isEnabled);
       notifyListeners();
     }
   }
