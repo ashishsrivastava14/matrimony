@@ -42,20 +42,20 @@ class _AdminShellState extends State<AdminShell> {
     _MenuItem(Icons.lock_open, 'Pay Per Profile'),
   ];
 
-  final _screens = const [
-    AdminDashboard(),
-    UserManagementScreen(),
-    ProfileApprovalsScreen(),
-    SubscriptionManagementScreen(),
-    MediatorManagementScreen(),
-    CommissionSettingsScreen(),
-    WalletManagementScreen(),
-    CmsScreen(),
-    BannerManagementScreen(),
-    ReportsScreen(),
-    NotificationBroadcastScreen(),
-    HoroscopeSettingsScreen(),
-    PayPerProfileScreen(),
+  List<Widget> get _screens => [
+    AdminDashboard(onViewAllUsers: () => setState(() => _selectedIndex = 1)),
+    const UserManagementScreen(),
+    const ProfileApprovalsScreen(),
+    const SubscriptionManagementScreen(),
+    const MediatorManagementScreen(),
+    const CommissionSettingsScreen(),
+    const WalletManagementScreen(),
+    const CmsScreen(),
+    const BannerManagementScreen(),
+    const ReportsScreen(),
+    const NotificationBroadcastScreen(),
+    const HoroscopeSettingsScreen(),
+    const PayPerProfileScreen(),
   ];
 
   @override

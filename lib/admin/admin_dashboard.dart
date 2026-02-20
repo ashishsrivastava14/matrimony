@@ -5,7 +5,9 @@ import '../services/mock_data.dart';
 import '../l10n/app_localizations.dart';
 
 class AdminDashboard extends StatelessWidget {
-  const AdminDashboard({super.key});
+  final VoidCallback? onViewAllUsers;
+
+  const AdminDashboard({super.key, this.onViewAllUsers});
 
   @override
   Widget build(BuildContext context) {
@@ -121,7 +123,7 @@ class AdminDashboard extends StatelessWidget {
                 return Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Expanded(child: _recentRegistrations(context, profiles)),
+                  Expanded(child: _recentRegistrations(context, profiles, onViewAllUsers)),
                     const SizedBox(width: 16),
                     Expanded(child: _recentActivity(context)),
                   ],
@@ -129,7 +131,7 @@ class AdminDashboard extends StatelessWidget {
               }
               return Column(
                 children: [
-                  _recentRegistrations(context, profiles),
+                  _recentRegistrations(context, profiles, onViewAllUsers),
                   const SizedBox(height: 16),
                   _recentActivity(context),
                 ],
@@ -175,7 +177,7 @@ class AdminDashboard extends StatelessWidget {
     );
   }
 
-  Widget _recentRegistrations(BuildContext context, List profiles) {
+  Widget _recentRegistrations(BuildContext context, List profiles, VoidCallback? onViewAllUsers) {
     final l10n = AppLocalizations.of(context)!;
     return Card(
       child: Padding(
@@ -190,7 +192,7 @@ class AdminDashboard extends StatelessWidget {
                     style: const TextStyle(
                         fontSize: 16, fontWeight: FontWeight.bold)),
                 TextButton(
-                    onPressed: () {}, child: Text(l10n.viewAll)),
+                    onPressed: onViewAllUsers, child: Text(l10n.viewAll)),
               ],
             ),
             const SizedBox(height: 8),
